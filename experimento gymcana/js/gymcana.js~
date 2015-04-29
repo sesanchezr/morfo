@@ -132,8 +132,6 @@
         jQuery('#btn-sgnt-estacion').removeClass("active");
         jQuery('#gymcana').hide();
         jQuery('#intro').show();
-        jQuery('#malasId').val(malas);
-        jQuery('#buenasId').val(buenas);
       }
 
       var currentestacion = 1;
@@ -164,3 +162,5 @@
       jQuery('#intro').show();
       jQuery('#titulo')[0].innerHTML = titulo;
       jQuery('#descripcion')[0].innerHTML = descripcion;
+      
+      

@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-6 col-md-offset-2">
     <form>
       <table class="table">
         <thead>
@@ -53,7 +53,7 @@
   </div>
   </div>
     
-    <script src="aristoteles/js/formulario.js"></script>
+    <script src="js/formulario.js"></script>
     
   </body>
 </html>
