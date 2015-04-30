@@ -1,0 +1,60 @@
+<html>
+	<head>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<title>Puntos</title>
+		<script type="text/javascript" src="https://www.gstatic.com/swiffy/v7.2.0/runtime.js"></script>
+		<script type="text/javascript" src="formulario/js/meninges2.js"></script>
+	</head>
+	<body>
+		<div class="row">
+    		<div class="col-md-6 col-md-offset-2">
+	    		<div class="col-md-6 col-md-offset-5">
+					<button id="zoomin" class="btn btn-primary" data-target="#myModal">
+						<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
+					</button></div>
+				<br><br>
+				<div id="swiffycontainer" style="width: 800px; height: 550px"></div>
+			</div></div>
+		<script>      
+      	var stage = new swiffy.Stage(document.getElementById('swiffycontainer'),
+         			swiffyobject, {  });      
+      	stage.start();
+    	</script>
+    	<script type="text/javascript">
+			$(document).ready(function(){
+			    $("#zoomin").click(function(){
+			        $("#myModal").modal('show');
+			    });
+			    $("#zoomout").click(function(){
+			    	$("#myModal").modal('hide');
+			    });
+			});
+
+		</script>
+
+ 
+		<!-- Modal -->
+		<div id="myModal" class="modal fade">
+		    <div class="modal-body">
+		    	<div class="row">
+		    		<div class="col-md-6 col-md-offset-2">
+		        		<div id="swiffycontainer2" style="width: 800px; height: 550px"></div>
+		        		<div class="col-md-6 col-md-offset-5">
+							<button id="zoomout" class="btn btn-primary" data-target="#myModal">
+							<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom out
+							</button>
+						</div>
+				        <script>      
+				      	var stage = new swiffy.Stage(document.getElementById('swiffycontainer2'),
+				         			swiffyobject, {  });      
+				      	stage.start();
+				    	</script>
+		   		    </div>		
+		        </div>
+		    </div>
+		</div>
+	</body>
+</html>
