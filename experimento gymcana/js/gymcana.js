@@ -81,8 +81,8 @@
         var respReal = respuestasRojo[index]+"";
         jQuery('#btn-rojo').addClass("active");
 
-        if( respUser.toLowerCase() == respReal.toLowerCase() ){
-          agregarBuena();
+        if( validateAnswer(respUser, respReal) ){
+          agregarBuena();	  
           jQuery("#btn-rojo").removeClass('btn-default btn-danger').addClass('btn-success');
         }else{
           agregarMala();
@@ -101,7 +101,7 @@
         var respReal = respuestasBlanco[index]+"";
         jQuery('#btn-blanco').addClass("active");
 
-        if( respUser.toLowerCase() == respReal.toLowerCase() ){
+        if( validateAnswer(respUser, respReal) ){
           agregarBuena();
           jQuery("#btn-blanco").removeClass('btn-default btn-danger').addClass('btn-success');
         }else{
@@ -111,6 +111,48 @@
 
         jQuery('#lbl-blanco').val(''+respReal);
       }
+
+	  function validateAnswer(respUser, respReal){
+		  respUser = standardize(respUser); 
+		  respReal = standardize(respReal); 
+		  return extremeCompare(respUser, respReal);  
+	  }
+
+	  // takes the string to lower case and replaces weird characters by regular ordinary characters
+	  function standardize(s){
+	      var r = s.toLowerCase();
+	      non_asciis = {'a': '[àáâãäå]', 'ae': 'æ', 'c': 'ç', 'e': '[èéêë]', 'i': '[ìíîï]', 'n': 'ñ', 'o': '[òóôõö]', 'oe': 'œ', 'u': '[ùúûűü]', 'y': '[ýÿ]'};
+	      for (i in non_asciis) 
+			  r = r.replace(new RegExp(non_asciis[i], 'g'), i); 
+	      return r;
+	  }
+	  
+	  // compares both answer ingnoring the order of the words
+	  function extremeCompare(answ1, answ2){
+		  var answer1 = answ1.split(" ");
+		  var answer2 = answ2.split(" "); 
+		  if (answer1.length != answer2.length)
+			  return false; 
+		  
+		  var l = answer1.length; 
+		  
+		  var words = []; 
+		  for (i=0; i<l; i++)
+			  words[i] = false; 
+ 
+		  for (i=0; i<l; i++)
+		  	for(j=0; j<l; j++)
+		    	if (answer1[i] == answer2[j]){
+		        	words[i] = true; 
+		         	break; 
+				}
+				
+		  var ret = true; 
+		  for (i=0; i<l; i++)
+			  ret = ret && words[i]; 
+ 
+		  return ret; 
+	  }
 
       function startApp(){
         timer.set({ time : 1000, autostart : true });
