@@ -61,10 +61,13 @@
 		jQuery("#bigImage").hide();
 		jQuery('body').addClass('smallBody');
 		jQuery('.container').addClass('smallImage');
-		//jQuery('.row-fluid').css({'minWidth':'850px'});
-		//jQuery('#content').removeClass('span9').addClass('col-md-12');
-		//jQuery('#content').addClass('col-xs-12');
-		//jQuery('#content').addClass('col-sm-12');
+
+		if( window.innerWidth >= 900 ){
+			expandFigure();
+			jQuery('#zoomin').hide();
+			jQuery('#zoomout').hide();
+		}
+
 
 		function expandFigure(){
 			jQuery('#smallImage').hide();
