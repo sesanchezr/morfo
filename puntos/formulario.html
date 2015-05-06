@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Formulario puntos</title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 	<script>
 		function validar(){
 			//validar que se ingresó en ambos inputs
@@ -30,29 +30,32 @@
 			console.log("Done.");
 			return true;
 		}
-		$("#form_id").submit(function() {
-			enviar();
-		    // var url = "http://localhost/formulario/generar.php"; // the script where you handle the form input.
+		$(document).ready(function(){
+			$("#form_id").submit(function() {
+				alert("hola");
+				enviar();
+			    // var url = "http://localhost/formulario/generar.php"; // the script where you handle the form input.
 
-		    // $.ajax({
-		    //        type: "POST",
-		    //        url: url,
-		    //        data: $("#form_id").serialize(), // serializes the form's elements.
-		    //        success: function(data)
-		    //        {
-		    //            alert(data); // show response from the php script.
-		    //        }
-		    //      });
+			    // $.ajax({
+			    //        type: "POST",
+			    //        url: url,
+			    //        data: $("#form_id").serialize(), // serializes the form's elements.
+			    //        success: function(data)
+			    //        {
+			    //            alert(data); // show response from the php script.
+			    //        }
+			    //      });
 
-		    // return false; // avoid to execute the actual submit of the form.
-		});
+			    // return false; // avoid to execute the actual submit of the form.
+			});
+		}) ;
 	</script>
 </head>
 <body>
-	<form id="form_id" action="" onSubmit="return enviar();"  enctype="multipart/form-data">
+	<form id="form_id" action="">
 		<label for="lswiffy">Swiffy chico: </label><input id="lswiffy" type="file"><br>
 		<label for="bswiffy">Swiffy grande: </label><input id="bswiffy" type="file"><br>
-		<button type="submit">Enviar</button>
+		<input type="submit" value="Enviar">
 	</form>
 	<textarea name="article" id="article_area" cols="30" rows="10"></textarea>
 </body>
