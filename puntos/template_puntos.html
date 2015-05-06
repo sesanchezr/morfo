@@ -7,54 +7,85 @@
 		<title>Puntos</title>
 		<script type="text/javascript" src="https://www.gstatic.com/swiffy/v7.2.0/runtime.js"></script>
 		<script type="text/javascript" src="formulario/js/meninges2.js"></script>
+		<script type="text/javascript" src="formulario/js/meninges3.js"></script>
 	</head>
 	<body>
-		<div class="row">
-    		<div class="col-md-6 col-md-offset-2">
-	    		<div class="col-md-6 col-md-offset-5">
-					<button id="zoomin" class="btn btn-primary" data-target="#myModal">
+		<div class="row" >
+    		<div class="col-md-12" id="smallImage">
+	    		<div class="col-md-12">
+					<button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
 						<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
 					</button></div>
-				<br><br>
-				<div id="swiffycontainer" style="width: 800px; height: 550px"></div>
-			</div></div>
-		<script>      
-      	var stage = new swiffy.Stage(document.getElementById('swiffycontainer'),
-         			swiffyobject, {  });      
-      	stage.start();
-    	</script>
-    	<script type="text/javascript">
-			$(document).ready(function(){
-			    $("#zoomin").click(function(){
-			        $("#myModal").modal('show');
-			    });
-			    $("#zoomout").click(function(){
-			    	$("#myModal").modal('hide');
-			    });
-			});
+				
+				<div class="col-md-12">
+				<div id="swiffycontainer" style="width: 400px; height: 300px"></div>
+				</div>
+			</div>
+		
+    		<div class="col-md-12" id="bigImage">
+	    		<div class="col-md-12">
+					<button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
+						<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
+					</button></div>
+				
+				<div class="col-md-12">
+				<div id="swiffycontainer2" style="width: 800px; height: 550px"></div>
+				</div>
+			</div>
+		</div>
 
-		</script>
+		<style type="text/css">
+			.bigImage{
+				min-width: 850px;
+			}
+			.bigBody{
+				min-width: 900px;
+			}
+			.smallImage{
+				min-width: 450px;
+			}
+			.smallBody{
+				min-width: 500px;
+			}
+		</style>
+
+		<script>      
+      	var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer'),
+         			swiffyobject3, {  });      
+      	stage1.start();
+
+      	var stage2 = new swiffy.Stage(document.getElementById('swiffycontainer2'),
+				         			swiffyobject2, {  });      
+				      	stage2.start();
+
+		jQuery("#bigImage").hide();
+		jQuery('body').addClass('smallBody');
+		jQuery('.container').addClass('smallImage');
+		//jQuery('.row-fluid').css({'minWidth':'850px'});
+		//jQuery('#content').removeClass('span9').addClass('col-md-12');
+		//jQuery('#content').addClass('col-xs-12');
+		//jQuery('#content').addClass('col-sm-12');
+
+		function expandFigure(){
+			jQuery('#smallImage').hide();
+			jQuery('#bigImage').show();
+			jQuery('#content').removeClass('span9').addClass('span11');
+			jQuery('body').removeClass('smallBody').addClass('bigBody');
+			jQuery('.container').removeClass('smallImage').addClass('bigImage');
+		}
+
+		function contractFigure(){
+			jQuery('#smallImage').show();
+			jQuery('#bigImage').hide();
+			jQuery('#content').removeClass('span11').addClass('span9');
+			jQuery('body').removeClass('bigBody').addClass('smallBody');
+			jQuery('.container').removeClass('bigImage').addClass('smallImage');
+		}
+
+    	</script>
+
 
  
-		<!-- Modal -->
-		<div id="myModal" class="modal fade">
-		    <div class="modal-body">
-		    	<div class="row">
-		    		<div class="col-md-6 col-md-offset-2">
-		        		<div id="swiffycontainer2" style="width: 800px; height: 550px"></div>
-		        		<div class="col-md-6 col-md-offset-5">
-							<button id="zoomout" class="btn btn-primary" data-target="#myModal">
-							<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom out
-							</button>
-						</div>
-				        <script>      
-				      	var stage = new swiffy.Stage(document.getElementById('swiffycontainer2'),
-				         			swiffyobject, {  });      
-				      	stage.start();
-				    	</script>
-		   		    </div>		
-		        </div>
-		    </div>
-		</div>
+
 	</body>
 </html>
