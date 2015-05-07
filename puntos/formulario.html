@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Formulario puntos</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+	<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 	<script>
 		function validar(){
 			//validar que se ingresó en ambos inputs
@@ -11,9 +8,16 @@
 			//validar que se ingresó archivos de formato válido (html)
 
 			//validar que tiene un swiffy adentro
-
+			validate_file("lswiffy");
+			validate_file("bswiffy");
 			return true;
 		}	
+		function validate_file(name){
+			var ext = jQuery('#'+name).val().split('.').pop().toLowerCase();
+				if(jQuery.inArray(ext, ['swf']) == -1) {
+				    alert('invalid extension!');
+				}
+		}
 		function enviar(){
 			//validar inputs
 			console.log("enviando...");
@@ -30,33 +34,45 @@
 			console.log("Done.");
 			return true;
 		}
-		$(document).ready(function(){
-			$("#form_id").submit(function() {
-				alert("hola");
-				enviar();
-			    // var url = "http://localhost/formulario/generar.php"; // the script where you handle the form input.
+		jQuery(document).ready(function(){
+			jQuery("#form_id").submit(function() {
+				alert("Max deja de apagar el pc 2");
+				if (!validar()){
+					console.log("ups! inputs inválidos");
+					return false;
+				}
+			    var url = "/~morfo3/generar.php"; // the script where you handle the form input.
 
-			    // $.ajax({
-			    //        type: "POST",
-			    //        url: url,
-			    //        data: $("#form_id").serialize(), // serializes the form's elements.
-			    //        success: function(data)
-			    //        {
-			    //            alert(data); // show response from the php script.
-			    //        }
-			    //      });
+			    jQuery.ajax({
+			           type: "POST",
+			           url: url,
+			           data: jQuery("#form_id").serialize(), // serializes the form's elements.
+			           success: function(data)
+			           {
+			               alert(data); // show response from the php script.
+			           }
+			         });
 
-			    // return false; // avoid to execute the actual submit of the form.
+			    return false; // avoid to execute the actual submit of the form.
 			});
 		}) ;
+/*		jQuery(function () {
+		    jQuery('#form_id').validate({
+		        rules: {},
+		        messages: {},
+		        submitHandler: function () {
+		            return false
+		        }
+		    });
+		    jQuery('#lswiffy').rules('add', {
+		        required: true,
+		        accept: "image/jpeg, image/pjpeg"
+		    })
+		});	*/
 	</script>
-</head>
-<body>
-	<form id="form_id" action="">
+	<form class="navbar-form navbar-left" id="form_id" action="">
 		<label for="lswiffy">Swiffy chico: </label><input id="lswiffy" type="file"><br>
 		<label for="bswiffy">Swiffy grande: </label><input id="bswiffy" type="file"><br>
-		<input type="submit" value="Enviar">
+		<input type="submit" class="btn btn-default" value="Enviar">
 	</form>
-	<textarea name="article" id="article_area" cols="30" rows="10"></textarea>
-</body>
-</html>
+	 <pre id="codigo" class="col-md-12"></pre>
