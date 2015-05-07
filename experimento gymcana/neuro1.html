@@ -10,6 +10,12 @@
   </head>
   <body>
 	<style>.input-group .form-control {height : inherit;} </style>
+	
+	
+	<div id="gymkanaContainer">
+	
+	
+	
     <div id="intro" class="col-md-12">
       <div class="col-md-6">
         <h2 id="titulo"></h2>
@@ -39,7 +45,7 @@
             <div class="input-group">
             <input id="respuestaRojo" type="text" class="form-control" placeholder="Rojo" />
             <span class="input-group-addon">
-              <button type="button" id="btn-rojo" class="btn btn-default" onClick="revisarRespuestaRojo();"></button>
+              <button type="button" id="btn-rojo" class="btn btn-default btn-xs" onClick="revisarRespuestaRojo();"><span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span></button>
             </span>
             </div>
             </br>
@@ -52,8 +58,8 @@
             <div class="input-group">
             <input id="respuestaBlanco" type="text" class="form-control" placeholder="Blanco" />
             <span class="input-group-addon">
-              <button type="button" id="btn-blanco" class="btn btn-default" onClick="revisarRespuestaBlanco();"></button>
-              </span>
+              <button type="button" id="btn-blanco" class="btn btn-default btn-xs" onClick="revisarRespuestaBlanco();"><span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span></button>
+            </span>
             </div>
             </br>
             <input type="text" id="lbl-blanco" class="form-control" value="" disabled/>
@@ -64,12 +70,23 @@
 	</div>
     <div class="col-md-4 col-xs-3 col-sm-3">
       <div class="col-md-12 col-xs-12 col-sm-12">
-        <label>Estaci&oacute;n:</label> <input type="text" id="estacionId" value="1" size="2" disabled/>/<input type="text" id="estacionMaxId" value="" size="2" disabled/>
+      	<div class="input-group">
+        	<div class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></div>
+        	<input type="text" id="estacionId" class="form-control" value="1" size="2" disabled/>
+        	<div class="input-group-addon">/</div>
+        	<input type="text" id="estacionMaxId" class="form-control" value="" size="2" disabled/>
+      	</div>
       </div>
       <div class="col-md-12 col-xs-12 col-sm-12">
         </br>
-        <label>Buenas:</label> <input type="text" id="buenasId" value="0" size="2" disabled/></br>
-        <label>Malas:</label> <input type="text" id="malasId" value="0" size="2" disabled/>
+        <div class="input-group">
+        	<div class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></div> 
+        	<input type="text" id="buenasId" class="form-control" value="0" size="2" disabled/></br>
+        </div>
+        <div class="input-group">
+        	<div class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></div> 
+        	<input type="text" id="malasId" class="form-control" value="0" size="2" disabled/>
+        </div>
       </div>  
       <div class="col-md-12 col-xs-12 col-sm-12 estacionNav">
         </br>
@@ -82,28 +99,32 @@
       </hr>
       <div class="col-md-12 col-xs-12 col-sm-12">
         </br>
-          <button type="button" id="btn-sgnt-estacion" class="btn btn-default btn-lg" onClick="nextEstacion();">Siguiente estaci&oacute;n</button>
+          <button type="button" id="btn-sgnt-estacion" class="btn btn-default btn-lg" onClick="nextEstacion();"><span class="glyphicon glyphicon-chevron-right"></span></button>
       </div>
-      <div class="col-md-4 col-xs-4 col-sm-4">
+      <div class="col-md-12 col-xs-12 col-sm-12">
         </br>
-        <div class="form-group form-group-lg">
-          <input type="text" id="timer" class="form-control" value="60" size="2" disabled/>
-        </div>  
+        <div class="input-group">
+        	<div class="input-group-addon"><span class="glyphicon glyphicon-time"></span></div> 
+        	<input type="text" id="timer" class="form-control" value="60" size="2" disabled/>
+        </div>
+          
       </div> 
       <div class="col-md-12 col-xs-12 col-sm-12">
         </br>
         </br>
         <div class="form-group form-group-lg">
-          <button type="button" id="btn-repetir" class="btn btn-danger" onClick="reiniciar();">Repetir Gymkana</button>
+          <button type="button" id="btn-repetir" class="btn btn-danger" onClick="reiniciar();"><span class="glyphicon glyphicon-repeat"></span></button>
         </div>  
       </div>  
 
     </div>
 
     </div>
-
+    
+    
+</div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/timer.js"></script>
+    <script src="aristoteles/js/timer.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script>
@@ -115,6 +136,7 @@
       var descripcion="La Gymkana consta de 20 estaciones para ser realizada en 20 minutos. Escribir el nombre completo de las estructuras consultadas en el campo de texto correspondiente e ingresarlo con el botón adjunto. Cuidado con la ortografía!. Al minuto se avanzará a la estación siguiente automaticamente, o bien puede hacerlo a través del botón que lo indica.(dificultad alta)";
       //-----------------------------------------------    
     </script>
-    <script src="js/gymcana.js"></script>
+    <script src="aristoteles/js/gymkanaTemplate.js"></script>
+    <script src="aristoteles/js/gymkana.js"></script>
   </body>
 </html>
