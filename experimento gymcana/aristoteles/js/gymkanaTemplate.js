@@ -1,8 +1,7 @@
 function getCodeTemplate() {
 	
 	var strVar="";
-	strVar += "<style>.input-group .form-control {height : inherit;} <\/style>";
-	strVar += "    <div id=\"intro\" class=\"col-md-12\">";
+	strVar += "<div id=\"intro\" class=\"col-md-12\">";
 	strVar += "      <div class=\"col-md-6\">";
 	strVar += "        <h2 id=\"titulo\"><\/h2>";
 	strVar += "        <pre id=\"descripcion\"><\/pre>";
@@ -31,7 +30,7 @@ function getCodeTemplate() {
 	strVar += "            <div class=\"input-group\">";
 	strVar += "            <input id=\"respuestaRojo\" type=\"text\" class=\"form-control\" placeholder=\"Rojo\" \/>";
 	strVar += "            <span class=\"input-group-addon\">";
-	strVar += "              <button type=\"button\" id=\"btn-rojo\" class=\"btn btn-default\" onClick=\"revisarRespuestaRojo();\"><\/button>";
+	strVar += "              <button type=\"button\" id=\"btn-rojo\" class=\"btn btn-default btn-xs\" onClick=\"revisarRespuestaRojo();\"><span class=\"glyphicon glyphicon-hand-down\" aria-hidden=\"true\"><\/span><\/button>";
 	strVar += "            <\/span>";
 	strVar += "            <\/div>";
 	strVar += "            <\/br>";
@@ -44,8 +43,8 @@ function getCodeTemplate() {
 	strVar += "            <div class=\"input-group\">";
 	strVar += "            <input id=\"respuestaBlanco\" type=\"text\" class=\"form-control\" placeholder=\"Blanco\" \/>";
 	strVar += "            <span class=\"input-group-addon\">";
-	strVar += "              <button type=\"button\" id=\"btn-blanco\" class=\"btn btn-default\" onClick=\"revisarRespuestaBlanco();\"><\/button>";
-	strVar += "              <\/span>";
+	strVar += "              <button type=\"button\" id=\"btn-blanco\" class=\"btn btn-default btn-xs\" onClick=\"revisarRespuestaBlanco();\"><span class=\"glyphicon glyphicon-hand-down\" aria-hidden=\"true\"><\/span><\/button>";
+	strVar += "            <\/span>";
 	strVar += "            <\/div>";
 	strVar += "            <\/br>";
 	strVar += "            <input type=\"text\" id=\"lbl-blanco\" class=\"form-control\" value=\"\" disabled\/>";
@@ -56,12 +55,23 @@ function getCodeTemplate() {
 	strVar += "	<\/div>";
 	strVar += "    <div class=\"col-md-4 col-xs-3 col-sm-3\">";
 	strVar += "      <div class=\"col-md-12 col-xs-12 col-sm-12\">";
-	strVar += "        <label>Estaci&oacute;n:<\/label> <input type=\"text\" id=\"estacionId\" value=\"1\" size=\"2\" disabled\/>\/<input type=\"text\" id=\"estacionMaxId\" value=\"\" size=\"2\" disabled\/>";
+	strVar += "      	<div class=\"input-group\">";
+	strVar += "        	<div class=\"input-group-addon\"><span class=\"glyphicon glyphicon-flag\"><\/span><\/div>";
+	strVar += "        	<input type=\"text\" id=\"estacionId\" class=\"form-control\" value=\"1\" size=\"2\" disabled\/>";
+	strVar += "        	<div class=\"input-group-addon\">\/<\/div>";
+	strVar += "        	<input type=\"text\" id=\"estacionMaxId\" class=\"form-control\" value=\"\" size=\"2\" disabled\/>";
+	strVar += "      	<\/div>";
 	strVar += "      <\/div>";
 	strVar += "      <div class=\"col-md-12 col-xs-12 col-sm-12\">";
 	strVar += "        <\/br>";
-	strVar += "        <label>Buenas:<\/label> <input type=\"text\" id=\"buenasId\" value=\"0\" size=\"2\" disabled\/><\/br>";
-	strVar += "        <label>Malas:<\/label> <input type=\"text\" id=\"malasId\" value=\"0\" size=\"2\" disabled\/>";
+	strVar += "        <div class=\"input-group\">";
+	strVar += "        	<div class=\"input-group-addon\"><span class=\"glyphicon glyphicon-ok\"><\/span><\/div> ";
+	strVar += "        	<input type=\"text\" id=\"buenasId\" class=\"form-control\" value=\"0\" size=\"2\" disabled\/><\/br>";
+	strVar += "        <\/div>";
+	strVar += "        <div class=\"input-group\">";
+	strVar += "        	<div class=\"input-group-addon\"><span class=\"glyphicon glyphicon-remove\"><\/span><\/div> ";
+	strVar += "        	<input type=\"text\" id=\"malasId\" class=\"form-control\" value=\"0\" size=\"2\" disabled\/>";
+	strVar += "        <\/div>";
 	strVar += "      <\/div>  ";
 	strVar += "      <div class=\"col-md-12 col-xs-12 col-sm-12 estacionNav\">";
 	strVar += "        <\/br>";
@@ -74,26 +84,28 @@ function getCodeTemplate() {
 	strVar += "      <\/hr>";
 	strVar += "      <div class=\"col-md-12 col-xs-12 col-sm-12\">";
 	strVar += "        <\/br>";
-	strVar += "          <button type=\"button\" id=\"btn-sgnt-estacion\" class=\"btn btn-default btn-lg\" onClick=\"nextEstacion();\">Siguiente estaci&oacute;n<\/button>";
+	strVar += "          <button type=\"button\" id=\"btn-sgnt-estacion\" class=\"btn btn-default btn-lg\" onClick=\"nextEstacion();\"><span class=\"glyphicon glyphicon-chevron-right\"><\/span><\/button>";
 	strVar += "      <\/div>";
-	strVar += "      <div class=\"col-md-4 col-xs-4 col-sm-4\">";
+	strVar += "      <div class=\"col-md-12 col-xs-12 col-sm-12\">";
 	strVar += "        <\/br>";
-	strVar += "        <div class=\"form-group form-group-lg\">";
-	strVar += "          <input type=\"text\" id=\"timer\" class=\"form-control\" value=\"60\" size=\"2\" disabled\/>";
-	strVar += "        <\/div>  ";
+	strVar += "        <div class=\"input-group\">";
+	strVar += "        	<div class=\"input-group-addon\"><span class=\"glyphicon glyphicon-time\"><\/span><\/div> ";
+	strVar += "        	<input type=\"text\" id=\"timer\" class=\"form-control\" value=\"60\" size=\"2\" disabled\/>";
+	strVar += "        <\/div>";
+	strVar += "          ";
 	strVar += "      <\/div> ";
 	strVar += "      <div class=\"col-md-12 col-xs-12 col-sm-12\">";
 	strVar += "        <\/br>";
 	strVar += "        <\/br>";
 	strVar += "        <div class=\"form-group form-group-lg\">";
-	strVar += "          <button type=\"button\" id=\"btn-repetir\" class=\"btn btn-danger\" onClick=\"reiniciar();\">Repetir Gymkana<\/button>";
+	strVar += "          <button type=\"button\" id=\"btn-repetir\" class=\"btn btn-danger\" onClick=\"reiniciar();\"><span class=\"glyphicon glyphicon-repeat\"><\/span><\/button>";
 	strVar += "        <\/div>  ";
 	strVar += "      <\/div>  ";
 	strVar += "";
 	strVar += "    <\/div>";
 	strVar += "";
 	strVar += "    <\/div>";
-	strVar += "";
+
 
 	strVar = strVar.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	//strVar = strVar.replace(/</g, '&lt;');
