@@ -34,13 +34,14 @@
 			console.log("Done.");
 			return true;
 		}*/
-
+		var url_sti = "/~morfo3/generar.php";
+		var url_local = "generar.php"
 		jQuery(document).ready(function(){
 			jQuery("#form_id").submit(function(){
 			    var formData = new FormData(jQuery(this)[0]);
 
 			    jQuery.ajax({
-			        url: "/~morfo3/generar.php",
+			        url: url_local,
 			        type: 'POST',
 			        data: formData,
 			        success: function (data) {
