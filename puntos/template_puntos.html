@@ -6,8 +6,8 @@
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<title>Puntos</title>
 		<script type="text/javascript" src="https://www.gstatic.com/swiffy/v7.2.0/runtime.js"></script>
-		<script type="text/javascript" src="formulario/js/meninges2.js"></script>
-		<script type="text/javascript" src="formulario/js/meninges3.js"></script>
+		<script type="text/javascript" src="@lswiffy.js"></script>
+		<script type="text/javascript" src="@bswiffy.js"></script>
 	</head>
 	<body>
 		<div class="row" >
@@ -51,11 +51,11 @@
 
 		<script>      
       	var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer'),
-         			swiffyobject3, {  });      
+         			@lswiffy, {  });      
       	stage1.start();
 
       	var stage2 = new swiffy.Stage(document.getElementById('swiffycontainer2'),
-				         			swiffyobject2, {  });      
+				         			@bswiffy, {  });      
 				      	stage2.start();
 
 		jQuery("#bigImage").hide();
@@ -86,9 +86,5 @@
 		}
 
     	</script>
-
-
- 
-
 	</body>
 </html>
