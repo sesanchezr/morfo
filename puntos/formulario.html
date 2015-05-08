@@ -1,65 +1,145 @@
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-	<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
-	<script>
-		function validar(){
-			//validar que se ingresó en ambos inputs
-			console.log("validando...");
-			//validar que se ingresó archivos de formato válido (html)
-
-			//validar que tiene un swiffy adentro
-			validate_file("lswiffy");
-			validate_file("bswiffy");
-			return true;
-		}	
-		function validate_file(name){
-			var ext = jQuery('#'+name).val().split('.').pop().toLowerCase();
-			if(jQuery.inArray(ext, ['html']) == -1) {
-			    alert('Archivo invalido, debe ingresar un archivo Flash');
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"><title>Document</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+		<script>
+			function alertUser(message){
+				if (message == "") jQuery("#message").text("");
+				else jQuery("#message").text("ERROR: "+message);
 			}
-		}
-/*		function enviar(){
-			//validar inputs
-			console.log("enviando...");
-			if (!validar()){
-				console.log("ups! inputs inválidos");
-				return false;
+			function validar(){
+				/*
+				Retorna: 	TRUE si está correcto
+							FALSE si no.
+				*/
+				//validar que se ingresó en ambos inputs
+				console.log("validando...");
+				ltext = jQuery('#linput').val();
+				btext = jQuery('#binput').val();
+				if ((ltext == "") || (btext == "")){
+					alertUser("Debe ingresar ambos archivos");
+					return false;
+				}
+				//validar que se ingresó archivos de formato válido (html)
+				if (!lfile_ok || !bfile_ok){
+					alertUser("Formato de archivos inválido (debe ser .html)");
+					return false;
+				}
+				alertUser("");
+				return true;
 			}
-			console.log("todo ok. Enviado a generar.php . Esperando respuesta...");
-			//enviando archivos al servidor (a generar.php)
+			//para evitar validar dos veces cada archivo:
+			var lfile_ok = false;
+			var bfile_ok = false;
+			function validateFile(name){
+				/* Recibe string con nombre del archivo swiffeado
+					Retorna: TRUE si es html
+							 FALSE si no.
+				*/
+				//Validar extensión
+				var input = jQuery('#'+name);
+				var ext = input.val().split('.').pop().toLowerCase();
+				if(jQuery.inArray(ext, ['html']) == -1) {
+					jQuery(input).removeClass("ok").addClass("error");
+				    alertUser('Archivo invalido, debe ingresar un archivo .html swiffy');
+				    return false;
+				}
+				//TO DO: Validar swiffy: ver si tiene un swiffycontainer
+				//validateSwiffy(input.files);
+				jQuery(input).removeClass("error").addClass("ok");
+				alertUser("");
+				return true;
+			}
+			// TO DO:
+			// function validateSwiffy(){
+			// 	// Check for the various File API support.
+			// 	if (window.File && window.FileReader && window.FileList && window.Blob) {
+			// 	  // Great success! All the File APIs are supported.
+			// 	} else {
+			// 	  alert('The File APIs are not fully supported in this browser.');
+			// 	}
+			// }
 
-			//respuesta recibida.
-			console.log("OK! Escribiendo en textarea...");
-			// Desplegar en textarea
-			console.log("Done.");
-			return true;
-		}*/
-		var url_sti = "/~morfo3/generar.php";
-		var url_local = "generar.php"
-		jQuery(document).ready(function(){
-			jQuery("#form_id").submit(function(){
-			    var formData = new FormData(jQuery(this)[0]);
+			/*function enviar(){
+				//validar inputs
+				console.log("enviando...");
+				console.log("todo ok. Enviado a generar.php . Esperando respuesta...");
+				//enviando archivos al servidor (a generar.php)
 
-			    jQuery.ajax({
-			        url: url_local,
-			        type: 'POST',
-			        data: formData,
-			        success: function (data) {
-			            alert(data)
-			        },
-			        cache: false,
-			        contentType: false,
-			        processData: false
-			    });
+				//respuesta recibida.
+				console.log("OK! Escribiendo en textarea...");
+				// Desplegar en textarea
+				console.log("Done.");
+				return true;
+			}*/
+			var url_sti = "/~morfo3/generar.php";
+			var url_local = "generar.php";
+			jQuery(document).ready(function(){
+				// Qué hacer cuando se hace submit en el formulario 
+				jQuery("#form_id").submit(function(event){
 
-	    		return false;
-			});
-		}) ;
-	</script>
-	<form class="navbar-form navbar-left" id="form_id" method="post" enctype='multipart/form-data'>
-		<label for="lswiffy">Swiffy chico: </label><input id="lswiffy" name="lswiffy" type="file"><br>
-		<label for="bswiffy">Swiffy grande: </label><input id="bswiffy" name='bswiffy' type="file"><br>
-		<input type="submit" class="btn btn-default" value="Enviar">
-	</form>
-	 <pre id="codigo" class="col-md-12"></pre>
+				    // Validar localmente primero
+				    if (validar()){
+					    // var formData = {
+					    // 	'linput' : jQuery("#linput").val(),
+					    // 	'binput' : jQuery("#binput").val()
+					    // };
+						//Obtener datos del formulario
+						var formData = new FormData(jQuery(this)[0]);
+				    	jQuery.ajax({
+				    		url: url_local,
+				    		type: 'POST',
+				    		data: formData,
+				    		dataType: 'text',
+				    		success: function (data) {
+				    			jQuery("#output_div").css("display","block");
+				    			jQuery("#output").text(data);
+				    		},
+				    		cache: false,
+				    		contentType: false,
+				    		processData: false
+				    	});
+				    }
+				    //Evitar que se actualice la página
+				    return false;
+				});
+			}) ;
+		</script>
+		<style>
+			#output_div{
+				display: none;
+				background-color: #eee;
+				box-shadow: 0px 0px 20px #bbb;
+				padding: 1px 4px 1px 4px;
+				border: 1px solid #bbe;
+				width: 600px;
+				height: 500px;
+				border-radius: 10px;
+				overflow: scroll;
 
+			}
+			#message{
+				color: #c00;
+			}
+			.error{
+				background-color: red;
+			}
+			.ok{
+				background-color: #0F0;
+			}
+		</style>
+	</head>
+	<body>
+		<form class="navbar-form navbar-left" id="form_id" method="post" enctype='multipart/form-data'>
+			<label for="linput">Swiffy chico: </label><input id="linput" name="lfile" type="file" onchange="lfile_ok = validateFile('linput');"><br>
+			<label for="binput">Swiffy grande: </label><input id="binput" name='bfile' type="file" onchange="bfile_ok = validateFile('binput');"><br>
+			<input type="submit" class="btn btn-default" value="Enviar">
+		</form>
+		<br>
+		<div id="message"></div>
+		<div id="output_div"><pre id="output"></pre></div>
+	</body>
+</html>

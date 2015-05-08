@@ -6,7 +6,7 @@
 	//obtener nombres de archivos subidos
 	//print_r($_FILES["archivo1"]);
 	//print_r($_FILES["archivo2"]);
-	print_r($_FILES);
+	//print_r($_FILES);
 	echo "</pre>";
 	$n_archivos = count($_FILES['archivos']['name']);
 	$to_convert = array();
