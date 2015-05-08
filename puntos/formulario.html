@@ -1,7 +1,12 @@
+<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"><title>Document</title>
+<!-- FIN DEL BLOQUE -->
+
+
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
@@ -62,7 +67,7 @@
 			// 	  alert('The File APIs are not fully supported in this browser.');
 			// 	}
 			// }
-			var url_sti = "/~morfo3/generar.php";
+			var url_remoto = "/~morfo3/generar.php";
 			var url_local = "generar.php";
 			jQuery(document).ready(function(){
 				// Qué hacer cuando se hace submit en el formulario 
@@ -72,6 +77,7 @@
 						//Obtener datos del formulario
 						var formData = new FormData(jQuery(this)[0]);
 				    	jQuery.ajax({
+/* CAMBIAR url_local POR url_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
 				    		url: url_local,
 				    		type: 'POST',
 				    		data: formData,
@@ -106,12 +112,6 @@
 			        selection.addRange(range);
 			    }
 			}
-
-document.onclick = function(e) {    
-    if (e.target.className === 'click') {
-        SelectText('selectme');
-    }
-};
 		</script>
 		<style>
 			#output_div{
@@ -135,8 +135,13 @@ document.onclick = function(e) {
 				background-color: #0F0;
 			}
 		</style>
+
+<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
 	</head>
 	<body>
+<!-- FIN DEL BLOQUE -->
+
+
 		<form class="navbar-form navbar-left" id="form_id" method="post" enctype='multipart/form-data' action ="selectHTML()">
 			<label for="linput">Swiffy chico: </label><input id="linput" name="lfile" type="file" onchange="lfile_ok = validateFile('linput');"><br>
 			<label for="binput">Swiffy grande: </label><input id="binput" name='bfile' type="file" onchange="bfile_ok = validateFile('binput');"><br>
@@ -145,5 +150,10 @@ document.onclick = function(e) {
 		<br>
 		<div id="message"></div>
 		<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
+
+
+
+<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
 	</body>
 </html>
+<!-- FIN DEL BLOQUE -->

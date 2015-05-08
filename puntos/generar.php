@@ -55,8 +55,10 @@
 	fclose($bjsfile);
 	// Generar html con ambos js incluidos	
 	  //obtener texto del template
-	$templatefilename = "template_puntos.html";
-	$templatehtml = file_get_contents($templatefilename);
+	$templatefilename_local = "template_puntos.html";
+	//$templatefilename_remoto = "/home/morfo3/public_html/template_puntos.html";
+/* CAMBIAR templatefilename_local POR templatefilename_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
+	$templatehtml = file_get_contents($templatefilename_local);
 	  //reemplazar littleswiffy y bigswiffy
 	$templatehtml = preg_replace("/@lswiffy/",$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/@bswiffy/",$bswiffyvar,$templatehtml);
