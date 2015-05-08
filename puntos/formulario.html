@@ -89,6 +89,29 @@
 				    return false;
 				});
 			}) ;
+			function selectHTML() {
+			    var doc = document
+			        , text = doc.getElementById("output")
+			        , range, selection
+			    ;    
+			    if (doc.body.createTextRange) {
+			        range = document.body.createTextRange();
+			        range.moveToElementText(text);
+			        range.select();
+			    } else if (window.getSelection) {
+			        selection = window.getSelection();        
+			        range = document.createRange();
+			        range.selectNodeContents(text);
+			        selection.removeAllRanges();
+			        selection.addRange(range);
+			    }
+			}
+
+document.onclick = function(e) {    
+    if (e.target.className === 'click') {
+        SelectText('selectme');
+    }
+};
 		</script>
 		<style>
 			#output_div{
@@ -114,13 +137,13 @@
 		</style>
 	</head>
 	<body>
-		<form class="navbar-form navbar-left" id="form_id" method="post" enctype='multipart/form-data'>
+		<form class="navbar-form navbar-left" id="form_id" method="post" enctype='multipart/form-data' action ="selectHTML()">
 			<label for="linput">Swiffy chico: </label><input id="linput" name="lfile" type="file" onchange="lfile_ok = validateFile('linput');"><br>
 			<label for="binput">Swiffy grande: </label><input id="binput" name='bfile' type="file" onchange="bfile_ok = validateFile('binput');"><br>
 			<input type="submit" class="btn btn-default" value="Enviar">
 		</form>
 		<br>
 		<div id="message"></div>
-		<div id="output_div"><pre id="output"></pre></div>
+		<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
 	</body>
 </html>
