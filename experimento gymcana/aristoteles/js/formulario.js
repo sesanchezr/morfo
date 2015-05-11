@@ -85,7 +85,7 @@ function generateCode() {
 	res += '&lt;script&gt;';
 	res += 'var respuestasRojo=[' + respuestasRojo + '];';
 	res += 'var respuestasBlanco=[' + respuestasBlanco + '];';
-	res += 'var nombreCarpeta="../aristoteles/' + nombreCarpeta + '";';
+	res += 'var nombreCarpeta="../../aristoteles/' + nombreCarpeta + '";';
 //	res += 'var nombreCarpeta="../aristoteles/' + "gymkana1" + '";';
 	res += 'var titulo="' + titulo + '";';
 //	res += 'var titulo="' + "Gymkana 1" + '";';
