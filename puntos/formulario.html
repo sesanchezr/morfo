@@ -13,11 +13,10 @@
 				if (message == "") jQuery("#message").text("");
 				else jQuery("#message").text("ERROR: "+message);
 			}
+			/* Retorna: TRUE si está correcto
+						FALSE si no.
+			*/
 			function validar(){
-				/*
-				Retorna: 	TRUE si está correcto
-							FALSE si no.
-				*/
 				//validar que se ingresó en ambos inputs
 				console.log("validando...");
 				ltext = jQuery('#linput').val();
@@ -75,7 +74,7 @@
 						//Obtener datos del formulario
 						var formData = new FormData(jQuery(this)[0]);
 				    	jQuery.ajax({
-/* CAMBIAR url_local POR url_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
+	/* CAMBIAR url_local POR url_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
 				    		url: url_local,
 				    		type: 'POST',
 				    		data: formData,
