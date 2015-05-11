@@ -81,7 +81,11 @@ function generateCode() {
 	}
 
 	var res = '&lt;div id="gymkanaContainer"&gt;&lt;/div&gt;';
-	res += '&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;&lt;/script&gt;&lt;script src="aristoteles/js/timer.js"&gt;&lt;/script&gt;&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"&gt;&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"&gt;&lt;/script&gt;';
+	//res += '&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;'
+	res+='&lt;/script&gt;&lt;script src="aristoteles/js/timer.js"&gt;&lt;/script&gt;'
+	//res+='&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"&gt;'
+	//res+='&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"&gt;&lt;/script&gt;';
+		
 	res += '&lt;script&gt;';
 	res += 'var respuestasRojo=[' + respuestasRojo + '];';
 	res += 'var respuestasBlanco=[' + respuestasBlanco + '];';
