@@ -1,90 +1,84 @@
-<html>
-	<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<title>Puntos</title>
+<script type="text/javascript" src="https://www.gstatic.com/swiffy/v7.2.0/runtime.js"></script>
+<script type="text/javascript" src="@lswiffy.js"></script>
+<script type="text/javascript" src="@bswiffy.js"></script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<title>Puntos</title>
-		<script type="text/javascript" src="https://www.gstatic.com/swiffy/v7.2.0/runtime.js"></script>
-		<script type="text/javascript" src="@lswiffy.js"></script>
-		<script type="text/javascript" src="@bswiffy.js"></script>
-	</head>
-	<body>
-		<div class="row" >
-    		<div class="col-md-12" id="smallImage">
-	    		<div class="col-md-12">
-					<button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
-						<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
-					</button></div>
-				
-				<div class="col-md-12">
-				<div id="swiffycontainer" style="width: 400px; height: 300px"></div>
-				</div>
-			</div>
+<div class="row" >
+	<div class="col-md-12" id="smallImage">
+		<div class="col-md-12">
+			<button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
+				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
+			</button></div>
 		
-    		<div class="col-md-12" id="bigImage">
-	    		<div class="col-md-12">
-					<button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
-						<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
-					</button></div>
-				
-				<div class="col-md-12">
-				<div id="swiffycontainer2" style="width: 800px; height: 550px"></div>
-				</div>
-			</div>
+		<div class="col-md-12">
+		<div id="swiffycontainer" style="width: 400px; height: 300px"></div>
 		</div>
+	</div>
 
-		<style type="text/css">
-			.bigImage{
-				min-width: 850px;
-			}
-			.bigBody{
-				min-width: 900px;
-			}
-			.smallImage{
-				min-width: 450px;
-			}
-			.smallBody{
-				min-width: 500px;
-			}
-		</style>
+	<div class="col-md-12" id="bigImage">
+		<div class="col-md-12">
+			<button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
+				<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
+			</button></div>
+		
+		<div class="col-md-12">
+		<div id="swiffycontainer2" style="width: 800px; height: 550px"></div>
+		</div>
+	</div>
+</div>
 
-		<script>      
-      	var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer'),
-         			@lswiffy, {  });      
-      	stage1.start();
+<style type="text/css">
+	.bigImage{
+		min-width: 850px;
+	}
+	.bigBody{
+		min-width: 900px;
+	}
+	.smallImage{
+		min-width: 450px;
+	}
+	.smallBody{
+		min-width: 500px;
+	}
+</style>
 
-      	var stage2 = new swiffy.Stage(document.getElementById('swiffycontainer2'),
-				         			@bswiffy, {  });      
-				      	stage2.start();
+<script>      
+	var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer'),
+ 			%lswiffy, {  });      
+	stage1.start();
 
-		jQuery("#bigImage").hide();
-		jQuery('body').addClass('smallBody');
-		jQuery('.container').addClass('smallImage');
+	var stage2 = new swiffy.Stage(document.getElementById('swiffycontainer2'),
+		         			%bswiffy, {  });      
+		      	stage2.start();
 
-		if( window.innerWidth >= 900 ){
-			expandFigure();
-			jQuery('#zoomin').hide();
-			jQuery('#zoomout').hide();
-		}
+jQuery("#bigImage").hide();
+jQuery('body').addClass('smallBody');
+jQuery('.container').addClass('smallImage');
+
+if( window.innerWidth >= 900 ){
+	expandFigure();
+	jQuery('#zoomin').hide();
+	jQuery('#zoomout').hide();
+}
 
 
-		function expandFigure(){
-			jQuery('#smallImage').hide();
-			jQuery('#bigImage').show();
-			jQuery('#content').removeClass('span9').addClass('span11');
-			jQuery('body').removeClass('smallBody').addClass('bigBody');
-			jQuery('.container').removeClass('smallImage').addClass('bigImage');
-		}
+function expandFigure(){
+	jQuery('#smallImage').hide();
+	jQuery('#bigImage').show();
+	jQuery('#content').removeClass('span9').addClass('span11');
+	jQuery('body').removeClass('smallBody').addClass('bigBody');
+	jQuery('.container').removeClass('smallImage').addClass('bigImage');
+}
 
-		function contractFigure(){
-			jQuery('#smallImage').show();
-			jQuery('#bigImage').hide();
-			jQuery('#content').removeClass('span11').addClass('span9');
-			jQuery('body').removeClass('bigBody').addClass('smallBody');
-			jQuery('.container').removeClass('bigImage').addClass('smallImage');
-		}
+function contractFigure(){
+	jQuery('#smallImage').show();
+	jQuery('#bigImage').hide();
+	jQuery('#content').removeClass('span11').addClass('span9');
+	jQuery('body').removeClass('bigBody').addClass('smallBody');
+	jQuery('.container').removeClass('bigImage').addClass('smallImage');
+}
 
-    	</script>
-	</body>
-</html>
+</script>
