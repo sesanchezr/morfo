@@ -24,7 +24,7 @@ function getCodeTemplate() {
 	strVar += "            ";
 	strVar += "          <\/div>";
 	strVar += "        <\/div>";
-	strVar += "        <div id=\"rojoAnswerContainer\" class=\"col-md-6 col-xs-6 col-sm-6 morfoAnswer\">";
+	strVar += "        <div id=\"rojoAnswerContainer\" class=\"col-md-6 col-xs-12 col-sm-6 morfoAnswer\">";
 	strVar += "          <\/br>";
 	strVar += "          <div class=\"form-group\">";
 	strVar += "            <div class=\"input-group\">";
@@ -37,7 +37,7 @@ function getCodeTemplate() {
 	strVar += "            <input type=\"text\" id=\"lbl-rojo\" class=\"form-control\" value=\"\" disabled\/>";
 	strVar += "          <\/div>";
 	strVar += "        <\/div>";
-	strVar += "        <div id=\"blancoAnswerContainer\" class=\"col-md-6 col-xs-6 col-sm-6 morfoAnswer\">";
+	strVar += "        <div id=\"blancoAnswerContainer\" class=\"col-md-6 col-xs-12 col-sm-6 morfoAnswer\">";
 	strVar += "          <\/br>";
 	strVar += "          <div class=\"form-group\">";
 	strVar += "            <div class=\"input-group\">";

@@ -202,7 +202,7 @@
         }
       });
       
-      jQuery('body').css({minWidth: '650px'});
+      jQuery('body').css({minWidth: '750px'});
      
       jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
