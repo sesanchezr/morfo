@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Conversor</title>
+	<title>Conversor de videos</title>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 	<style>
@@ -59,12 +59,12 @@
 		init_inputs = 3;
 		n_archivos=0;
 		function alertar(mensaje){
-			$("#mensajes").text(mensaje);
+			jQuery("#mensajes").text(mensaje);
 		}
 		function limpiar(num){
 			document.getElementById("video"+num).value="";
-			$("#check_"+num).removeClass("ticket").removeClass("cross");
-			$("#mensajes").text("");
+			jQuery("#check_"+num).removeClass("ticket").removeClass("cross");
+			jQuery("#mensajes").text("");
 		}
 		function masArchivos(){
 			//obtener nodo
@@ -78,13 +78,6 @@
 			checkdiv = document.createElement("div");
 			checkdiv.setAttribute("class","check");
 			checkdiv.setAttribute("id","check_"+n_archivos);
-			//crear botón para limpiar selección
-			// boton = document.createElement("input");
-			// boton.setAttribute("id","boton"+n_archivos);
-			// boton.setAttribute("class","boton");
-			// boton.setAttribute("value","Limpiar");
-			// boton.setAttribute("type","button");
-			// boton.setAttribute("onclick","limpiar("+n_archivos+")");
 			// //añadir elementos
 			nodo.appendChild(checkdiv);
 			//nodo.appendChild(boton);
@@ -92,17 +85,17 @@
 		}
 		function validarVideo(num){
 			//Verificar que video tiene extensión .flv
-			/* OJO que parece que se admiten más formatos de videos... pero limitémoslo a FLV.*/
+			/* OJO que parece que se admiten más formatos de videos... pero limitémoslo a .FLV */
 			var re = /(?:\.([^.]+))?$/;
 			//recorrer todos los file-inputs
 			var texto = document.getElementById("video"+num).value;
 			var ext = re.exec(texto)[1];
 			if (ext != "flv"){
 				alertar("Error, no se admite la extension: "+ext);
-				$("#check_"+num).removeClass("ticket").addClass("cross");
+				jQuery("#check_"+num).removeClass("ticket").addClass("cross");
 				return false;
 			}
-			$("#check_"+num).removeClass("cross").addClass("ticket");
+			jQuery("#check_"+num).removeClass("cross").addClass("ticket");
 			alertar("");
 			return true;
 		}
@@ -123,14 +116,14 @@
 				return false;
 			}
 		}
-		// $(document).ready(function{
-		// 	$('#formulario input[type=file]').each(
+		// jQuery(document).ready(function{
+		// 	jQuery('#formulario input[type=file]').each(
 		// 		function (){
 
 		// 		}
 		// 	);
 		// });
-		$(document).ready(function(){
+		jQuery(document).ready(function(){
 			//Añadir los primeros "init_archivos" inputs del formulario
 			for (i=1; i<=init_inputs;i++) masArchivos();
 		});
@@ -138,6 +131,7 @@
 </head>
 <body>
 	<div id="form_container">
+		<h3>Conversor de videos</h3>
 		<form id="formulario" class="pure-form pure-form-aligned" action="validar.php" method="post" onsubmit="return validarTodo()" enctype="multipart/form-data">
 			<fieldset id="inputs">
 				<div id="mas_archivos"></div>

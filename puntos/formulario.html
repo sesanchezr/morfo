@@ -2,11 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8"><title>Document</title>
+		<meta charset="UTF-8"><title>Conversor puntos</title>
 <!-- FIN DEL BLOQUE -->
-
-
-
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
@@ -39,22 +37,22 @@
 			//para evitar validar dos veces cada archivo:
 			var lfile_ok = false;
 			var bfile_ok = false;
-			function validateFile(name){
-				/* Recibe string con nombre del archivo swiffeado
-					Retorna: TRUE si es html
-							 FALSE si no.
-				*/
+			/* Recibe string con nombre del archivo swiffeado
+				Retorna: TRUE si es html
+						 FALSE si no.	
+			*/
+			function validateFile(name, id){
 				//Validar extensión
 				var input = jQuery('#'+name);
 				var ext = input.val().split('.').pop().toLowerCase();
 				if(jQuery.inArray(ext, ['html']) == -1) {
-					jQuery(input).removeClass("ok").addClass("error");
+					jQuery("#check"+id).removeClass("ticket").addClass("cross");
 				    alertUser('Archivo invalido, debe ingresar un archivo .html swiffy');
 				    return false;
 				}
 				//TO DO: Validar swiffy: ver si tiene un swiffycontainer
 				//validateSwiffy(input.files);
-				jQuery(input).removeClass("error").addClass("ok");
+				jQuery("#check"+id).removeClass("cross").addClass("ticket");
 				alertUser("");
 				return true;
 			}
@@ -114,6 +112,38 @@
 			}
 		</script>
 		<style>
+			#form_container{
+				position: absolute;
+			    margin-left: 25vw;
+			    margin-right: auto;
+			    text-align: center;
+			    width: 600px;
+			    height: auto;
+			    padding: 30px;
+			    vertical-align: middle;
+			    margin-top: 100px;
+			    background-color: rgba(230, 230, 230, 0.9);
+			    border-radius: 40px;
+			    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
+			    border: 1px solid #CFCFCF;
+			}
+			.check{
+				float:right;
+				height: 35px;
+				width: 40px;
+				background-size: 40px;
+				background-repeat: no-repeat;
+				position: absolute;
+				z-index:0;
+			}
+			.ticket{
+				background-image: url("ticket.png");
+			}
+			.cross{
+				background-image: url("cross.png");
+			}
+		</style>
+		<style>
 			#output_div{
 				display: none;
 				background-color: #eee;
@@ -126,13 +156,8 @@
 				overflow: scroll;
 			}
 			#message{
-				color: #c00;
-			}
-			.error{
-				background-color: red;
-			}
-			.ok{
-				background-color: #0F0;
+				padding: 20px;
+				color: #aa0000;
 			}
 		</style>
 
@@ -140,19 +165,21 @@
 	</head>
 	<body>
 <!-- FIN DEL BLOQUE -->
-
-
-		<form class="navbar-form navbar-left" id="form_id" method="post" enctype='multipart/form-data' action ="selectHTML()">
-			<label for="linput">Swiffy chico: </label><input id="linput" name="lfile" type="file" onchange="lfile_ok = validateFile('linput');"><br>
-			<label for="binput">Swiffy grande: </label><input id="binput" name='bfile' type="file" onchange="bfile_ok = validateFile('binput');"><br>
-			<input type="submit" class="btn btn-default" value="Enviar">
-		</form>
-		<br>
-		<div id="message"></div>
-		<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
-
-
-
+		<div id="form_container">
+			<h3>Conversor de puntos</h3>
+			<form class="pure-form pure-form-aligned" id="form_id" method="post" enctype='multipart/form-data' action ="selectHTML()">
+				<div id="check0" class="check"></div>
+				<label for="linput">Swiffy chico: </label><input id="linput" name="lfile" type="file" onchange="lfile_ok = validateFile('linput', '0');"><br>
+				
+				<div id="check1" class="check"></div>
+				<label for="binput">Swiffy grande: </label><input id="binput" name='bfile' type="file" onchange="bfile_ok = validateFile('binput', '1');"><br>
+				<div id="message"></div>
+				
+				<input type="submit" class="pure-button pure-button-primary" value="Convertir!">
+			</form>
+			<br>
+			<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
+		</div>
 <!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
 	</body>
 </html>
