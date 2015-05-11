@@ -202,6 +202,8 @@
         }
       });
       
+      jQuery('body').css({minWidth: '650px'});
+     
       jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
       jQuery('#gymcana').hide();
