@@ -1,168 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Conversor de videos</title>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-	<style>
-		#form_container{
-		    position: absolute;
-		    margin-left: 25vw;
-		    margin-right: auto;
-		    text-align: center;
-		    width: 600px;
-		    height: auto;
-		    padding: 30px;
-		    vertical-align: middle;
-		    margin-top: 100px;
-		    background-color: rgba(230, 230, 230, 0.9);
-		    border-radius: 40px;
-		    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
-		    border: 1px solid #CFCFCF;
-		}
-		.ticket{
-			background-image: url("ticket.png");
-		}
-		.cross{
-			background-image: url("cross.png");
-		}
-		.check{
-			float:right;
-			height: 35px;
-			width: 40px;
-			background-size: 40px;
-			background-repeat: no-repeat;
-			position: absolute;
-			z-index:0;
-		}
-		.pure-control-group{
-			overflow: hidden;
-			border-bottom: solid 1px #aaa;
-			padding-bottom: 4px;
-			margin-bottom: -4px;
-		}
-		.float{
-			float: left;
-		}
-		#mensajes{
-			padding: 20px;
-			color:#aa0000;
-		}
-		.boton{
-			position:absolute;
-			margin-left: -20px;
-			z-index:10;
-		}
-	</style>
-	<script>
-		// Número de partes con que inicia el formulario
-		init_partes = 3;
-		n_partes=0;
-		function alertar(mensaje){
-			if (mensaje == "") jQuery("#mensajes").text("");
-			jQuery("#mensajes").text(mensaje);
-		}
-		function limpiar(num){
-			document.getElementById("video"+num).value="";
-			jQuery("#check_"+num).removeClass("ticket").removeClass("cross");
-			jQuery("#mensajes").text("");
-		}
-		function masPartes(){
-			//obtener nodo
-			nodo=document.getElementById("mas_partes");
-			//añadir nuevo div de selección de partes
-			nuevo=document.createElement("div");
-			nuevo.setAttribute("class","pure-control-group");
-			n_partes++;
-			nuevo.innerHTML='<div>Parte '+n_partes+':</div>\
-								<label class="flotar" for="lparte_'+n_partes+'">Chica:</label>\
-								<input class="flotar" id="lparte_'+n_partes+'" type="file" name="lpartes[]" onchange="validarArchivo(\'l\','+n_partes+')"><br>\
-								<label class="flotar" for="bparte_'+n_partes+'">Grande:</label>\
-								<input class="flotar" id="bparte_'+n_partes+'" type="file" name="bpartes[]" onchange="validarArchivo(\'b\','+n_partes+')">\
-								';
-			//crear el div que mostrará el ticket o cruz
-			/*checkdiv = document.createElement("div");
-			checkdiv.setAttribute("class","check");
-			checkdiv.setAttribute("id","check_"+n_partes);
-			// //añadir elementos
-			nodo.appendChild(checkdiv);*/
-			//nodo.appendChild(boton);
-			nodo.appendChild(nuevo);
-		}
-		function menosPartes(){
-			nodo=document.getElementById("mas_partes");
-			if (n_partes > 2){
-				nodo.removeChild(nodo.lastChild);
-				n_partes--;
+	<head>
+		<meta charset="UTF-8">
+		<title>Formulario Partes</title>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
+		<style>
+			#form_container{
+			    position: absolute;
+			    margin-left: 25vw;
+			    margin-right: auto;
+			    text-align: center;
+			    width: 600px;
+			    height: auto;
+			    padding: 30px;
+			    vertical-align: middle;
+			    margin-top: 100px;
+			    background-color: rgba(230, 230, 230, 0.9);
+			    border-radius: 40px;
+			    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
+			    border: 1px solid #CFCFCF;
 			}
-		}
-		function validarArchivo(tamano,num){ //ejemplo: validarArchivo("l",4) valida chico 4
-			//Validar extensión
-			var input = jQuery('#'+tamano+"parte_"+num);
-			var ext = input.val().split('.').pop().toLowerCase();
-			if(jQuery.inArray(ext, ['html']) == -1) {
-				//jQuery("#check"+id).removeClass("ticket").addClass("cross");
-			    alertar('Archivo invalido, debe ingresar un archivo .html swiffy');
-			    return false;
+			.ticket{
+				background-image: url("ticket.png");
 			}
-			alertar("");
-		}
-		function validarTodo(){
-			//Verificar que todos tengan por lo menos algo
-			vacios = true;
-			novalido = false;
-			for (var i=1;i<=n_partes;i++){
-				texto = document.getElementById("video"+i).value;
-				if (texto != "") {
-					vacios = false;
-					if (!validarVideo(i)) return false;
-					alertar("");
+			.cross{
+				background-image: url("cross.png");
+			}
+			.check{
+				float:right;
+				height: 35px;
+				width: 40px;
+				background-size: 40px;
+				background-repeat: no-repeat;
+				position: absolute;
+				z-index:0;
+			}
+			.pure-control-group{
+				overflow: hidden;
+				border-bottom: solid 1px #aaa;
+				padding-bottom: 4px;
+				margin-bottom: -4px;
+			}
+			.float{
+				float: left;
+			}
+			#mensajes{
+				padding: 20px;
+				color:#aa0000;
+			}
+			.boton{
+				position:absolute;
+				margin-left: -20px;
+				z-index:10;
+			}
+		</style>
+		<script>
+			// Número de partes con que inicia el formulario
+			init_partes = 2;
+			n_partes=0;
+			function alertar(mensaje){
+				if (mensaje == "") jQuery("#mensajes").text("");
+				jQuery("#mensajes").text(mensaje);
+			}
+			// TODO : this function
+			// function limpiar(num){
+			// 	document.getElementById("video"+num).value="";
+			// 	jQuery("#check_"+num).removeClass("ticket").removeClass("cross");
+			// 	jQuery("#mensajes").text("");
+			// }
+			function masPartes(){
+				//obtener nodo
+				nodo=document.getElementById("mas_partes");
+				//añadir nuevo div de selección de partes
+				nuevo=document.createElement("div");
+				nuevo.setAttribute("class","pure-control-group");
+				n_partes++;
+				nuevo.innerHTML=	'<div>Parte '+n_partes+':</div>\
+									<label class="flotar" for="lparte_'+n_partes+'">Chica:</label>\
+									<input class="flotar" id="lparte_'+n_partes+'" type="file" name="lpartes'+n_partes+'" onchange="validarArchivo(\'l\','+n_partes+')"><br>\
+									<label class="flotar" for="bparte_'+n_partes+'">Grande:</label>\
+									<input class="flotar" id="bparte_'+n_partes+'" type="file" name="bpartes'+n_partes+'" onchange="validarArchivo(\'b\','+n_partes+')">\
+									';
+				//crear el div que mostrará el ticket o cruz
+				/*checkdiv = document.createElement("div");
+				checkdiv.setAttribute("class","check");
+				checkdiv.setAttribute("id","check_"+n_partes);
+				// //añadir elementos
+				nodo.appendChild(checkdiv);*/
+				//nodo.appendChild(boton);
+				nodo.appendChild(nuevo);
+			}
+			function menosPartes(){
+				nodo=document.getElementById("mas_partes");
+				if (n_partes >= 2){
+					nodo.removeChild(nodo.lastChild);
+					n_partes--;
 				}
 			}
-			if (vacios){
-				alertar("Error: Debe ingresar algún archivo!");
-				return false;
+			function validarArchivo(tamano,num){ //ejemplo: validarArchivo("l",4) valida chico 4
+				//Validar extensión
+				var input = jQuery('#'+tamano+"parte_"+num);
+				var ext = input.val().split('.').pop().toLowerCase();
+				if(jQuery.inArray(ext, ['html']) == -1) {
+					//jQuery("#check"+id).removeClass("ticket").addClass("cross");
+				    alertar('Extensión .'+ext+' inválida en parte '+num+', debe ingresar un archivo .html swiffy');
+				    return false;
+				}
+				alertar("");
+				return true;
 			}
-		}
-		// jQuery(document).ready(function{
-		// 	jQuery('#formulario input[type=file]').each(
-		// 		function (){
+			/* Valida que el input sea correcto acorde a las siguientes reglas:
+				CONDICIONES:
+				- para cada par (chico grande) verificar que ambos están subidos O NINGUNO, pero NO uno solo.
+				- Para todas las filas, AL MENOS 1 PARTE tenga ambos archivos
+				- Si la parte N está definida, la N+1 NO pero la N+2 si, está ok 	*/
+			function validar(){
+				vacios = true;
+				for (var i=1; i<= n_partes; i++){
+					linput_val=jQuery("#lparte_"+i).val();
+					binput_val=jQuery("#bparte_"+i).val();
+					//ver que AMBOS tengan algo o nada
+					if (linput_val != "" && binput_val != ""){
+						if (validarArchivo("l",i) && validarArchivo("b",i)){
+							vacios = false;
+							continue;
+						}
+						// no hizo continue! equivalente al else
+						alertar("Archivo no válido en parte "+i);
+						return false;
+					}
+					else {
+						if (linput_val == "" && binput_val == ""){
+							continue;
+						}
+						// no hizo continue! equivalente al else
+						alertar ("Falta un archivo en parte "+i);
+						return false;
+					}
+				}
+				if (vacios){
+					alertar("¡Debe ingresar al menos un par de archivos!");
+					return false;
+				}
+				return true;
+			}
 
-		// 		}
-		// 	);
-		// });
-		jQuery(document).ready(function(){
-			//Añadir los primeros "init_
-				// Número de partes con que inicia el formularioivos" inputs del formulario
-			for (i=1; i<=init_partes;i++) masPartes();
-				// Qué hacer cuando se hace submit en el formulario 
-			jQuery("#form_id").submit(function(event){
-			    // Validar localmente primero
-			    if (validar()){
-					//Obtener datos del formulario
-					var formData = new FormData(jQuery(this)[0]);
-			    	jQuery.ajax({
-/* CAMBIAR url_local POR url_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
-			    		url: url_local,
-			    		type: 'POST',
-			    		data: formData,
-			    		dataType: 'text',
-			    		success: function (data) {
-			    			jQuery("#output_div").css("display","block");
-			    			jQuery("#output").text(data);
-			    		},
-			    		cache: false,
-			    		contentType: false,
-			    		processData: false
-			    	});
-			    }
-			    //Evitar que se actualice la página
-			    return false;
+			var url_local = "generar.php";
+			var url_remoto = "/~morfo3/POR %&/(&%#DEFINIR";
+			jQuery(document).ready(function(){
+				for (i=1; i<=init_partes; i++) masPartes();
+				jQuery("#formulario").submit(function(event){
+					if (validar()){
+						var formData = new FormData(jQuery(this)[0]);
+						jQuery.ajax({
+							// cambiar 'url_local' por 'url_remoto' cuando sea subido a joomla
+							url:  url_local,
+							type: 'POST',
+							data: formData,
+							dataType: 'text',
+							success: function(data){
+								jQuery("#output_div").css("display","block");
+				    			jQuery("#output").text(data);
+							},
+							cache: false,
+							contentType: false,
+							processData: false
+						});
+					}
+					else
+						alertar("datos no validos"); 
+					// evitamos re-cargar la pagina
+					return false;
+				});
 			});
-		});
 
-/*		function selectHTML() {
+			// selecciona el texto generado como output
+			function selectHTML() {
 			    var doc = document
 			        , text = doc.getElementById("output")
 			        , range, selection
@@ -172,28 +189,27 @@
 			        range.moveToElementText(text);
 			        range.select();
 			    } else if (window.getSelection) {
-			        selection = window.getSelection();        
+			        selection = window.getSelection();
 			        range = document.createRange();
 			        range.selectNodeContents(text);
 			        selection.removeAllRanges();
 			        selection.addRange(range);
 			    }
-			}*/
-	</script>
-</head>
-<body>
-	<div id="form_container">
-		<h3>Formulario Partes</h3>
-		<form id="formulario" class="pure-form pure-form-aligned" action="selectHTML()" method="post" onsubmit="return validarTodo()" enctype="multipart/form-data">
-			<fieldset id="inputs">
+			}
+		</script>
+	</head>
+	<body>
+		<div id="form_container">
+			<h3>Formulario Partes</h3>
+				<input type="button" value="Agregar archivo" onclick="masPartes()">
+				<input type="button" value="Remover archivo" onclick="menosPartes()">
+			<form id="formulario" class="pure-form pure-form-aligned" method="post" enctype="multipart/form-data">
 				<div id="mas_partes"></div>
-				<input type="button" value="Mas filas..." onclick="masPartes()">
-				<input type="button" value="Menos filas..." onclick="menosPartes()">
-			</fieldset>
+				<input type="submit" class="pure-button pure-button-primary" value="Generar!">
+			</form>
+			<div id="mensajes"></div>
 			<br>
-			<button type="submit" class="pure-button pure-button-primary">Convertir!</button>
-		</form>
-		<div id="mensajes"></div>
-	</div>
-</body>
+			<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
+		</div>
+	</body>
 </html>
