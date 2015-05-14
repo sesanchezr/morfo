@@ -182,7 +182,7 @@
       var buenas = 0;
       var malas = 0;
       var pruebaTime = 60;
-      var extraTime = 6;
+      var extraTime = 30;
       var count = pruebaTime;
       var tiempoPrueba = true;
       var timer = jQuery.timer(function() {
