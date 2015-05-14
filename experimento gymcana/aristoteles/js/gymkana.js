@@ -203,6 +203,9 @@
       });
       
       jQuery('body').css({minWidth: '750px'});
+      
+      var meta = jQuery('#metatag-anti-zoom')[0];
+      meta.parentNode.removeChild(meta);
      
       jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
