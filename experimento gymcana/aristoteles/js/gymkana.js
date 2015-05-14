@@ -6,7 +6,7 @@
         cleanAnswerRojo();
         cleanAnswerBlanco();
         jQuery("#mainContainer1").show();
-        jQuery("#estacionId").val(""+id);
+        jQuery("#estacionId").val(""+id+"/"+maxestacion);
       }
       
       function loadAllImages(estacionId){
@@ -156,7 +156,6 @@
 
       function startApp(){
         timer.set({ time : 1000, autostart : true });
-        jQuery("#estacionMaxId").val(""+maxestacion);
         showestacion(currentestacion);
         count = pruebaTime;
         jQuery('#intro').hide();
