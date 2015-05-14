@@ -67,19 +67,30 @@
 
 	// Obtenemos el template de los puntitos y linkeamos el .js generado 
 	/* WARNING : Cambiar 'templatefilename_local' POR 'templatefilename_remoto' cuando se suba a Joomla */
-	$templatefilename_local = "template_puntos.html";
+	$templatefilename_local = "template_partes.html";
+	$div_template_local = "div.html"
 	//$templatefilename_remoto = "/home/morfo3/public_html/template_puntos.html";
 	$templatehtml = file_get_contents($templatefilename_local); // <-- ERROR AQUI! NO ESTA ENCONTRANDO EL TEMPLATE, BECAUSE OF REASONS ! 
-	 
-	/* 
-	//reemplazar ubicación de littleswiffy y bigswiffy 
+	$divtemplate = file_get_contents($div_template_local)
+	$script_tag = "<script type=\"text\/javascript\" src=\"js\/objetos\/@name.js\"><\/script>"
+
+	$alldivs = '' //Aqui guardamos todos los div generados para luego colocarlos en el template
+	$scripts = '' //Aqui colocamos todos los scripts de los swiffy
+	for ($i=0; $i<$file_count; $i++){
+		$this_div =  preg_replace("/@num/",$i,$divtemplate);
+		$alldivs = $alldivs . $this_div;
+		$this_lscript = preg_replace("/@name/", $lfilenames[$i], $divtemplate)
+		$this_bscript =
+		$scripts = $scripts .
+	}
+/*	//reemplazar ubicación de littleswiffy y bigswiffy 
 	$templatehtml = preg_replace("/@lswiffy/",$path.'/'.$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/@bswiffy/",$path.'/'.$bswiffyvar,$templatehtml);
 	//reemplazar littleswiffy y bigswiffy
 	$templatehtml = preg_replace("/%lswiffy/",$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/%bswiffy/",$bswiffyvar,$templatehtml);
-	*/
-
+	
+*/
 	// Escupirlos en output
 	echo $templatehtml;
 	

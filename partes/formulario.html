@@ -134,9 +134,10 @@
 						return false;
 					}
 					else {
-						if (linput_val == "" && binput_val == ""){
+						// Si se deja esto al leer los files desde el PHP se genera un error si es que hay inputs entremedio vacios (El problema es al contar los archivos en php)
+/*						if (linput_val == "" && binput_val == ""){
 							continue;
-						}
+						}*/
 						// no hizo continue! equivalente al else
 						alertar ("Falta un archivo en parte "+i);
 						return false;
