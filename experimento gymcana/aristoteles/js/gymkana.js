@@ -205,7 +205,7 @@
       jQuery('body').css({minWidth: '750px'});
       
       viewport = document.querySelector("meta[name=viewport]");
-      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1');
+      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=1');
       
       jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
