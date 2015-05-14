@@ -6,7 +6,7 @@
         cleanAnswerRojo();
         cleanAnswerBlanco();
         jQuery("#mainContainer1").show();
-        jQuery("#estacionId").val(""+id);
+        jQuery("#estacionId").val(""+id+"/"+maxestacion);
       }
       
       function loadAllImages(estacionId){
@@ -156,7 +156,6 @@
 
       function startApp(){
         timer.set({ time : 1000, autostart : true });
-        jQuery("#estacionMaxId").val(""+maxestacion);
         showestacion(currentestacion);
         count = pruebaTime;
         jQuery('#intro').hide();
@@ -183,7 +182,7 @@
       var buenas = 0;
       var malas = 0;
       var pruebaTime = 60;
-      var extraTime = 6;
+      var extraTime = 30;
       var count = pruebaTime;
       var tiempoPrueba = true;
       var timer = jQuery.timer(function() {
@@ -204,9 +203,9 @@
       
       jQuery('body').css({minWidth: '750px'});
       
-      var meta = jQuery('#metatag-anti-zoom')[0];
-      meta.parentNode.removeChild(meta);
-     
+      viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=1');
+      
       jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
       jQuery('#gymcana').hide();
