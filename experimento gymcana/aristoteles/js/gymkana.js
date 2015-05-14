@@ -204,9 +204,9 @@
       
       jQuery('body').css({minWidth: '750px'});
       
-      var meta = jQuery('#metatag-anti-zoom')[0];
-      meta.parentNode.removeChild(meta);
-     
+      viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1');
+      
       jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
       jQuery('#gymcana').hide();
