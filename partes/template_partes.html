@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Swiffy Output</title>
     <script type="text/javascript" src="js/runtime.js"></script>
-    <script type="text/javascript" src="js/objetos/lswiffy.js"></script>
-    <script type="text/javascript" src="js/objetos/bswiffy.js"></script>
-    <script type="text/javascript" src="js/objetos/llswiffy.js"></script>
-    <script type="text/javascript" src="js/objetos/bbswiffy.js"></script>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -16,58 +13,40 @@
     <style>html, body {width: 100%; height: 100%}</style>
   </head>
   @scripts
+  <script type="text/javascript" src="js/objetos/lswiffy.js"></script>
+    <script type="text/javascript" src="js/objetos/bswiffy.js"></script>
+    <script type="text/javascript" src="js/objetos/llswiffy.js"></script>
+    <script type="text/javascript" src="js/objetos/bbswiffy.js"></script>
   <body style="margin: 0;">
 
     <div class="row">
 
     <div class="col-md-11">
     @divsSwiffy
-<!--       <div id="puntoscontainer0" class="row morfoObject" >
-        <div class="col-md-12" id="smallImage0">
+      <div id="puntoscontainer" class="row morfoObject" >
+        <div class="col-md-12" id="smallImage">
           <div class="col-md-12">
-            <button id="zoomin" class="btn btn-primary" onClick="expandFigure(0);">
+            <button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
               <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
             </button></div>
           
           <div class="col-md-12">
-          <div id="swiffycontainer1" style="width: 400px; height: 300px"></div>
+          <div id="swiffycontainerSmall" style="width: 400px; height: 300px"></div>
           </div>
         </div>
 
-        <div class="col-md-12" id="bigImage0">
+        <div class="col-md-12" id="bigImage">
           <div class="col-md-12">
-            <button id="zoomout" class="btn btn-primary" onClick="contractFigure(0);">
+            <button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
               <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
             </button></div>
           
           <div class="col-md-12">
-          <div id="swiffycontainer2" style="width: 800px; height: 550px"></div>
+          <div id="swiffycontainerBig" style="width: 800px; height: 550px"></div>
           </div>
         </div>
       </div>
-      <div id="puntoscontainer1" class="row morfoObject" >
-        <div class="col-md-12" id="smallImage1">
-          <div class="col-md-12">
-            <button id="zoomin" class="btn btn-primary" onClick="expandFigure(1);">
-              <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
-            </button></div>
-          
-          <div class="col-md-12">
-          <div id="swiffycontainer3" style="width: 400px; height: 300px"></div>
-          </div>
-        </div>
-
-        <div class="col-md-12" id="bigImage1">
-          <div class="col-md-12">
-            <button id="zoomout" class="btn btn-primary" onClick="contractFigure(1);">
-              <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
-            </button></div>
-          
-          <div class="col-md-12">
-          <div id="swiffycontainer4" style="width: 800px; height: 550px"></div>
-          </div>
-        </div>
-      </div> -->
+      
     </div>
 
     <div class="col-md-1">
@@ -77,13 +56,14 @@
       @toogleButtons
         <!-- <button type="button" class="btn btn-default" onClick="toogleAll(0);">Ini</button>
         <button type="button" class="btn btn-default" onClick="toogleAll(1);">1</button> -->
-      </div>    </div>
+      </div>    
+    </div>
 
   </div>
 
     <script>
       
-      @createAndStart
+     // @createAndStart
 /*      var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer1'),
         lswiffy, {  });      
       stage1.start();
@@ -99,8 +79,10 @@
       var stage4 = new swiffy.Stage(document.getElementById('swiffycontainer4'),
                    bswiffy, {  });      
       stage4.start();*/
+      
+      //stages.push();
 
-      @hide_jQuery
+      //@hide_jQuery
 /*      jQuery("#bigImage0").hide();
       jQuery("#bigImage1").hide();*/
 
@@ -114,16 +96,16 @@
       }
 
       function expandFigure(id){
-        jQuery('#smallImage'+id).hide();
-        jQuery('#bigImage'+id).show();
+        jQuery('#smallImage').hide();
+        jQuery('#bigImage').show();
         jQuery('#content').removeClass('span9').addClass('span11');
         jQuery('body').removeClass('smallBody').addClass('bigBody');
         jQuery('.container').removeClass('smallImage').addClass('bigImage');
       }
 
       function contractFigure(id){
-        jQuery('#smallImage'+id).show();
-        jQuery('#bigImage'+id).hide();
+        jQuery('#smallImage').show();
+        jQuery('#bigImage').hide();
         jQuery('#content').removeClass('span11').addClass('span9');
         jQuery('body').removeClass('bigBody').addClass('smallBody');
         jQuery('.container').removeClass('bigImage').addClass('smallImage');
@@ -131,7 +113,16 @@
 
       function toogleAll(id){
         $(".morfoObject").hide();
-        $("#puntoscontainer"+id).show();
+        
+        var stageBig = new swiffy.Stage(document.getElementById('swiffycontainerBig'),
+        		window['swiffyBig_' + id], {  });
+        
+        var stageSmall = new swiffy.Stage(document.getElementById('swiffycontainerSmall'),
+        		window['swiffySmall_' + id], {  });
+        
+        stageBig.start();
+        stageSmall.start();
+        
       }
 
       toogleAll(0);      
