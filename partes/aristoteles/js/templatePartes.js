@@ -16,7 +16,10 @@ function getCodeTemplate(){
 	strVar += "	  }";
 	strVar += "	<\/style>";
 	strVar += "	<div class=\"row\">";
-	strVar += "	    <div class=\"col-md-11\">";
+	strVar += "	    <div class=\"col-md-12\">";
+	strVar += "	      <div class=\"col-md-12\">";
+	strVar += "	      	<div id=\"navBar\" class=\"btn-group \" role=\"group\"><\/div>    ";
+	strVar += "	      <\/div>";
 	strVar += "	      <div id=\"puntoscontainer\" class=\"row\" >";
 	strVar += "	        <div class=\"col-md-12\" id=\"smallImage\">";
 	strVar += "	          <div class=\"col-md-12\">";
@@ -34,10 +37,7 @@ function getCodeTemplate(){
 	strVar += "	        <\/div>";
 	strVar += "	      <\/div>";
 	strVar += "	    <\/div>";
-	strVar += "	    <div class=\"col-md-1\">";
-	strVar += "	      <br\/><br\/>";
-	strVar += "	      <div id=\"navBar\" class=\"btn-group btn-group-vertical\" role=\"group\"><\/div>    ";
-	strVar += "	    <\/div>";
+	strVar += "	    ";
 	strVar += "  	<\/div>";
 
 	
