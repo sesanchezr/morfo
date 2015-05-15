@@ -79,7 +79,7 @@
 			printError("No se pudo escribir en el archivo '$bfilename'");
 		fclose($bjsfile);
 	}
-
+	
 	// Obtenemos el template de los puntitos y linkeamos el .js generado 
 	/* WARNING : Cambiar 'templatefilename_local' POR 'templatefilename_remoto' cuando se suba a Joomla */
 	$templatefilename_local = "template_partes.html";

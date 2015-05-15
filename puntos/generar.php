@@ -16,7 +16,7 @@
 	if (($lfile['name'] == $bfile['name']) || ($lfile['type'] != "text/html") || ($bfile['type'] != "text/html")){
 		printError("Archivos no válidos");
 	}
-	if ($lfile['error'] != 0 && $bfile['error'] != 0){
+	if ($lfile['error'] != 0 || $bfile['error'] != 0){
 		printError("Problema recibiendo archivos");
 	}
 	// Validar que sea swiffy (que tenga swiffycontainer)
