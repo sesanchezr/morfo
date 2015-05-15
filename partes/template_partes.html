@@ -23,15 +23,15 @@
 
     <div class="col-md-11">
     @divsSwiffy
-      <div id="puntoscontainer" class="row morfoObject" >
+      <div id="puntoscontainer" class="row" >
         <div class="col-md-12" id="smallImage">
           <div class="col-md-12">
             <button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
               <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
             </button></div>
           
-          <div class="col-md-12">
-          <div id="swiffycontainerSmall" style="width: 400px; height: 300px"></div>
+          <div id="smallSwiffy" class="col-md-12">
+          	
           </div>
         </div>
 
@@ -41,8 +41,8 @@
               <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
             </button></div>
           
-          <div class="col-md-12">
-          <div id="swiffycontainerBig" style="width: 800px; height: 550px"></div>
+          <div id="bigSwiffy" class="col-md-12">
+          	
           </div>
         </div>
       </div>
@@ -54,78 +54,91 @@
       <br/>
       <div class="btn-group btn-group-vertical" role="group">
       @toogleButtons
-        <!-- <button type="button" class="btn btn-default" onClick="toogleAll(0);">Ini</button>
-        <button type="button" class="btn btn-default" onClick="toogleAll(1);">1</button> -->
+        <button type="button" class="btn btn-default" onClick="toogleAll(0);">Ini</button>
+        <button type="button" class="btn btn-default" onClick="toogleAll(1);">1</button>
       </div>    
     </div>
 
   </div>
 
     <script>
-      
-     // @createAndStart
-/*      var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer1'),
-        lswiffy, {  });      
-      stage1.start();
-
-      var stage2 = new swiffy.Stage(document.getElementById('swiffycontainer2'),
-                   bswiffy, {  });      
-      stage2.start();
-
-      var stage3 = new swiffy.Stage(document.getElementById('swiffycontainer3'),
-        lswiffy, {  });      
-      stage3.start();
-
-      var stage4 = new swiffy.Stage(document.getElementById('swiffycontainer4'),
-                   bswiffy, {  });      
-      stage4.start();*/
-      
-      //stages.push();
 
       //@hide_jQuery
-/*      jQuery("#bigImage0").hide();
-      jQuery("#bigImage1").hide();*/
 
       jQuery('body').addClass('smallBody');
       jQuery('.container').addClass('smallImage');
 
+      var mobile = true;
       if( window.innerWidth >= 900 ){
         expandFigure();
         jQuery('#zoomin').hide();
         jQuery('#zoomout').hide();
+        mobile = false;
       }
 
-      function expandFigure(id){
+      function expandFigure(){
         jQuery('#smallImage').hide();
         jQuery('#bigImage').show();
+        jQuery('.swiffyObject').hide();
+        
+        
+        jQuery('#swiffycontainerBig-'+currentDiv).show();
         jQuery('#content').removeClass('span9').addClass('span11');
         jQuery('body').removeClass('smallBody').addClass('bigBody');
         jQuery('.container').removeClass('smallImage').addClass('bigImage');
+        expanded = true;
       }
 
-      function contractFigure(id){
-        jQuery('#smallImage').show();
-        jQuery('#bigImage').hide();
+      function contractFigure(){
+    	jQuery('#bigImage').hide();
+    	jQuery('#smallImage').show();
+    	jQuery('.swiffyObject').hide();
+    	
+        jQuery('#swiffycontainerSmall-'+currentDiv).show();
         jQuery('#content').removeClass('span11').addClass('span9');
         jQuery('body').removeClass('bigBody').addClass('smallBody');
         jQuery('.container').removeClass('bigImage').addClass('smallImage');
+        expanded = false;
       }
 
       function toogleAll(id){
-        $(".morfoObject").hide();
-        
-        var stageBig = new swiffy.Stage(document.getElementById('swiffycontainerBig'),
-        		window['swiffyBig_' + id], {  });
-        
-        var stageSmall = new swiffy.Stage(document.getElementById('swiffycontainerSmall'),
-        		window['swiffySmall_' + id], {  });
-        
-        stageBig.start();
-        stageSmall.start();
-        
+    	
+    	currentDiv = id;
+    	
+    	//only create divs if they do not exist
+    	if( !jQuery( "#swiffycontainerSmall-"+id ).length ){
+    	
+	    	var smallDiv = $("<div>", {id: "swiffycontainerSmall-"+id, class: "swiffyObject",css: {'width': '400px', 'height': '300px'}});
+	        jQuery("#smallSwiffy").append(smallDiv);
+	        
+	        
+	        var stageSmall = new swiffy.Stage(document.getElementById('swiffycontainerSmall-'+id),
+	        		window['swiffySmall_' + id], {  });
+	        
+	        stageSmall.start();
+	        
+    	}     
+    	
+    	if( !jQuery( "#swiffycontainerBig-"+id ).length ){
+	        var bigDiv = $("<div>", {id: "swiffycontainerBig-"+id, class: "swiffyObject",css: {'width': '800px', 'height': '550px'}});
+	        jQuery("#bigSwiffy").append(bigDiv);
+	    	
+	        var stageBig = new swiffy.Stage(document.getElementById('swiffycontainerBig-'+id),
+	        		window['swiffyBig_' + id], {  });
+	        
+	        stageBig.start();
+    	}
+    	
+    	
+        if( mobile ){
+        	contractFigure();
+        }else{
+        	expandFigure();
+        }
       }
 
-      toogleAll(0);      
+     var currentDiv = 0;
+     toogleAll(currentDiv);      
 
     </script>
 
