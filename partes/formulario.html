@@ -24,6 +24,10 @@
 			    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
 			    border: 1px solid #CFCFCF;
 			}
+			#output{
+				text-align: left;
+				font-size: small; 
+			}
 			.ticket{
 				background-image: url("ticket.png");
 			}
@@ -91,7 +95,7 @@
 									<label class="flotar" for="bparte_'+n_partes+'">Grande:</label>\
 									<input class="flotar" id="bparte_'+n_partes+'" type="file" name="bpartes'+n_partes+'" onchange="validarArchivo(\'b\','+n_partes+')">\
 									<label class="flotar" for="bparte_'+n_partes+'">Navegación:</label>\
-									<input class="flotar " id="nav_'+n_partes+'" type="text" name="nav_'+n_partes+'" value="'+nombrePartes+'">\
+									<input class="flotar " id="nav_'+n_partes+'" type="text" name="nav[]" value="'+nombrePartes+'">\
 									';
 				//crear el div que mostrará el ticket o cruz
 				/*checkdiv = document.createElement("div");
@@ -147,7 +151,7 @@
 							continue;
 						}*/
 						// no hizo continue! equivalente al else
-						alertar ("Falta un archivo en parte "+i);
+						alertar("Falta un archivo en parte "+i);
 						return false;
 					}
 				}
@@ -180,8 +184,9 @@
 							processData: false
 						});
 					}
-					else
-						alertar("datos no validos"); 
+					//else
+						//esta alerta sobreescribe los mensajes de validar() que son muchísimo más explicativos
+						//alertar("datos no validos"); 
 					// evitamos re-cargar la pagina
 					return false;
 				});

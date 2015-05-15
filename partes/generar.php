@@ -4,23 +4,17 @@
 	function printError($message){
 		die("ERROR: $message");
 	}
- 	// Input
-	//print_r($_FILES);
-
 	// Verificar que efectivamente llegaron archivos
 	if (count($_FILES) < 2 || count($_FILES) % 2 != 0) {
 		printError("no introdujo archivos");
 	}
-
 	$file_count = count($_FILES) / 2; 
-
 	// Guardamos los archivos en un arreglo
 	$lfiles = array(); $bfiles = array(); 
 	for ($i=0; $i < $file_count; $i ++){
 		$lfiles[$i] = $_FILES['lpartes'.($i+1)];
 		$bfiles[$i] = $_FILES['bpartes'.($i+1)];
 	}
-
 	// Verificamos que los archivos sean correctos 
 	for ($i=0; $i < $file_count; $i++){
 		//Archivo chico y grande son distintos
@@ -33,7 +27,6 @@
 		if ($lfiles[$i]['error'] != 0 || $bfiles[$i]['error'] != 0)
 			printError("Problema recibiendo archivos");
 	}
-
 	// Validar que sean swiffy's (que tengan swiffycontainers)
 	$regexp = "/\s+swiffyobject\s=/";
 	$ltexts = array(); $lswobjs = array();
@@ -78,34 +71,20 @@
 		if (!(fwrite($bjsfile, $bswobjs[$i])))
 			printError("No se pudo escribir en el archivo '$bfilename'");
 		fclose($bjsfile);
+
+	}
+	$output = "<div id='partesContainer'></div>\n<script>var navBar = [";
+	for ($i=0; $i < count($_POST['nav']); $i++) {
+		if ($i>0) $output = $output.","; 
+		$output = $output."'".$_POST['nav'][$i]."'";
+	}
+	$output = $output."];</script>\n";
+	for ($i=0; $i < $file_count; $i++) { 
+		$output = $output."<script type='text/javascript' src='$path/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='$path/".$bfilenames[$i]."'></script>\n";
 	}
 	
-	// Obtenemos el template de los puntitos y linkeamos el .js generado 
-	/* WARNING : Cambiar 'templatefilename_local' POR 'templatefilename_remoto' cuando se suba a Joomla */
-	$templatefilename_local = "template_partes.html";
-	//$templatefilename_remoto = "/home/morfo3/public_html/template_puntos.html";
-	$templatehtml = file_get_contents($templatefilename_local); // <-- ERROR AQUI! NO ESTA ENCONTRANDO EL TEMPLATE, BECAUSE OF REASONS ! 
+	$output = $output . "<script type='text/javascript' src='aristoteles/js/runtime.js'></script>\n<script src='aristoteles/js/templatePartes.js'></script>\n<script src='aristoteles/js/partes.js'></script>";
 
-/*	//reemplazar ubicación de littleswiffy y bigswiffy 
-	$templatehtml = preg_replace("/@lswiffy/",$path.'/'.$lswiffyvar,$templatehtml);
-	$templatehtml = preg_replace("/@bswiffy/",$path.'/'.$bswiffyvar,$templatehtml);
-	//reemplazar littleswiffy y bigswiffy
-	$templatehtml = preg_replace("/%lswiffy/",$lswiffyvar,$templatehtml);
-	$templatehtml = preg_replace("/%bswiffy/",$bswiffyvar,$templatehtml);
-	
-*/
-	// Escupirlos en output
-	echo $templatehtml;
-	
+	// Escupir el output 
+	echo $output;
  ?>
-
-
-
- <?php 
-
- /* 
-
-var nombre = "objetos"; // es el título de la carpeta donde van a estar
-var navBar = ["ini", "1",..., "n"];
-
- */ ?>
