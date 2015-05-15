@@ -24,12 +24,9 @@
 			    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
 			    border: 1px solid #CFCFCF;
 			}
-			#output{
-				text-align: left;
-				font-size: small; 
-			}
 			.ticket{
 				background-image: url("ticket.png");
+				
 			}
 			.cross{
 				background-image: url("cross.png");
@@ -60,6 +57,16 @@
 				position:absolute;
 				margin-left: -20px;
 				z-index:10;
+			}
+			#output{
+				text-align: left;
+				font-size: 10px;
+				background-color: #9FE79A;
+				padding: 9px;
+				border-radius: 12px;
+				overflow-y: scroll;
+				max-height: 137px;
+				box-shadow: 0px 0px 11px #787878;
 			}
 		</style>
 		<script>
@@ -165,6 +172,7 @@
 			var url_local = "generar.php";
 			var url_remoto = "/~morfo3/POR %&/(&%#DEFINIR";
 			jQuery(document).ready(function(){
+				jQuery("#output").css("display","none");
 				for (i=1; i<=init_partes; i++) masPartes();
 				jQuery("#formulario").submit(function(event){
 					if (validar()){
@@ -178,6 +186,7 @@
 							success: function(data){
 								jQuery("#output_div").css("display","block");
 				    			jQuery("#output").text(data);
+				    			jQuery("#output").css("display","block");
 							},
 							cache: false,
 							contentType: false,
