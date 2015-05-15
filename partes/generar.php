@@ -4,9 +4,8 @@
 	function printError($message){
 		die("ERROR: $message");
 	}
- 	
  	// Input
-	print_r($_FILES);
+	//print_r($_FILES);
 
 	// Verificar que efectivamente llegaron archivos
 	if (count($_FILES) < 2 || count($_FILES) % 2 != 0) {
@@ -17,29 +16,36 @@
 
 	// Guardamos los archivos en un arreglo
 	$lfiles = array(); $bfiles = array(); 
-	for ($i=1; $i <= $file_count; $i ++){
-		$lfiles[$i] = $_FILES['lpartes'.$i];
-		$bfiles[$i] = $_FILES['bpartes'.$i];
+	for ($i=0; $i < $file_count; $i ++){
+		$lfiles[$i] = $_FILES['lpartes'.($i+1)];
+		$bfiles[$i] = $_FILES['bpartes'.($i+1)];
 	}
 
 	// Verificamos que los archivos sean correctos 
-	for ($i=1; $i <= $file_count; $i ++){
-		if ($lfiles[$i]['name'] == $bfiles[$i]['name'] || $lfiles[$i]['type'] != "text/html" || $bfiles[$i]['type'] != "text/html")
-			printError("Archivos no válidos");
-		if ($lfiles[$i]['error'] != 0 && $bfiles[$i]['error'] != 0)
+	for ($i=0; $i < $file_count; $i++){
+		//Archivo chico y grande son distintos
+		if ($lfiles[$i]['name'] == $bfiles[$i]['name'])
+			printError("Archivos idénticos! Deben ser distintos.");
+		// Archivos son html
+		if ($lfiles[$i]['type'] != "text/html" || $bfiles[$i]['type'] != "text/html")
+			printError("Archivos no válidos. Deben ser .html");
+		// Archivos se recibieron sin error
+		if ($lfiles[$i]['error'] != 0 || $bfiles[$i]['error'] != 0)
 			printError("Problema recibiendo archivos");
 	}
 
 	// Validar que sean swiffy's (que tengan swiffycontainers)
 	$regexp = "/\s+swiffyobject\s=/";
-	$ltexts = array(); $lswobjs = array(); 
-	$btexts = array(); $bswobjs = array(); 
-	for ($i=0; i<$file_count; $i++){
+	$ltexts = array(); $lswobjs = array();
+	$btexts = array(); $bswobjs = array();
+	$swiffylittle = "swiffyl";
+	$swiffybig = "swiffyb";
+	for ($i=0; $i<$file_count; $i++){
 		// little files
 		$ltexts[$i] = file_get_contents($lfiles[$i]['tmp_name']);		//contenido del html
 		$lswobjs[$i] = preg_grep($regexp, explode("\n",$ltexts[$i]));	// array con swiffycontainer
 		$lswobjs[$i] = reset($lswobjs[$i]); 							// "swiffyobject = {assdfasd}"
-		// big files 
+		// big files
 		$btexts[$i] = file_get_contents($bfiles[$i]['tmp_name']); 		//contenido del html
 		$bswobjs[$i] = preg_grep($regexp, explode("\n",$btexts[$i]));	// array con swiffycontainer
 		$bswobjs[$i] = reset($bswobjs[$i]);
@@ -47,21 +53,20 @@
 		if ($lswobjs[$i]=="" || $bswobjs[$i]=="")
 			printError("Archivo no contiene swiffycontainer");
 		// Cambio de nombre
-		$lswobj[$i] = preg_replace($regexp,"$swiffylittle".$i."=",$lswobj[$i]);
+		$lswobjs[$i] = preg_replace($regexp,"$swiffylittle".$i."=",$lswobjs[$i]);
 		$bswobjs[$i] = preg_replace($regexp,"$swiffybig".$i."=",$bswobjs[$i]);
 	}
-
 	$now = date('d-m-Y/H:i:s'); // Date de ahora para usar de nombre de carpeta
-	$folder = "aristoteles/partes/"; //carpeta donde se ubicarán las partes
+	$folder = "aristoteles/partes/"; //carpeta REMOTA donde se ubicarán las partes
+	$path = "";
 	// DESCOMENTAR LO SIGUIENTE CUANDO SE SUBA A JOOMLA
-	// path = $folder.$now; // carpeta donde se ubicara el actual partes en servidor remoto
-	$path = ""; // carpeta donde se ubicara el actual partes en servidor local
+	//$path = $path.$folder
+	$path = $path.$now;
 	mkdir($path, 0755, true);
-
 	// Generar .js para cada html con sus swiffycontainers
 	$lfilenames = array(); $bfilenames = array(); 
 	for ($i=0; $i<$file_count; $i++){
-		$lfilenames[$i] = "$swiffylittle". $i .".js";
+		$lfilenames[$i] = "$swiffylittle". $i .".js"; // Ejemplo: swiffyl5.js
 		$bfilenames[$i] = "$swiffybig". $i .".js";
 		if (!($ljsfile = fopen($path.'/'.$lfilenames[$i],"w")))
 			printError("No se pudo crear el archivo .js");
@@ -93,3 +98,14 @@
 	echo $templatehtml;
 	
  ?>
+
+
+
+ <?php 
+
+ /* 
+
+var nombre = "objetos"; // es el título de la carpeta donde van a estar
+var navBar = ["ini", "1",..., "n"];
+
+ */ ?>
