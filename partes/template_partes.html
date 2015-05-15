@@ -15,73 +15,63 @@
   
   <body style="margin: 0;">
 
-    <div class="row">
-
-    <div class="col-md-11">
-      <div id="puntoscontainer" class="row" >
-        <div class="col-md-12" id="smallImage">
-          <div class="col-md-12">
-            <button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
-              <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
-            </button></div>
-          <div id="smallSwiffy" class="col-md-12"></div>
-        </div>
-
-        <div class="col-md-12" id="bigImage">
-          <div class="col-md-12">
-            <button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
-              <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
-            </button></div>
-          <div id="bigSwiffy" class="col-md-12"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-1">
-      <br/>
-      <br/>
-      <div class="btn-group btn-group-vertical" role="group">
-      @toogleButtons
-        <button type="button" class="btn btn-default" onClick="toogleAll(0);">Ini</button>
-        <button type="button" class="btn btn-default" onClick="toogleAll(1);">1</button>
-      </div>    
-    </div>
-
-  </div>
-
+	<div id="partesContainer">
+	
+	<style type="text/css">
+	  .bigImage{
+	    min-width: 850px;
+	  }
+	  .bigBody{
+	    min-width: 900px;
+	  }
+	  .smallImage{
+	    min-width: 450px;
+	  }
+	  .smallBody{
+	    min-width: 500px;
+	  }
+	</style>
+	<div class="row">
+	    <div class="col-md-11">
+	      <div id="puntoscontainer" class="row" >
+	        <div class="col-md-12" id="smallImage">
+	          <div class="col-md-12">
+	            <button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
+	              <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
+	            </button></div>
+	          <div id="smallSwiffy" class="col-md-12"></div>
+	        </div>
+	        <div class="col-md-12" id="bigImage">
+	          <div class="col-md-12">
+	            <button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
+	              <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
+	            </button></div>
+	          <div id="bigSwiffy" class="col-md-12"></div>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="col-md-1">
+	      <br/><br/>
+	      <div id="navBar" class="btn-group btn-group-vertical" role="group"></div>    
+	    </div>
+  	</div>
+  	
+	</div>
+	
+	@getVariables
     <script>
-    	
-    	var nombre = 'objetos';
-    	var n_partes = 2;
     	var navBar = ["ini", "1"];
-    	
-    	for( var i = 0; i < n_partes; i++ ){
-    		
-    	}
-    
     </script>
+    @getScripts    
+  	<script type="text/javascript" src="aristoteles/js/objetos/swiffyBig_0.js"></script>
+    <script type="text/javascript" src="aristoteles/js/objetos/swiffyBig_1.js"></script>
+    <script type="text/javascript" src="aristoteles/js/objetos/swiffySmall_0.js"></script>
+    <script type="text/javascript" src="aristoteles/js/objetos/swiffySmall_1.js"></script>
+    
     <script type="text/javascript" src="aristoteles/js/runtime.js"></script>
-    
-  	<script type="text/javascript" src="aristoteles/js/objetos/lswiffy.js"></script>
-    <script type="text/javascript" src="aristoteles/js/objetos/bswiffy.js"></script>
-    <script type="text/javascript" src="aristoteles/js/objetos/llswiffy.js"></script>
-    <script type="text/javascript" src="aristoteles/js/objetos/bbswiffy.js"></script>
-    
+    <script src="aristoteles/js/templatePartes.js"></script>
     <script src="aristoteles/js/partes.js"></script>
 
-<style type="text/css">
-  .bigImage{
-    min-width: 850px;
-  }
-  .bigBody{
-    min-width: 900px;
-  }
-  .smallImage{
-    min-width: 450px;
-  }
-  .smallBody{
-    min-width: 500px;
-  }
-</style>
+
   </body>
 </html>

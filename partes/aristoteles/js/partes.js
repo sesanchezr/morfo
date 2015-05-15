@@ -1,13 +1,7 @@
 jQuery('body').addClass('smallBody');
 jQuery('.container').addClass('smallImage');
 
-var mobile = true;
-if (window.innerWidth >= 900) {
-	expandFigure();
-	jQuery('#zoomin').hide();
-	jQuery('#zoomout').hide();
-	mobile = false;
-}
+
 
 function expandFigure() {
 	jQuery('#smallImage').hide();
@@ -40,7 +34,7 @@ function toogleAll(id) {
 	// only create divs if they do not exist
 	if (!jQuery("#swiffycontainerSmall-" + id).length) {
 
-		var smallDiv = $("<div>", {
+		var smallDiv = jQuery("<div>", {
 			id : "swiffycontainerSmall-" + id,
 			class : "swiffyObject",
 			css : {
@@ -49,7 +43,7 @@ function toogleAll(id) {
 			}
 		});
 		jQuery("#smallSwiffy").append(smallDiv);
-
+		
 		var stageSmall = new swiffy.Stage(document
 				.getElementById('swiffycontainerSmall-' + id),
 				window['swiffySmall_' + id], {});
@@ -59,7 +53,7 @@ function toogleAll(id) {
 	}
 
 	if (!jQuery("#swiffycontainerBig-" + id).length) {
-		var bigDiv = $("<div>", {
+		var bigDiv = jQuery("<div>", {
 			id : "swiffycontainerBig-" + id,
 			class : "swiffyObject",
 			css : {
@@ -83,5 +77,34 @@ function toogleAll(id) {
 	}
 }
 
+function loadScript(url, fn){
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    script.onload = fn;
+   
+    head.appendChild(script);
+}
+
+jQuery('#partesContainer')[0].innerHTML = getCodeTemplate();
+for( var i = 0; i < navBar.length; i++ ){
+	var button = jQuery("<button/>", {
+		text : "" + navBar[i],
+		class : "btn btn-default",
+		value : i,
+		click: function () { toogleAll(this.value); }
+	});
+	jQuery("#navBar").append(button);
+}
+var mobile = true;
+if (window.innerWidth >= 900) {
+	expandFigure();
+	jQuery('#zoomin').hide();
+	jQuery('#zoomout').hide();
+	mobile = false;
+}
+
 var currentDiv = 0;
-toogleAll(currentDiv);      
+toogleAll(currentDiv);
+      
