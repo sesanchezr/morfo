@@ -31,8 +31,8 @@
 	$regexp = "/\s+swiffyobject\s=/";
 	$ltexts = array(); $lswobjs = array();
 	$btexts = array(); $bswobjs = array();
-	$swiffylittle = "swiffyl";
-	$swiffybig = "swiffyb";
+	$swiffylittle = "swiffySmall_";
+	$swiffybig = "swiffyBig_";
 	for ($i=0; $i<$file_count; $i++){
 		// little files
 		$ltexts[$i] = file_get_contents($lfiles[$i]['tmp_name']);		//contenido del html
@@ -46,8 +46,8 @@
 		if ($lswobjs[$i]=="" || $bswobjs[$i]=="")
 			printError("Archivo no contiene swiffycontainer");
 		// Cambio de nombre
-		$lswobjs[$i] = preg_replace($regexp,"$swiffylittle".$i."=",$lswobjs[$i]);
-		$bswobjs[$i] = preg_replace($regexp,"$swiffybig".$i."=",$bswobjs[$i]);
+		$lswobjs[$i] = preg_replace($regexp,"var $swiffylittle".$i."=",$lswobjs[$i]);
+		$bswobjs[$i] = preg_replace($regexp,"var $swiffybig".$i."=",$bswobjs[$i]);
 	}
 	$now = date('d-m-Y/H:i:s'); // Date de ahora para usar de nombre de carpeta
 	$folder = "aristoteles/partes/"; //carpeta REMOTA donde se ubicarán las partes
