@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Swiffy Output</title>
-    <script type="text/javascript" src="js/runtime.js"></script>
+    
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -12,27 +12,19 @@
 
     <style>html, body {width: 100%; height: 100%}</style>
   </head>
-  @scripts
-  <script type="text/javascript" src="js/objetos/lswiffy.js"></script>
-    <script type="text/javascript" src="js/objetos/bswiffy.js"></script>
-    <script type="text/javascript" src="js/objetos/llswiffy.js"></script>
-    <script type="text/javascript" src="js/objetos/bbswiffy.js"></script>
+  
   <body style="margin: 0;">
 
     <div class="row">
 
     <div class="col-md-11">
-    @divsSwiffy
       <div id="puntoscontainer" class="row" >
         <div class="col-md-12" id="smallImage">
           <div class="col-md-12">
             <button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
               <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
             </button></div>
-          
-          <div id="smallSwiffy" class="col-md-12">
-          	
-          </div>
+          <div id="smallSwiffy" class="col-md-12"></div>
         </div>
 
         <div class="col-md-12" id="bigImage">
@@ -40,13 +32,9 @@
             <button id="zoomout" class="btn btn-primary" onClick="contractFigure();">
               <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span> Zoom out
             </button></div>
-          
-          <div id="bigSwiffy" class="col-md-12">
-          	
-          </div>
+          <div id="bigSwiffy" class="col-md-12"></div>
         </div>
       </div>
-      
     </div>
 
     <div class="col-md-1">
@@ -62,87 +50,26 @@
   </div>
 
     <script>
-
-      //@hide_jQuery
-
-      jQuery('body').addClass('smallBody');
-      jQuery('.container').addClass('smallImage');
-
-      var mobile = true;
-      if( window.innerWidth >= 900 ){
-        expandFigure();
-        jQuery('#zoomin').hide();
-        jQuery('#zoomout').hide();
-        mobile = false;
-      }
-
-      function expandFigure(){
-        jQuery('#smallImage').hide();
-        jQuery('#bigImage').show();
-        jQuery('.swiffyObject').hide();
-        
-        
-        jQuery('#swiffycontainerBig-'+currentDiv).show();
-        jQuery('#content').removeClass('span9').addClass('span11');
-        jQuery('body').removeClass('smallBody').addClass('bigBody');
-        jQuery('.container').removeClass('smallImage').addClass('bigImage');
-        expanded = true;
-      }
-
-      function contractFigure(){
-    	jQuery('#bigImage').hide();
-    	jQuery('#smallImage').show();
-    	jQuery('.swiffyObject').hide();
     	
-        jQuery('#swiffycontainerSmall-'+currentDiv).show();
-        jQuery('#content').removeClass('span11').addClass('span9');
-        jQuery('body').removeClass('bigBody').addClass('smallBody');
-        jQuery('.container').removeClass('bigImage').addClass('smallImage');
-        expanded = false;
-      }
-
-      function toogleAll(id){
+    	var nombre = 'objetos';
+    	var n_partes = 2;
+    	var navBar = ["ini", "1"];
     	
-    	currentDiv = id;
-    	
-    	//only create divs if they do not exist
-    	if( !jQuery( "#swiffycontainerSmall-"+id ).length ){
-    	
-	    	var smallDiv = $("<div>", {id: "swiffycontainerSmall-"+id, class: "swiffyObject",css: {'width': '400px', 'height': '300px'}});
-	        jQuery("#smallSwiffy").append(smallDiv);
-	        
-	        
-	        var stageSmall = new swiffy.Stage(document.getElementById('swiffycontainerSmall-'+id),
-	        		window['swiffySmall_' + id], {  });
-	        
-	        stageSmall.start();
-	        
-    	}     
-    	
-    	if( !jQuery( "#swiffycontainerBig-"+id ).length ){
-	        var bigDiv = $("<div>", {id: "swiffycontainerBig-"+id, class: "swiffyObject",css: {'width': '800px', 'height': '550px'}});
-	        jQuery("#bigSwiffy").append(bigDiv);
-	    	
-	        var stageBig = new swiffy.Stage(document.getElementById('swiffycontainerBig-'+id),
-	        		window['swiffyBig_' + id], {  });
-	        
-	        stageBig.start();
+    	for( var i = 0; i < n_partes; i++ ){
+    		
     	}
-    	
-    	
-        if( mobile ){
-        	contractFigure();
-        }else{
-        	expandFigure();
-        }
-      }
-
-     var currentDiv = 0;
-     toogleAll(currentDiv);      
-
+    
     </script>
+    <script type="text/javascript" src="aristoteles/js/runtime.js"></script>
+    
+  	<script type="text/javascript" src="aristoteles/js/objetos/lswiffy.js"></script>
+    <script type="text/javascript" src="aristoteles/js/objetos/bswiffy.js"></script>
+    <script type="text/javascript" src="aristoteles/js/objetos/llswiffy.js"></script>
+    <script type="text/javascript" src="aristoteles/js/objetos/bbswiffy.js"></script>
+    
+    <script src="aristoteles/js/partes.js"></script>
 
-    <style type="text/css">
+<style type="text/css">
   .bigImage{
     min-width: 850px;
   }

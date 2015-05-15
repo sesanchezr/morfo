@@ -79,11 +79,19 @@
 				nuevo=document.createElement("div");
 				nuevo.setAttribute("class","pure-control-group");
 				n_partes++;
+				
+				var nombrePartes = (n_partes-1)+"";
+				if( n_partes == 1 ){
+					nombrePartes = "ini";
+				}
+				
 				nuevo.innerHTML=	'<div>Parte '+n_partes+':</div>\
 									<label class="flotar" for="lparte_'+n_partes+'">Chica:</label>\
 									<input class="flotar" id="lparte_'+n_partes+'" type="file" name="lpartes'+n_partes+'" onchange="validarArchivo(\'l\','+n_partes+')"><br>\
 									<label class="flotar" for="bparte_'+n_partes+'">Grande:</label>\
 									<input class="flotar" id="bparte_'+n_partes+'" type="file" name="bpartes'+n_partes+'" onchange="validarArchivo(\'b\','+n_partes+')">\
+									<label class="flotar" for="bparte_'+n_partes+'">Navegación:</label>\
+									<input class="flotar " id="nav_'+n_partes+'" type="text" name="nav_'+n_partes+'" value="'+nombrePartes+'">\
 									';
 				//crear el div que mostrará el ticket o cruz
 				/*checkdiv = document.createElement("div");
