@@ -3,10 +3,14 @@ function getCodeTemplate() {
 	var strVar="";
 	strVar += "<div id=\"intro\" class=\"col-md-12\">";
 	strVar += "      <div class=\"col-md-6\">";
-	strVar += "        <h2 id=\"titulo\"><\/h2>";
-	strVar += "        <pre id=\"descripcion\"><\/pre>";
-	strVar += "        <br \/>";
-	strVar += "        <button type=\"button\" class=\"btn btn-default\" onClick=\"startApp();\">Comenzar gymcana<\/button>";
+	strVar += "<div class=\"panel panel-default\">";
+    strVar += "		<div class=\"panel-heading\"><h3 id=\"titulo\"><\/h3><\/div>";
+    strVar += "			<div class=\"panel-body\" id=\"descripcion\">";
+    strVar += "<\/div>";
+    strVar += "<\/div>";
+/*	strVar += "        <pre id=\"descripcion\"><\/pre>";
+	strVar += "        <br \/>";*/
+	strVar += "        <button type=\"button\" class=\"btn btn-default\" onClick=\"startApp();\">Comenzar gymkana<\/button>";
 	strVar += "      <\/div> ";
 	strVar += "    <\/div>";
 	strVar += "";
