@@ -223,8 +223,12 @@
 	</head>
 	<body>
 		<div id="form_container">
-				<input type="button" value="Agregar archivo" onclick="masPartes()">
-				<input type="button" value="Remover archivo" onclick="menosPartes()">
+			<div class="row">
+				<div class="col-md-12">
+					<input type="button" value="Agregar archivo" onclick="masPartes()">
+					<input type="button" value="Remover archivo" onclick="menosPartes()">
+				</div>
+			</div>
 			<form id="formulario" class="pure-form pure-form-aligned" method="post" enctype="multipart/form-data">
 				<div id="mas_partes"></div>
 				<input type="submit" class="pure-button pure-button-primary" value="Generar!">
