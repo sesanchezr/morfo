@@ -50,10 +50,10 @@
 		$bswobjs[$i] = preg_replace($regexp,"var $swiffybig".$i."=",$bswobjs[$i]);
 	}
 	$now = date('d-m-Y/H:i:s'); // Date de ahora para usar de nombre de carpeta
-	$folder = "aristoteles/partes/"; //carpeta REMOTA donde se ubicarán las partes
+	$folder = "../../aristoteles/partes/"; //carpeta REMOTA donde se ubicarán las partes
 	$path = "";
 	// DESCOMENTAR LO SIGUIENTE CUANDO SE SUBA A JOOMLA
-	//$path = $path.$folder
+	$path = $path.$folder;
 	$path = $path.$now;
 	mkdir($path, 0755, true);
 	// Generar .js para cada html con sus swiffycontainers
@@ -83,7 +83,7 @@
 		$output = $output."<script type='text/javascript' src='$path/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='$path/".$bfilenames[$i]."'></script>\n";
 	}
 	
-	$output = $output . "<script type='text/javascript' src='aristoteles/js/runtime.js'></script>\n<script src='aristoteles/js/templatePartes.js'></script>\n<script src='aristoteles/js/partes.js'></script>";
+	$output = $output . "<script type='text/javascript' src='../../aristoteles/runtime.js'></script>\n<script src='../../aristoteles/templatePartes.js'></script>\n<script src='../../aristoteles/partes.js'></script>";
 
 	// Escupir el output 
 	echo $output;

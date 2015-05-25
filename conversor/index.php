@@ -116,15 +116,9 @@
 				return false;
 			}
 		}
-		// jQuery(document).ready(function{
-		// 	jQuery('#formulario input[type=file]').each(
-		// 		function (){
 
-		// 		}
-		// 	);
-		// });
+		// Añadir los primeros "init_archivos" inputs del formulario
 		jQuery(document).ready(function(){
-			//Añadir los primeros "init_archivos" inputs del formulario
 			for (i=1; i<=init_inputs;i++) masArchivos();
 		});
 	</script>
