@@ -80,7 +80,7 @@
 	}
 	$output = $output."];</script>\n";
 	for ($i=0; $i < $file_count; $i++) { 
-		$output = $output."<script type='text/javascript' src='$path/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='$path/".$bfilenames[$i]."'></script>\n";
+		$output = $output."<script type='text/javascript' src='../$path/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='../$path/".$bfilenames[$i]."'></script>\n";
 	}
 	
 	$output = $output . "<script type='text/javascript' src='../../aristoteles/partes/runtime.js'></script>\n<script src='../../aristoteles/partes/templatePartes.js'></script>\n<script src='../../aristoteles/partes/partes.js'></script>";
