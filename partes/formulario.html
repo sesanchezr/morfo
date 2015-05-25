@@ -104,13 +104,13 @@
 									<label class="flotar" for="bparte_'+n_partes+'">Navegación:</label>\
 									<input class="flotar " id="nav_'+n_partes+'" type="text" name="nav[]" value="'+nombrePartes+'">\
 									';
-				//crear el div que mostrará el ticket o cruz
-				/*checkdiv = document.createElement("div");
+				// crear el div que mostrará el ticket o cruz
+				/* checkdiv = document.createElement("div");
 				checkdiv.setAttribute("class","check");
 				checkdiv.setAttribute("id","check_"+n_partes);
-				// //añadir elementos
-				nodo.appendChild(checkdiv);*/
-				//nodo.appendChild(boton);
+				// añadir elementos
+				nodo.appendChild(checkdiv); */
+				// nodo.appendChild(boton);
 				nodo.appendChild(nuevo);
 			}
 			function menosPartes(){
@@ -223,7 +223,6 @@
 	</head>
 	<body>
 		<div id="form_container">
-			<h3>Formulario Partes</h3>
 				<input type="button" value="Agregar archivo" onclick="masPartes()">
 				<input type="button" value="Remover archivo" onclick="menosPartes()">
 			<form id="formulario" class="pure-form pure-form-aligned" method="post" enctype="multipart/form-data">
