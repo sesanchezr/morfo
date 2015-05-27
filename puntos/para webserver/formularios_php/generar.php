@@ -1,5 +1,5 @@
 <?php
-
+	include("/home/morfo3/public_html/formularios_php/urls.php");
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	function printError($message){
@@ -16,7 +16,7 @@
 	if (($lfile['name'] == $bfile['name']) || ($lfile['type'] != "text/html") || ($bfile['type'] != "text/html")){
 		printError("Archivos no válidos");
 	}
-	if ($lfile['error'] != 0 || $bfile['error'] != 0){
+	if ($lfile['error'] != 0 && $bfile['error'] != 0){
 		printError("Problema recibiendo archivos");
 	}
 	// Validar que sea swiffy (que tenga swiffycontainer)
@@ -31,15 +31,10 @@
 		printError("Archivo no contiene swiffycontainer");
 	}
 	// renombrar nombre de cada variable swiffyobject
-	$now = date('d-m-Y/H:i:s'); // Date de ahora para usar de nombre de carpeta
-	$folder = "aristoteles/puntitos/"; //carpeta donde se ubicarán los puntitos
-	$path = $folder.$now; // carpeta donde se ubicara el actual puntitos
+    $now = date('d-m-Y/H:i:s');
+	$folder = $raiz_aris_form_server."puntos/";
+	$path = $folder.$now;
 	mkdir($path, 0755, true);
-	/*
-	AGREGAR SIGUIENTES LINEAS A PHP.INI PARA EVITAR WARNING DE TIMEZONE
-	[Date]
-	date.timezone = America/Santiago
-	*/
 	$lswiffyvar = "lswiffy";
 	$bswiffyvar = "bswiffy";
 	$lswobj = preg_replace($regexp,"$lswiffyvar =",$lswobj);
@@ -63,15 +58,13 @@
 	}
 	fclose($bjsfile);
 	// Generar html con ambos js incluidos	
-	  //obtener texto del template
-	$templatefilename_local = "template_puntos.html";
+	//obtener texto del template
 	//$templatefilename_remoto = "/home/morfo3/public_html/template_puntos.html";
 /* CAMBIAR templatefilename_local POR templatefilename_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
-	$templatehtml = file_get_contents($templatefilename_local);
-	 //reemplazar ubicación de littleswiffy y bigswiffy
+	$templatehtml = file_get_contents($url_template_puntos);
+	  //reemplazar littleswiffy y bigswiffy
 	$templatehtml = preg_replace("/@lswiffy/",$path.'/'.$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/@bswiffy/",$path.'/'.$bswiffyvar,$templatehtml);
-	//reemplazar littleswiffy y bigswiffy
 	$templatehtml = preg_replace("/%lswiffy/",$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/%bswiffy/",$bswiffyvar,$templatehtml);
 	// Escupirlos en output

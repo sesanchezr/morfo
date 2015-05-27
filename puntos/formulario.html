@@ -1,13 +1,16 @@
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
+
+<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA --
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"><title>Conversor puntos</title>
-<!-- FIN DEL BLOQUE -->
+!-- FIN DEL BLOQUE -->
+		{source}<?php include("/home/morfo3/public_html/formularios_php/urls.php"); ?>{/source}
 		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
 		<script>
 			function alertUser(message){
 				if (message == "") jQuery("#message").text("");
@@ -55,17 +58,6 @@
 				alertUser("");
 				return true;
 			}
-			// TO DO:
-			// function validateSwiffy(){
-			// 	// Check for the various File API support.
-			// 	if (window.File && window.FileReader && window.FileList && window.Blob) {
-			// 	  // Great success! All the File APIs are supported.
-			// 	} else {
-			// 	  alert('The File APIs are not fully supported in this browser.');
-			// 	}
-			// }
-			var url_remoto = "/~morfo3/generar.php";
-			var url_local = "generar.php";
 			jQuery(document).ready(function(){
 				// Qué hacer cuando se hace submit en el formulario 
 				jQuery("#form_id").submit(function(event){
@@ -74,8 +66,7 @@
 						//Obtener datos del formulario
 						var formData = new FormData(jQuery(this)[0]);
 				    	jQuery.ajax({
-	/* CAMBIAR url_local POR url_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
-				    		url: url_local,
+				    		url: {source}<?php echo "\"$url_generar_puntos\""; ?>{/source},
 				    		type: 'POST',
 				    		data: formData,
 				    		dataType: 'text',
@@ -112,12 +103,10 @@
 		</script>
 		<style>
 			#form_container{
-				position: absolute;
-			    margin-left: 25vw;
+				text-align: center;
 			    margin-right: auto;
-			    text-align: center;
 			    width: 600px;
-			    height: auto;
+			    height: 300px;
 			    padding: 30px;
 			    vertical-align: middle;
 			    margin-top: 100px;
@@ -136,10 +125,10 @@
 				z-index:0;
 			}
 			.ticket{
-				background-image: url("ticket.png");
+				background-image: {source}<?php echo "url(\"$url_img_ticket\");"; ?>{/source}
 			}
 			.cross{
-				background-image: url("cross.png");
+				background-image: {source}<?php echo "url(\"$url_img_cross\");"; ?>{/source}
 			}
 		</style>
 		<style>
@@ -150,9 +139,12 @@
 				padding: 1px 4px 1px 4px;
 				border: 1px solid #bbe;
 				width: 600px;
-				height: 500px;
+				height: 110px;
 				border-radius: 10px;
 				overflow: scroll;
+				font-size: 10px;
+				text-align: left;
+				margin-top:-20px;
 			}
 			#message{
 				padding: 20px;
@@ -160,7 +152,7 @@
 			}
 		</style>
 
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
+<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA --
 	</head>
 	<body>
 <!-- FIN DEL BLOQUE -->
@@ -177,7 +169,7 @@
 			<br>
 			<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
 		</div>
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
+<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA --
 	</body>
 </html>
 <!-- FIN DEL BLOQUE -->
