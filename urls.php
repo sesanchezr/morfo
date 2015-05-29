@@ -16,17 +16,6 @@
 	
 	Para utilizarlos en un archivo .php, omitir los tags {source}{/source} .
 
-
-
-	 POR REVISAR:
-	 	- Los directorios requeridos desde php pueden ser paths absolutos a los
-	 	archivos. El problema de esto es que son dependientes del servidor donde 
-	 	se encuentre la página (cada servidor nombra sus carpetas de forma distinta)
-	 	Solución: Entregar a php urls a los archivos. Para eso hay que agregar excepciones
-		 al archivo .htaccess que permita acceder a un directorio particular público.
-		 Ojo que al hacer esto, todos pueden acceder directamente. Recordar refinar seguridad
-		 de este paso, por ejemplo, exigiendo un referer.
-
 	Cuando se hace include o require (_once), es como copiar pegar lo del archivo incluido en el archivo que lo incluye.
 	Por esto, NO sirven los links relativos desde el archivo incluido, osea, este.
 	Hay que reconstruirlos de manera general, que no dependa de la ubicación del archivo actual, sinó
