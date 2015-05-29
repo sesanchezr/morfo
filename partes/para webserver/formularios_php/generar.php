@@ -1,4 +1,7 @@
 <?php 
+	// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
+	$raiz_wwwserver = "/home/morfo3/public_html";
+	require_once("$raiz_wwwserver/formularios_php/urls.php");
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	function printError($message){
@@ -50,11 +53,8 @@
 		$bswobjs[$i] = preg_replace($regexp,"var $swiffybig".$i."=",$bswobjs[$i]);
 	}
 	$now = date('d-m-Y/H:i:s'); // Date de ahora para usar de nombre de carpeta
-	$folder = "../aristoteles/partes/"; //carpeta REMOTA donde se ubicarán las partes
-	$path = "";
-	// DESCOMENTAR LO SIGUIENTE CUANDO SE SUBA A JOOMLA
-	$path = $path.$folder;
-	$path = $path.$now;
+	$path = "$path_js_partes/$now"; // "/home/morfo3/public_html/aristoteles/formularios/partes/js/FECHA"
+	$url = "$url_js_partes/$now";
 	mkdir($path, 0755, true);
 	// Generar .js para cada html con sus swiffycontainers
 	$lfilenames = array(); $bfilenames = array(); 
@@ -80,10 +80,10 @@
 	}
 	$output = $output."];</script>\n";
 	for ($i=0; $i < $file_count; $i++) { 
-		$output = $output."<script type='text/javascript' src='../$path/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='../$path/".$bfilenames[$i]."'></script>\n";
+		$output = $output."<script type='text/javascript' src='$url/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='$url/".$bfilenames[$i]."'></script>\n";
 	}
 	
-	$output = $output . "<script type='text/javascript' src='../../aristoteles/partes/runtime.js'></script>\n<script src='../../aristoteles/partes/templatePartes.js'></script>\n<script src='../../aristoteles/partes/partes.js'></script>";
+	$output = $output . "<script type='text/javascript' src='$url_aris_form/partes/runtime.js'></script>\n<script src='$url_aris_form/partes/templatePartes.js'></script>\n<script src='$url_aris_form/partes/partes.js'></script>";
 
 	// Escupir el output 
 	echo $output;

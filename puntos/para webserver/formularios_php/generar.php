@@ -34,8 +34,7 @@
 	}
 	// renombrar nombre de cada variable swiffyobject
     $now = date('d-m-Y/H:i:s');
-	$folder = "$path_js_puntos";
-	$path = "$folder/$now";
+	$path = "$path_js_puntos/$now";				// desde urls.php
 	mkdir($path, 0755, true);
 	$lswiffyvar = "lswiffy";
 	$bswiffyvar = "bswiffy";
@@ -61,9 +60,7 @@
 	fclose($bjsfile);
 	// Generar html con ambos js incluidos	
 	//obtener texto del template
-	//$templatefilename_remoto = "/home/morfo3/public_html/template_puntos.html";
-/* CAMBIAR templatefilename_local POR templatefilename_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
-	$templatehtml = file_get_contents($url_template_puntos);
+	$templatehtml = file_get_contents($url_template_puntos);			// desde urls.php
 	  //reemplazar littleswiffy y bigswiffy
 	$templatehtml = preg_replace("/@lswiffy/",$path.'/'.$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/@bswiffy/",$path.'/'.$bswiffyvar,$templatehtml);

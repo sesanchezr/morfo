@@ -50,9 +50,14 @@
 
 	// Formulario puntos
 	$url_generar_puntos = 		"$url_phps/puntos/generar.php"; 			//script para generar respuesta
-	//$path_template_puntos = 	"$path_phps/puntos/template.html"; 			//Archivo usado para generar respuesta
 	$url_template_puntos = 		"$url_phps/puntos/template.html"; 			//Archivo usado para generar respuesta
 	$path_js_puntos =			"$path_aris_form/puntos/js";			//Carpeta donde guardar js's generados
 	$url_img_ticket = 			"$url_aris_form/recursos/ticket.png";		//Icono
 	$url_img_cross = 			"$url_aris_form/recursos/cross.png";		//Icono
+
+	// Formulario partes
+	$url_generar_partes = 		"$url_phps/partes/generar.php";
+	//$url_template_partes = 		"$url_phps/partes/template.html";  // Deprecado ??
+	$path_js_partes = 			"$path_aris_form/partes/js";				//Carpeta donde guardar js's generados
+	$url_js_partes = 			"$url_aris_form/partes/js";					//URL desde donde incluir js's generados
 ?>
