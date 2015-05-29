@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Conversor de videos</title>
+	<title>Conversor</title>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 	<style>
 		#form_container{
 		    position: absolute;
-		    margin-left: 25vw;
+		    margin-left: 200px;
 		    margin-right: auto;
 		    text-align: center;
-		    width: 600px;
+		    width: 950px;
 		    height: auto;
 		    padding: 30px;
 		    vertical-align: middle;
@@ -59,13 +59,15 @@
 		init_inputs = 3;
 		n_archivos=0;
 		function alertar(mensaje){
-			jQuery("#mensajes").text(mensaje);
+			$("#mensajes").text(mensaje);
 		}
 		function limpiar(num){
 			document.getElementById("video"+num).value="";
-			jQuery("#check_"+num).removeClass("ticket").removeClass("cross");
-			jQuery("#mensajes").text("");
+			$("#check_"+num).removeClass("ticket").removeClass("cross");
+			$("#mensajes").text("");
+			$("#resol_"+num).val("1");
 		}
+		var resoluciones=["400x288","480x320","640x432","960x640","1024x768"];
 		function masArchivos(){
 			//obtener nodo
 			nodo=document.getElementById("mas_archivos");
@@ -73,7 +75,14 @@
 			nuevo=document.createElement("div");
 			nuevo.setAttribute("class","pure-control-group");
 			n_archivos++;
-			nuevo.innerHTML='<input type="button" class="boton" value="Limpiar" id="boton'+n_archivos+'" onclick="limpiar('+n_archivos+')"><label class="flotar" for="video'+n_archivos+'">Archivo '+n_archivos+':</label><input class="flotar" id="video'+n_archivos+'" type="file" name="archivos[]" onchange="validarVideo('+n_archivos+')">';
+			var html = '<input type="button" class="boton" value="Limpiar" id="boton'+n_archivos+'" onclick="limpiar('+n_archivos+')"><label class="flotar" for="video'+n_archivos+'">Archivo '+n_archivos+':</label><input class="flotar" id="video'+n_archivos+'" type="file" name="archivos[]" onchange="validarVideo('+n_archivos+')">';
+			// Añadir combobox con resoluciones admitidas
+			html += "<label for='resol_n"+n_archivos+"'>Resolución: </label><select name='resol[]' id='resol_"+n_archivos+"'>\n<option value='defecto' selected>Misma del video</option>";
+			for (var i=0; i<resoluciones.length; i++){
+				html += "<option value='"+resoluciones[i]+"'>"+resoluciones[i]+"</option>\n";
+			}
+			html += "</select>\n";
+			nuevo.innerHTML = html;
 			//crear el div que mostrará el ticket o cruz
 			checkdiv = document.createElement("div");
 			checkdiv.setAttribute("class","check");
@@ -83,19 +92,27 @@
 			//nodo.appendChild(boton);
 			nodo.appendChild(nuevo);
 		}
+		function menosArchivos(){
+			if (n_archivos > 1){
+				$("#mas_archivos div:last").remove();
+				$("#mas_archivos div:last").remove();
+				n_archivos -= 1;
+			}
+
+		}
 		function validarVideo(num){
 			//Verificar que video tiene extensión .flv
-			/* OJO que parece que se admiten más formatos de videos... pero limitémoslo a .FLV */
+			/* OJO que parece que se admiten más formatos de videos... pero limitémoslo a FLV.*/
 			var re = /(?:\.([^.]+))?$/;
 			//recorrer todos los file-inputs
 			var texto = document.getElementById("video"+num).value;
 			var ext = re.exec(texto)[1];
 			if (ext != "flv"){
 				alertar("Error, no se admite la extension: "+ext);
-				jQuery("#check_"+num).removeClass("ticket").addClass("cross");
+				$("#check_"+num).removeClass("ticket").addClass("cross");
 				return false;
 			}
-			jQuery("#check_"+num).removeClass("cross").addClass("ticket");
+			$("#check_"+num).removeClass("cross").addClass("ticket");
 			alertar("");
 			return true;
 		}
@@ -116,20 +133,26 @@
 				return false;
 			}
 		}
+		// $(document).ready(function{
+		// 	$('#formulario input[type=file]').each(
+		// 		function (){
 
-		// Añadir los primeros "init_archivos" inputs del formulario
-		jQuery(document).ready(function(){
+		// 		}
+		// 	);
+		// });
+		$(document).ready(function(){
+			//Añadir los primeros "init_archivos" inputs del formulario
 			for (i=1; i<=init_inputs;i++) masArchivos();
 		});
 	</script>
 </head>
 <body>
 	<div id="form_container">
-		<h3>Conversor de videos</h3>
 		<form id="formulario" class="pure-form pure-form-aligned" action="validar.php" method="post" onsubmit="return validarTodo()" enctype="multipart/form-data">
 			<fieldset id="inputs">
-				<div id="mas_archivos"></div>
 				<input type="button" value="Mas archivos..." onclick="masArchivos()">
+				<input type="button" value="Quitar" onclick="menosArchivos()">
+				<div id="mas_archivos"></div>
 			</fieldset>
 			<br>
 			<button type="submit" class="pure-button pure-button-primary">Convertir!</button>
