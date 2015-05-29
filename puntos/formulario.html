@@ -1,11 +1,15 @@
 
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA --
+<!-- Bloque para probar localmente --
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"><title>Conversor puntos</title>
 !-- FIN DEL BLOQUE -->
-		{source}<?php include("/home/morfo3/public_html/formularios_php/urls.php"); ?>{/source}
+		{source}<?php 
+		// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
+		$raiz_wwwserver = "/home/morfo3/public_html";
+		require_once("$raiz_wwwserver/formularios_php/urls.php");?>{/source}
+
 		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
@@ -152,7 +156,7 @@
 			}
 		</style>
 
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA --
+<!-- Bloque para probar localmente --
 	</head>
 	<body>
 <!-- FIN DEL BLOQUE -->
@@ -169,7 +173,7 @@
 			<br>
 			<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
 		</div>
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA --
+<!-- Bloque para probar localmente --
 	</body>
 </html>
 <!-- FIN DEL BLOQUE -->

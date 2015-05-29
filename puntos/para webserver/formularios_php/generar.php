@@ -1,5 +1,7 @@
 <?php
-	include("/home/morfo3/public_html/formularios_php/urls.php");
+	// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
+	$raiz_wwwserver = "/home/morfo3/public_html";
+	require_once("$raiz_wwwserver/formularios_php/urls.php");
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	function printError($message){
@@ -32,8 +34,8 @@
 	}
 	// renombrar nombre de cada variable swiffyobject
     $now = date('d-m-Y/H:i:s');
-	$folder = $raiz_aris_form_server."puntos/";
-	$path = $folder.$now;
+	$folder = "$path_js_puntos";
+	$path = "$folder/$now";
 	mkdir($path, 0755, true);
 	$lswiffyvar = "lswiffy";
 	$bswiffyvar = "bswiffy";
