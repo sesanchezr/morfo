@@ -82,22 +82,24 @@ function generateCode() {
 
 	var res = '&lt;div id="gymkanaContainer"&gt;&lt;/div&gt;';
 	//res += '&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;'
-	res+='&lt;script src="aristoteles/gymkanas/js/timer.js"&gt;&lt;/script&gt;'
+	res += '&lt;script src="';
+	{source}<?php echo "res += '".$url_timer_gym."';";?>{/source}
+	res += '&gt;$lt;/script&gt;';
 	//res+='&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"&gt;'
 	//res+='&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"&gt;&lt;/script&gt;';
 		
 	res += '&lt;script&gt;';
 	res += 'var respuestasRojo=[' + respuestasRojo + '];';
 	res += 'var respuestasBlanco=[' + respuestasBlanco + '];';
-	res += 'var nombreCarpeta="../../aristoteles/gymkanas/' + nombreCarpeta + '";';
+	{source}<?php echo "res += 'var nombreCarpeta=\"".$url_aris_form."/gymkana/' + nombreCarpeta +'\";'";?>{/source}
 //	res += 'var nombreCarpeta="../aristoteles/' + "gymkana1" + '";';
 	res += 'var titulo="' + titulo + '";';
 //	res += 'var titulo="' + "Gymkana 1" + '";';
 	res += 'var descripcion="' + descripcion + '";';
 	res += '&lt;/script&gt;';
 
-	res += '&lt;script src="aristoteles/gymkanas/js/gymkanaTemplate.js"&gt;&lt;/script&gt;';
-	res += '&lt;script src="aristoteles/gymkanas/js/gymkana.js"&gt;&lt;/script&gt;';
+	{source}<?php echo "res += '&lt;script src=\"".$url_template_gym."\"&gt;&lt;/script&gt;';";?>{/source}
+	{source}<?php echo "res += '&lt;script src=\"".$url_gymkana_gym."\"&gt;&lt;/script&gt;';"?>{/source}
 	
 
 	jQuery('#codigo')[0].innerHTML = res;

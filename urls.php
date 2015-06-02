@@ -8,9 +8,10 @@
 	Para utilizarlos, agregar al inicio del artículo del formulario lo siguiente: 
 	´´´´´´´´´´´´´´´´´´´´´´´´
 	{source}<?php 
-		// NO RECUERDO SI 'SERVER DOCUMENT ROOT' FUNCIONA PARA TODO SERVER...
-		$raiz_wwwserver = $_SERVER["DOCUMENT_ROOT"];
-		require_once("$raiz_wwwserver/formularios_php/urls.php");
+		//$raiz_www =			$_SERVER["DOCUMENT_ROOT"];
+		// USAR ESTE PARA EL SERVER HOSTGATOR
+		$raiz_www = 		"/home/morfo3/public_html";
+		require_once("$raiz_www/formularios_php/urls.php");
 	?>{/source}
 	´´´´´´´´´´´´´´´´´´´´´´´´
 	
@@ -33,7 +34,10 @@
 	$url_phps = 				"$protocolo$url_raiz_sitio/formularios_php";//URL hacia php's de formularios
 	$url_aris_form = 			"$protocolo$url_raiz_sitio/aristoteles/formularios";//URL hacia recursos de los formularios
 	// paths servidor
-	$path_raiz_server =			$_SERVER["DOCUMENT_ROOT"];//Path a raíz del sitio. NO RECUERDO SI ESTO ES TAN PORTABLE... TESTEAR.
+	// USAR ESTE PARA EL SERVER DE INTEGRACIÓN
+	//$path_raiz_server =			$_SERVER["DOCUMENT_ROOT"];
+	// USAR ESTE PARA EL SERVER HOSTGATOR
+	$path_raiz_server = 		"/home/morfo3/public_html";
 	$path_phps = 				"$path_raiz_server/formularios_php";		//Path en server hacia php's de formularios
 	$path_aris_form = 			"$path_raiz_server/aristoteles/formularios";//Path en server hacia recursos de los formularios
 
@@ -49,4 +53,11 @@
 	//$url_template_partes = 		"$url_phps/partes/template.html";  // Deprecado ??
 	$path_js_partes = 			"$path_aris_form/partes/js";				//Carpeta donde guardar js's generados
 	$url_js_partes = 			"$url_aris_form/partes/js";					//URL desde donde incluir js's generados
+
+	// Formulario Gymkana
+	$url_timer_gym = 			"$url_aris_form/gymkana/js/timer.js";
+	$url_template_gym = 		"$url_aris_form/gymkana/js/template.js";
+	$url_gymkana_gym = 			"$url_aris_form/gymkana/js/gymkana.js";
+	$url_form_gym = 			"$url_aris_form/gymkana/js/formulario.js";
+
 ?>

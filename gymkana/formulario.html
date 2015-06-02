@@ -1,14 +1,18 @@
+<!-- Bloque para tests locales 
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Formulario gymcana</title>
+    <title>Formulario Gymkana</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+Fin bloque  -->
+<!-- Bloque para tests locales
   </head>
   <body>
+Fin bloque -->
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
     <form>
@@ -51,9 +55,14 @@
       </div>
     </form>
   </div>
+    {source}<?php 
+    //$raiz_www =     $_SERVER["DOCUMENT_ROOT"];
+    // USAR ESTE PARA EL SERVER HOSTGATOR
+    $raiz_www = "/home/morfo3/public_html";
+    require_once("$raiz_www/formularios_php/urls.php");
+    echo "&lt;script src='$url_form_gym'&gt;&lt;/script&gt;";?>{/source}
   </div>
-    
-    <script src="aristoteles/gymkanas/js/formulario.js"></script>
-    
+<!-- Bloque para tests locales
   </body>
 </html>
+Fin bloque -->
