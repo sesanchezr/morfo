@@ -8,8 +8,8 @@
 	Para utilizarlos, agregar al inicio del artículo del formulario lo siguiente: 
 	´´´´´´´´´´´´´´´´´´´´´´´´
 	{source}<?php 
-		// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
-		$raiz_wwwserver = "/home/morfo3/public_html";
+		// NO RECUERDO SI 'SERVER DOCUMENT ROOT' FUNCIONA PARA TODO SERVER...
+		$raiz_wwwserver = $_SERVER["DOCUMENT_ROOT"];
 		require_once("$raiz_wwwserver/formularios_php/urls.php");
 	?>{/source}
 	´´´´´´´´´´´´´´´´´´´´´´´´
@@ -33,14 +33,14 @@
 	$url_phps = 				"$protocolo$url_raiz_sitio/formularios_php";//URL hacia php's de formularios
 	$url_aris_form = 			"$protocolo$url_raiz_sitio/aristoteles/formularios";//URL hacia recursos de los formularios
 	// paths servidor
-	$path_raiz_server =			"/home/morfo3/public_html";					//Path a raíz del sitio. CAMBIAR DEPENDIENDO DEL SERVIDOR DONDE SE ESTÉ.
+	$path_raiz_server =			$_SERVER["DOCUMENT_ROOT"];//Path a raíz del sitio. NO RECUERDO SI ESTO ES TAN PORTABLE... TESTEAR.
 	$path_phps = 				"$path_raiz_server/formularios_php";		//Path en server hacia php's de formularios
 	$path_aris_form = 			"$path_raiz_server/aristoteles/formularios";//Path en server hacia recursos de los formularios
 
 	// Formulario puntos
 	$url_generar_puntos = 		"$url_phps/puntos/generar.php"; 			//script para generar respuesta
 	$url_template_puntos = 		"$url_phps/puntos/template.html"; 			//Archivo usado para generar respuesta
-	$path_js_puntos =			"$path_aris_form/puntos/js";			//Carpeta donde guardar js's generados
+	$path_js_puntos =			"$path_aris_form/puntos/js";				//Carpeta donde guardar js's generados
 	$url_img_ticket = 			"$url_aris_form/recursos/ticket.png";		//Icono
 	$url_img_cross = 			"$url_aris_form/recursos/cross.png";		//Icono
 

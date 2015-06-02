@@ -6,8 +6,8 @@
 		<title>Formulario Partes</title>
 Fin bloque -->
 		{source}<?php 
-			// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
-			$raiz_wwwserver = "/home/morfo3/public_html";
+			// OJO: NO RECUERDO SI SERVER DOCUMENT ROOT ES DEL TODO PORTABLE A CUALQUIER SERVER
+			$raiz_wwwserver = $_SERVER["DOCUMENT_ROOT"];
 			require_once("$raiz_wwwserver/formularios_php/urls.php");
 		?>{/source}
 		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">

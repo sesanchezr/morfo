@@ -1,6 +1,6 @@
 <?php 
 	// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
-	$raiz_wwwserver = "/home/morfo3/public_html";
+	$raiz_wwwserver = $_SERVER["DOCUMENT_ROOT"];
 	require_once("$raiz_wwwserver/formularios_php/urls.php");
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
