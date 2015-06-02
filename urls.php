@@ -7,16 +7,18 @@
 
 	Para utilizarlos, agregar al inicio del artículo del formulario lo siguiente: 
 	´´´´´´´´´´´´´´´´´´´´´´´´
-	{source}<?php 
-		//$raiz_www =			$_SERVER["DOCUMENT_ROOT"];
-		// USAR ESTE PARA EL SERVER HOSTGATOR
-		$raiz_www = 		"/home/morfo3/public_html";
-		require_once("$raiz_www/formularios_php/urls.php");
-	?>{/source}
+		<script src="/~morfo3/formularios_php/js/getURLS.js"></script>
+		<script>
+			//OBTENER URLS DESDE EL JSON
+			var URLS = getURLS();
+		</script>
 	´´´´´´´´´´´´´´´´´´´´´´´´
-	
-	Para utilizarlos en un archivo .php, omitir los tags {source}{/source} .
-
+	Notar que la primera URL es la única que debe estar hardcodeada.
+	Para utilizarlos en un archivo .php, hacer:
+	<?php
+		require_once("urls.php");
+	...
+	?>
 	Cuando se hace include o require (_once), es como copiar pegar lo del archivo incluido en el archivo que lo incluye.
 	Por esto, NO sirven los links relativos desde el archivo incluido, osea, este.
 	Hay que reconstruirlos de manera general, que no dependa de la ubicación del archivo actual, sinó
@@ -59,5 +61,15 @@
 	$url_template_gym = 		"$url_aris_form/gymkana/js/template.js";
 	$url_gymkana_gym = 			"$url_aris_form/gymkana/js/gymkana.js";
 	$url_form_gym = 			"$url_aris_form/gymkana/js/formulario.js";
+/* 
+IDEA GENERAL:
+Dentro del servidor:
+	Los archivos php podrán incluir a urls.php y acceder a las variables internas como $url_js_partes o $path_js_puntos.
 
+Fuera del servidor:
+	Javascript podrá acceder sólo a las URL's de urls.php incluyendo un archivo urls.json. Este archivo se genera a partir de las urls declaradas en urls.php, usando el archivo generarjson.php.
+	El archivo generarjson.php NO debiera estar subido en la página, no es necesario. Lo que debe estar subido es efectivamente el json generado.
+
+
+*/
 ?>

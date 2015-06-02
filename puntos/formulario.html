@@ -5,17 +5,16 @@
 	<head>
 		<meta charset="UTF-8"><title>Conversor puntos</title>
 FIN DEL BLOQUE -->
-		{source}<?php 
-			//$raiz_www =			$_SERVER["DOCUMENT_ROOT"];
-			// USAR ESTE PARA EL SERVER HOSTGATOR
-			$raiz_www = 		"/home/morfo3/public_html";
-			require_once("$raiz_www/formularios_php/urls.php");
-		?>{/source}
 		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
-
+		<!-- LA ÚNICA URL HARDCODEADA -->
+		<script src="/~morfo3/formularios_php/js/getURLS.js"></script>
+		<script>
+			/* OBTENER URLS DESDE EL JSON */
+			var URLS = getURLS();
+		</script>
 		<script>
 			function alertUser(message){
 				if (message == "") jQuery("#message").text("");
@@ -53,17 +52,22 @@ FIN DEL BLOQUE -->
 				var input = jQuery('#'+name);
 				var ext = input.val().split('.').pop().toLowerCase();
 				if(jQuery.inArray(ext, ['html']) == -1) {
-					jQuery("#check"+id).removeClass("ticket").addClass("cross");
+					jQuery("#check"+id).removeClass("ticket").addClass("cross").css("background-image","none");
+					jQuery(".cross").css("background-image","url('"+URLS["url_img_cross"]+"')");
 				    alertUser('Archivo invalido, debe ingresar un archivo .html swiffy');
 				    return false;
 				}
 				//TO DO: Validar swiffy: ver si tiene un swiffycontainer
 				//validateSwiffy(input.files);
-				jQuery("#check"+id).removeClass("cross").addClass("ticket");
+				jQuery("#check"+id).removeClass("cross").addClass("ticket").css("background-image","none");
+				jQuery(".ticket").css("background-image","url('"+URLS["url_img_ticket"]+"')");
 				alertUser("");
 				return true;
 			}
 			jQuery(document).ready(function(){
+				// Añadir cositas CSS usando URLS
+
+
 				// Qué hacer cuando se hace submit en el formulario 
 				jQuery("#form_id").submit(function(event){
 				    // Validar localmente primero
@@ -71,7 +75,7 @@ FIN DEL BLOQUE -->
 						//Obtener datos del formulario
 						var formData = new FormData(jQuery(this)[0]);
 				    	jQuery.ajax({
-				    		url: {source}<?php echo "\"$url_generar_puntos\""; ?>{/source},
+				    		url: URLS["url_generar_puntos"],
 				    		type: 'POST',
 				    		data: formData,
 				    		dataType: 'text',
@@ -130,10 +134,10 @@ FIN DEL BLOQUE -->
 				z-index:0;
 			}
 			.ticket{
-				background-image: {source}<?php echo "url(\"$url_img_ticket\");"; ?>{/source}
+				/* NO BORRAR!!! */
 			}
 			.cross{
-				background-image: {source}<?php echo "url(\"$url_img_cross\");"; ?>{/source}
+				/* NO BORRAR!!! */
 			}
 		</style>
 		<style>
