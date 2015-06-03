@@ -1,7 +1,9 @@
 <?php 
 
 /* 	Este archivo debiera estar en el mismo directorio que urls.php.
+	
 
+	En un futuro sería bueno mostrar un pequeño login para verificar que es un administrador el que está ejecutando esta función.
 */
 	require_once("urls.php");
 	function filtro($s){
@@ -15,5 +17,8 @@
 		$URLS[$var_names[$i]] = $GLOBALS[$var_names[$i]];
 	}
 	// jsonear variables y sus valores, y guardar en archivo urls.json
-	file_put_contents('urls.json',json_encode($URLS));
+	if (!(file_put_contents('urls.json',json_encode($URLS)) === FALSE))
+		echo "OK! urls.json generado correctamente.";
+	else
+		echo "ERROR :( todos morirán!!";
  ?>

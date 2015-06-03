@@ -1,9 +1,9 @@
 function getURLS(){
 	var URLS = null;
-    $.ajax({
+    jQuery.ajax({
         'async': false,
         'global': false,
-        'url': '/~morfo3/formularios_php/urls.json',
+        'url': '/~morfo3/urls_globales/urls.json',
         'dataType': "json",
         'success': function (data) {
             URLS = data;

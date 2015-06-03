@@ -1,7 +1,7 @@
 <?php
-	// OJO: NO RECUERDO SI SERVER DOCUMENT ROOT ES DEL TODO PORTABLE A CUALQUIER SERVER
-	$raiz_wwwserver = $_SERVER["DOCUMENT_ROOT"];
-	require_once("$raiz_wwwserver/formularios_php/urls.php");
+	$working_dir = "/aristoteles/formularios/puntos/php";
+	$raiz_wwwserver = rtrim(str_replace($working_dir,"",shell_exec("pwd")));
+	require_once("$raiz_wwwserver/urls_globales/urls.php");
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	function printError($message){
@@ -61,9 +61,10 @@
 	// Generar html con ambos js incluidos	
 	//obtener texto del template
 	$templatehtml = file_get_contents($url_template_puntos);			// desde urls.php
-	  //reemplazar littleswiffy y bigswiffy
-	$templatehtml = preg_replace("/@lswiffy/",$path.'/'.$lswiffyvar,$templatehtml);
-	$templatehtml = preg_replace("/@bswiffy/",$path.'/'.$bswiffyvar,$templatehtml);
+	//reemplazar littleswiffy y bigswiffy
+	$url_swiffy="$url_js_puntos/$now";
+	$templatehtml = preg_replace("/@lswiffy/",$url_swiffy.'/'.$lswiffyvar,$templatehtml);
+	$templatehtml = preg_replace("/@bswiffy/",$url_swiffy.'/'.$bswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/%lswiffy/",$lswiffyvar,$templatehtml);
 	$templatehtml = preg_replace("/%bswiffy/",$bswiffyvar,$templatehtml);
 	// Escupirlos en output

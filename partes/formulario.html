@@ -4,17 +4,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Formulario Partes</title>
-Fin bloque -->
-		{source}<?php 
-			//$raiz_www =			$_SERVER["DOCUMENT_ROOT"];
-			// USAR ESTE PARA EL SERVER HOSTGATOR
-			$raiz_www = 		"/home/morfo3/public_html";
-			require_once("$raiz_www/formularios_php/urls.php");
-		?>{/source}
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+Fin bloque -->
+		<script src="/~morfo3/urls_globales/getURLS.js"></script>
+		<script>
+			//OBTENER URLS DESDE EL JSON
+			var URLS = getURLS();
+		</script>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
 		<style>
 			#form_container{
@@ -30,13 +29,11 @@ Fin bloque -->
 			    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
 			    border: 1px solid #CFCFCF;
 			}
+			/*
 			.ticket{
-				background-image: {source}<?php echo "url(\"$url_img_ticket\");"; ?>{/source}
-				
 			}
 			.cross{
-				background-image: {source}<?php echo "url(\"$url_img_cross\");"; ?>{/source}
-			}
+			}*/
 			.check{
 				float:right;
 				height: 35px;
@@ -182,7 +179,7 @@ Fin bloque -->
 						var formData = new FormData(jQuery(this)[0]);
 						jQuery.ajax({
 							// cambiar 'url_local' por 'url_remoto' cuando sea subido a joomla
-							url: {source}<?php echo "\"$url_generar_partes\""; ?>{/source},
+							url: URLS["url_generar_partes"],
 							type: 'POST',
 							data: formData,
 							dataType: 'text',

@@ -13,6 +13,16 @@ Fin bloque  -->
   </head>
   <body>
 Fin bloque -->
+    <script src="/~morfo3/urls_globales/getURLS.js"></script>
+    <script>
+      //OBTENER URLS DESDE EL JSON
+      var URLS = getURLS();
+      // importar script
+      var gymkana_script = document.createElement('script');
+      gymkana_script.src = URLS["url_form_gym"];
+      head_tag = document.getElementsByTagName('head')[0];
+      head_tag.appendChild(gymkana_script);
+    </script>
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
     <form>
@@ -55,13 +65,7 @@ Fin bloque -->
       </div>
     </form>
   </div>
-    {source}<?php 
-    //$raiz_www =     $_SERVER["DOCUMENT_ROOT"];
-    // USAR ESTE PARA EL SERVER HOSTGATOR
-    $raiz_www = "/home/morfo3/public_html";
-    require_once("$raiz_www/formularios_php/urls.php");
-    echo "&lt;script src='$url_form_gym'&gt;&lt;/script&gt;";?>{/source}
-  </div>
+</div>
 <!-- Bloque para tests locales
   </body>
 </html>

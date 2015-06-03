@@ -1,7 +1,7 @@
 <?php 
-	// ESTA VARIABLE HAY QUE CAMBIARLA DEPENDIENDO DEL SERVIDOR EN EL QUE ESTÁ MORFO
-	$raiz_wwwserver = $_SERVER["DOCUMENT_ROOT"];
-	require_once("$raiz_wwwserver/formularios_php/urls.php");
+	$working_dir = "/aristoteles/formularios/partes/php";
+	$raiz_wwwserver = rtrim(str_replace($working_dir,"",shell_exec("pwd")));
+	require_once("$raiz_wwwserver/urls_globales/urls.php");
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	function printError($message){
@@ -52,10 +52,11 @@
 		$lswobjs[$i] = preg_replace($regexp,"var $swiffylittle".$i."=",$lswobjs[$i]);
 		$bswobjs[$i] = preg_replace($regexp,"var $swiffybig".$i."=",$bswobjs[$i]);
 	}
-	$now = date('d-m-Y/H:i:s'); // Date de ahora para usar de nombre de carpeta
-	$path = "$path_js_partes/$now"; // "/home/morfo3/public_html/aristoteles/formularios/partes/js/FECHA"
-	$url = "$url_js_partes/$now";
-	mkdir($path, 0755, true);
+	$now = date('d-m-Y/H_i_s'); // "03-12-2015/22_30_00"
+	$path = $path_js_partes."/".$now; // "/home/morfo3/public_html/aristoteles/formularios/partes/js/FECHA"
+	$url = "$url_js_partes/$now";	// "/~morfo3/public_html/aristoteles/formularios/partes/js/FECHA"
+	if (!mkdir($path, 0755, true))
+		printError("No se pudo crear el directorio");
 	// Generar .js para cada html con sus swiffycontainers
 	$lfilenames = array(); $bfilenames = array(); 
 	for ($i=0; $i<$file_count; $i++){
@@ -71,7 +72,6 @@
 		if (!(fwrite($bjsfile, $bswobjs[$i])))
 			printError("No se pudo escribir en el archivo '$bfilename'");
 		fclose($bjsfile);
-
 	}
 	$output = "<div id='partesContainer'></div>\n<script>var navBar = [";
 	for ($i=0; $i < count($_POST['nav']); $i++) {
@@ -82,9 +82,7 @@
 	for ($i=0; $i < $file_count; $i++) { 
 		$output = $output."<script type='text/javascript' src='$url/".$lfilenames[$i]."'></script>\n<script type='text/javascript' src='$url/".$bfilenames[$i]."'></script>\n";
 	}
-	
-	$output = $output . "<script type='text/javascript' src='$url_aris_form/partes/runtime.js'></script>\n<script src='$url_aris_form/partes/templatePartes.js'></script>\n<script src='$url_aris_form/partes/partes.js'></script>";
-
+	$output = $output . "<script type='text/javascript' src='$url_js_runtime'></script>\n<script src='$url_js_template'></script>\n<script src='$url_js_partes_scr'></script>";
 	// Escupir el output 
 	echo $output;
  ?>

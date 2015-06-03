@@ -1,20 +1,23 @@
-<!doctype html>
+<!--<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Swiffy Output</title>
-    
-    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="/~morfo3/urls_globales/getURLS.js"></script>
+	<script>
+		//OBTENER URLS DESDE EL JSON
+		var URLS = getURLS();
+	</script>
 
     <style>html, body {width: 100%; height: 100%}</style>
-  </head>
+<!-- </head>
   
   <body style="margin: 0;">
-
+-->
 	<div id="partesContainer">
 	
 	<style type="text/css">
@@ -67,11 +70,27 @@
     <script type="text/javascript" src="aristoteles/js/objetos/swiffyBig_1.js"></script>
     <script type="text/javascript" src="aristoteles/js/objetos/swiffySmall_0.js"></script>
     <script type="text/javascript" src="aristoteles/js/objetos/swiffySmall_1.js"></script>
-    
-    <script type="text/javascript" src="aristoteles/js/runtime.js"></script>
-    <script src="aristoteles/js/templatePartes.js"></script>
-    <script src="aristoteles/js/partes.js"></script>
-
-
+    <!-- Importar scripts usando arreglo de URLS -->
+    <script type="text/javascript">
+    	// Importar JSs
+    	/*<script src="aristoteles/js/templatePartes.js">/script>
+    	<script type="text/javascript" src="aristoteles/js/runtime.js">/script>
+		<script src="aristoteles/js/partes.js">/script>*/
+	    var template_script = document.createElement('script');
+	    template_script.src = URLS["url_js_template"];
+	    var runtime_script = document.createElement('script');
+	    runtime_script.src = URLS["url_js_runtime"];
+	    var partes_script = document.createElement('script');
+	    partes_script.src = URLS["url_js_partes_scr"];
+	    head_tag = document.getElementsByTagName('head')[0];
+	    head_tag.appendChild(template_script);
+	    head_tag.appendChild(runtime_script);
+	    head_tag.appendChild(partes_script);
+	    //JSElement.onload = OnceLoaded;
+	    // function OnceLoaded() {
+    	//    // Once loaded.. load other JS or CSS or call objects of version.js
+    	// }
+    </script>
+<!--
   </body>
-</html>
+</html> -->
