@@ -80,24 +80,24 @@ function generateCode() {
 		}
 	}
 
-	var res = '&lt;div id="gymkanaContainer"&gt;&lt;/div&gt;';
+	var res = '&lt;div id="gymkanaContainer"&gt;&lt;/div&gt;\n';
 	//res += '&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;'
-	res += '&lt;script src="'+URLS['url_timer_gym']+'" &gt;$lt;/script&gt;';
+	res += '&lt;script src="'+URLS['url_timer_gym']+'" &gt;&lt;/script&gt;\n';
 	//res+='&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"&gt;'
 	//res+='&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"&gt;&lt;/script&gt;';
 		
-	res += '&lt;script&gt;';
-	res += 'var respuestasRojo=[' + respuestasRojo + '];';
-	res += 'var respuestasBlanco=[' + respuestasBlanco + '];';
-	res += 'var nombreCarpeta="'+URLS['url_aris_gen'+'/gymkana/' + nombreCarpeta + '";';
+	res += '&lt;script&gt;\n';
+	res += 'var respuestasRojo=[' + respuestasRojo + '];\n';
+	res += 'var respuestasBlanco=[' + respuestasBlanco + '];\n';
+	res += 'var nombreCarpeta="'+URLS['url_aris_gen']+'/gymkana/' + nombreCarpeta + '";\n';
 //	res += 'var nombreCarpeta="../aristoteles/' + "gymkana1" + '";';
-	res += 'var titulo="' + titulo + '";';
+	res += 'var titulo="' + titulo + '";\n';
 //	res += 'var titulo="' + "Gymkana 1" + '";';
-	res += 'var descripcion="' + descripcion + '";';
-	res += '&lt;/script&gt;';
+	res += 'var descripcion="' + descripcion + '";\n';
+	res += '&lt;/script&gt;\n';
 
-	res += '&lt;script src="'+URLS['url_template_gym']+'" &gt;&lt;/script&gt;';
-	res += '&lt;script src="'+URLS['url_gymkana_gym']+'" &gt;&lt;/script&gt;';
+	res += '&lt;script src="'+URLS['url_template_gym']+'" &gt;&lt;/script&gt;\n';
+	res += '&lt;script src="'+URLS['url_gymkana_gym']+'" &gt;&lt;/script&gt;\n';
 	
 
 	jQuery('#codigo')[0].innerHTML = res;

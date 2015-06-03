@@ -18,10 +18,12 @@ Fin bloque -->
       //OBTENER URLS DESDE EL JSON
       var URLS = getURLS();
       // importar script
-      var gymkana_script = document.createElement('script');
-      gymkana_script.src = URLS["url_form_gym"];
-      head_tag = document.getElementsByTagName('head')[0];
-      head_tag.appendChild(gymkana_script);
+      jQuery(document).ready(function(){
+        var gymkana_script = document.createElement('script');
+        gymkana_script.src = URLS["url_form_gym"];
+        head_tag = document.getElementsByTagName('head')[0];
+        head_tag.appendChild(gymkana_script);
+      });
     </script>
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
