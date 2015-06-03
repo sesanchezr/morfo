@@ -1,17 +1,22 @@
+<!-- Bloque para probar localmente
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>Formulario Partes</title>
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+Fin bloque -->
+		<script src="/~morfo3/urls_globales/getURLS.js"></script>
+		<script>
+			//OBTENER URLS DESDE EL JSON
+			var URLS = getURLS();
+		</script>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
 		<style>
 			#form_container{
-			    position: absolute;
-			    margin-left: 25vw;
 			    margin-right: auto;
 			    text-align: center;
 			    width: 600px;
@@ -24,13 +29,11 @@
 			    box-shadow: 0px 0px 30px rgba(100, 120, 120, 0.4);
 			    border: 1px solid #CFCFCF;
 			}
+			/*
 			.ticket{
-				background-image: url("ticket.png");
-				
 			}
 			.cross{
-				background-image: url("cross.png");
-			}
+			}*/
 			.check{
 				float:right;
 				height: 35px;
@@ -100,7 +103,7 @@
 									<label class="flotar" for="lparte_'+n_partes+'">Chica:</label>\
 									<input class="flotar" id="lparte_'+n_partes+'" type="file" name="lpartes'+n_partes+'" onchange="validarArchivo(\'l\','+n_partes+')"><br>\
 									<label class="flotar" for="bparte_'+n_partes+'">Grande:</label>\
-									<input class="flotar" id="bparte_'+n_partes+'" type="file" name="bpartes'+n_partes+'" onchange="validarArchivo(\'b\','+n_partes+')">\
+									<input class="flotar" id="bparte_'+n_partes+'" type="file" name="bpartes'+n_partes+'" onchange="validarArchivo(\'b\','+n_partes+')"><br>\
 									<label class="flotar" for="bparte_'+n_partes+'">Navegación:</label>\
 									<input class="flotar " id="nav_'+n_partes+'" type="text" name="nav[]" value="'+nombrePartes+'">\
 									';
@@ -168,9 +171,6 @@
 				}
 				return true;
 			}
-
-			var url_local = "generar.php";
-			var url_remoto = "/~morfo3/POR %&/(&%#DEFINIR";
 			jQuery(document).ready(function(){
 				jQuery("#output").css("display","none");
 				for (i=1; i<=init_partes; i++) masPartes();
@@ -179,7 +179,7 @@
 						var formData = new FormData(jQuery(this)[0]);
 						jQuery.ajax({
 							// cambiar 'url_local' por 'url_remoto' cuando sea subido a joomla
-							url:  url_local,
+							url: URLS["url_generar_partes"],
 							type: 'POST',
 							data: formData,
 							dataType: 'text',
@@ -220,8 +220,10 @@
 			    }
 			}
 		</script>
+<!-- Bloque para probar localmente
 	</head>
 	<body>
+Fin bloque -->
 		<div id="form_container">
 			<div class="row">
 				<div class="col-md-12">
@@ -237,5 +239,7 @@
 			<br>
 			<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
 		</div>
+<!-- Bloque para probar localmente
 	</body>
 </html>
+Fin bloque -->

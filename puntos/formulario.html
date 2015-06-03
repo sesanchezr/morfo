@@ -1,13 +1,20 @@
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
+
+<!-- Bloque para probar localmente 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"><title>Conversor puntos</title>
-<!-- FIN DEL BLOQUE -->
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+FIN DEL BLOQUE -->
 		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+		<!-- LA ÚNICA URL HARDCODEADA -->
+		<script src="/~morfo3/urls_globales/getURLS.js"></script>
+		<script>
+			/* OBTENER URLS DESDE EL JSON */
+			var URLS = getURLS();
+		</script>
 		<script>
 			function alertUser(message){
 				if (message == "") jQuery("#message").text("");
@@ -45,28 +52,22 @@
 				var input = jQuery('#'+name);
 				var ext = input.val().split('.').pop().toLowerCase();
 				if(jQuery.inArray(ext, ['html']) == -1) {
-					jQuery("#check"+id).removeClass("ticket").addClass("cross");
+					jQuery("#check"+id).removeClass("ticket").addClass("cross").css("background-image","none");
+					jQuery(".cross").css("background-image","url('"+URLS["url_img_cross"]+"')");
 				    alertUser('Archivo invalido, debe ingresar un archivo .html swiffy');
 				    return false;
 				}
 				//TO DO: Validar swiffy: ver si tiene un swiffycontainer
 				//validateSwiffy(input.files);
-				jQuery("#check"+id).removeClass("cross").addClass("ticket");
+				jQuery("#check"+id).removeClass("cross").addClass("ticket").css("background-image","none");
+				jQuery(".ticket").css("background-image","url('"+URLS["url_img_ticket"]+"')");
 				alertUser("");
 				return true;
 			}
-			// TO DO:
-			// function validateSwiffy(){
-			// 	// Check for the various File API support.
-			// 	if (window.File && window.FileReader && window.FileList && window.Blob) {
-			// 	  // Great success! All the File APIs are supported.
-			// 	} else {
-			// 	  alert('The File APIs are not fully supported in this browser.');
-			// 	}
-			// }
-			var url_remoto = "/~morfo3/generar.php";
-			var url_local = "generar.php";
 			jQuery(document).ready(function(){
+				// Añadir cositas CSS usando URLS
+
+
 				// Qué hacer cuando se hace submit en el formulario 
 				jQuery("#form_id").submit(function(event){
 				    // Validar localmente primero
@@ -74,8 +75,7 @@
 						//Obtener datos del formulario
 						var formData = new FormData(jQuery(this)[0]);
 				    	jQuery.ajax({
-	/* CAMBIAR url_local POR url_remoto CUANDO SE SUBA A JOOMLA!!!!!!!!!!!!!!!!!!!!!!! */
-				    		url: url_local,
+				    		url: URLS["url_generar_puntos"],
 				    		type: 'POST',
 				    		data: formData,
 				    		dataType: 'text',
@@ -112,12 +112,10 @@
 		</script>
 		<style>
 			#form_container{
-				position: absolute;
-			    margin-left: 25vw;
+				text-align: center;
 			    margin-right: auto;
-			    text-align: center;
 			    width: 600px;
-			    height: auto;
+			    height: 300px;
 			    padding: 30px;
 			    vertical-align: middle;
 			    margin-top: 100px;
@@ -136,10 +134,10 @@
 				z-index:0;
 			}
 			.ticket{
-				background-image: url("ticket.png");
+				/* NO BORRAR!!! */
 			}
 			.cross{
-				background-image: url("cross.png");
+				/* NO BORRAR!!! */
 			}
 		</style>
 		<style>
@@ -150,9 +148,12 @@
 				padding: 1px 4px 1px 4px;
 				border: 1px solid #bbe;
 				width: 600px;
-				height: 500px;
+				height: 110px;
 				border-radius: 10px;
 				overflow: scroll;
+				font-size: 10px;
+				text-align: left;
+				margin-top:-20px;
 			}
 			#message{
 				padding: 20px;
@@ -160,7 +161,7 @@
 			}
 		</style>
 
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
+<!-- Bloque para probar localmente --
 	</head>
 	<body>
 <!-- FIN DEL BLOQUE -->
@@ -177,7 +178,7 @@
 			<br>
 			<div id="output_div"><pre id="output" onclick="selectHTML();"></pre></div>
 		</div>
-<!-- BORRAR ESTE BLOQUE CUANDO SE SUBA A JOOMLA -->
+<!-- Bloque para probar localmente --
 	</body>
 </html>
 <!-- FIN DEL BLOQUE -->

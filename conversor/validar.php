@@ -2,12 +2,13 @@
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	$formato_permitido = array('video/x-flv');
-	echo "<pre>";
-	//obtener nombres de archivos subidos
-	//print_r($_FILES["archivo1"]);
-	//print_r($_FILES["archivo2"]);
-	//print_r($_FILES);
-	echo "</pre>";
+	// echo "<pre>";
+	// //obtener nombres de archivos subidos
+	// //print_r($_FILES["archivo1"]);
+	// //print_r($_FILES["archivo2"]);
+	// print_r($_FILES);
+	// print_r($_POST);
+	// echo "</pre>";
 	$n_archivos = count($_FILES['archivos']['name']);
 	$to_convert = array();
 	//Recorrer todos los archivos adjuntos, filtrar los que tienen error, y los que no tienen formato flv.
@@ -19,11 +20,12 @@
 		$error 	= $_FILES['archivos']['error'][$i];
 		$dir 	= $_FILES['archivos']['tmp_name'][$i];
 		$size 	= $_FILES['archivos']['size'][$i];
+		$resol 	= $_POST['resol'][$i];
 		if (($tipo != "") && (!in_array($tipo, $formato_permitido))){
 			die("ERROR");
 		}
 		if ($error == 0){
-			$nuevo_archivo = array("name" => preg_replace('/\\.[^.\\s]{3,4}$/', '', $nombre) , "type" => $tipo, "tmp_name" => $dir, "size" => $size);
+			$nuevo_archivo = array("name" => preg_replace('/\\.[^.\\s]{3,4}$/', '', $nombre) , "type" => $tipo, "tmp_name" => $dir, "size" => $size, "resol" => $resol);
 			array_push($to_convert,$nuevo_archivo);
 		}
 	}
@@ -37,7 +39,8 @@
 		//crear directorio temporal
 		shell_exec("mkdir -p $tmp_dir");
 		//convertir archivos y guardar en directorio temporal
-		shell_exec("avconv -i ".$archivo_actual["tmp_name"]." -c:v libx264 -crf 23 -c:a aac -strict experimental -q:a 100 $tmp_dir/".$archivo_actual['name'].".mp4");
+		$video_size = $archivo_actual['resol'] != "defecto" ? " -s ".$archivo_actual['resol']." " : "";
+		shell_exec("avconv -i ".$archivo_actual["tmp_name"]." -c:v libx264 $video_size -crf 23 -c:a aac -strict experimental -q:a 100 $tmp_dir/".$archivo_actual['name'].".mp4");
 	    $nuevo_nombre = $archivo_actual['name'].".mp4";
 	    $nuevo_full = $tmp_dir."/".$nuevo_nombre;
 	    echo $nuevo_full;
