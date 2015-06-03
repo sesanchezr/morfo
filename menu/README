@@ -1,0 +1,31 @@
+Cambios en el css para el menu:
+
+Archivo:/css/template.css
+Linea:599
+Antiguo valor:'#333'
+Nuevo valor: '#D5D3D3'
+
+Archivo:/css/template.css
+Linea:633
+Antiguo valor:'#fff'
+Nuevo valor: '#000000'
+
+Archivo:/css/styles/blue.css
+Linea:101
+Antiguo valor:'#00B7FF'
+Nuevo valor: '#0096D2'
+
+Archivo:/css/template.css
+Linea:639
+Antiguo valor:'#222222'
+Nuevo valor: '#D5D3D3'
+
+Archivo:/css/template.css
+Linea:717
+Antiguo valor:'#333'
+Nuevo valor: '#B6B6B6'
+
+Archivo:/css/template.css
+Linea:420
+Antiguo valor:'10px'
+Nuevo valor: '3px'
