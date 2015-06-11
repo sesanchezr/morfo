@@ -16,12 +16,11 @@ Actualmente el sitio está implementado usando el administrador de contenidos Jo
 
 ### URLS, paths y portabilidad
 La implementación actual es como sigue:
+	Existe la carpeta urls_globales. Aquí se encuentran tres archivos principales: __urls.php__, __getURLS.js__ y __generarjson.php__.
 	Los scripts internos del servidor usan el archivo **urls.php** para obtener sus urls
 	Las páginas usan el script __getURLS()__ para obtener las urls desde el archivo **urls.json**.
 	El archivo **urls.json** debe ser generado usando manualmente el script **generarjson.php** poniendo en el navegador:
-	http(s)://<host>/<user siesque tiene>/formularios_php/generarjson.php
+	http(s)://<host>/~<user si es que lo pide>/formularios_php/generarjson.php
 	Luego, el json queda generado.
 	NO es necesario generarlo nunca más, excepto cuando se editen las urls en el archivo urls.php.
 	La única URL hardcodeada que debiera haber en cada artículo (formulario) es la necesaria para incluir la función __getURLS()__ desde el archivo **getURLS.js**.
-
-	Hasta ahora está implementado esto sólo para formulario Partes. Pronto se portará al resto.
