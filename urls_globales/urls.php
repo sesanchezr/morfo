@@ -15,7 +15,7 @@
 	´´´´´´´´´´´´´´´´´´´´´´´´
 	Para HOSTGATOR, la raíz del sitio es "/~morfo3/". Para otros casos suele ser sencillamente "/".
 	Notar que la primera URL es la única que debe estar hardcodeada.
-	IMPORTANTÍSIMO: Para que esto funcione, debe haberse ejecutado el archivo "generarjson.php" después de la última vez que se le hicieron cambios a este script "urls.php". Busque las instrucciones de cómo hacer esto.
+	IMPORTANTÍSIMO: Para que esto funcione, debe haberse ejecutado el archivo "generarjson.php" después de la última vez que se le hicieron cambios a este script "urls.php". Busque las instrucciones de cómo hacer esto en el README.
 	Tras lo anterior, todas las url's están en el diccionario javascript URLS. Accesarlas como URLS["<nombre de la variable en urls.php>"].
 
 
@@ -49,6 +49,7 @@
 	//!!!!!!!!!!!!!!$url_phps = 				"$protocolo$url_raiz_sitio/formularios_php";//URL hacia php's de formularios
 	$url_aris_form = 			"$protocolo$url_raiz_sitio/aristoteles/formularios";//URL hacia recursos de los formularios
 	$url_aris_gen = 			"$protocolo$url_raiz_sitio/aristoteles/generados";//URL hacia artículos generados
+	$url_media = 				"$protocolo$url_raiz_sitio/aristoteles/media";
 	// paths servidor
 
 	//########### IMPORTANTE ############# CAMBIAR ESTA VARIABLE SEGÚN EL WEBSERVER
@@ -56,6 +57,7 @@
 	//!!!!!!!!!!!!!!$path_phps = 				"$path_raiz_server/formularios_php";		//Path en server hacia php's de formularios
 	$path_aris_form = 			"$path_raiz_server/aristoteles/formularios";//Path en server hacia recursos de los formularios
 	$path_aris_gen = 			"$path_raiz_server/aristoteles/generados"; 	//Path en server hacia artículos generados
+	$path_media = 				"$path_raiz_server/aristoteles/media";
 	// Formulario puntos
 	$path_js_puntos =			"$path_aris_gen/puntos/js";				//Carpeta donde guardar js's generados
 	$url_js_puntos = 			"$url_aris_gen/puntos/js";				// url para pedir js's generados
@@ -78,4 +80,9 @@
 	$url_template_gym = 		"$url_aris_form/gymkana/js/template.js";
 	$url_gymkana_gym = 			"$url_aris_form/gymkana/js/gymkana.js";
 	$url_form_gym = 			"$url_aris_form/gymkana/js/formulario.js";
+
+	// Formularios Tutu-Tutu
+	$url_thumb_tutu = 			"$url_media/imagenes/thumbs";
+	$url_form_tutu = 			"$url_aris_form/tutututu/js/formulario.js";
+	$url_tutu_tutu = 			"$url_aris_form/tutututu/js/tutututu.js";
 ?>
