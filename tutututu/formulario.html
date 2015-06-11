@@ -1,0 +1,27 @@
+<script src="urls_globales/getURLS.js"></script>
+<script>
+	//OBTENER URLS DESDE EL JSON
+	var URLS = getURLS();
+</script>
+<script type="text/javascript">
+	    var tutu_script = document.createElement('script');
+	    tutu_script.src = URLS["url_form_tutu"];
+	    head_tag = document.getElementsByTagName('head')[0];
+	    head_tag.appendChild(tutu_script);
+</script>
+<div id="tutututuContainer" class="row">
+	<table class="table">
+	
+		<tr class="info">
+        <th>Texto tutututu</th>
+        <td colspan="3">
+          <textarea id="textoTutututu" class="form-control" rows="5"></textarea></td>
+      	</tr>
+	</table>
+	<button type="button" class="btn btn-primary" onClick="generateCode();">Generar c&oacute;digo</button>
+	<div class="row">
+        <br />
+        <button type="button" class="btn btn-sm btn-success" onClick="selectText();">seleccionar c&oacute;digo</button>
+        <pre id="codigo" class="col-md-12"></pre>
+  	</div>
+</div>
