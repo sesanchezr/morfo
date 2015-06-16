@@ -54,7 +54,6 @@
 
 	//########### IMPORTANTE ############# CAMBIAR ESTA VARIABLE SEGÚN EL WEBSERVER
 	$path_raiz_server = 		"/home/morfo3/public_html";					//CAMBIAR SEGÚN EL WEBSERVER
-	//!!!!!!!!!!!!!!$path_phps = 				"$path_raiz_server/formularios_php";		//Path en server hacia php's de formularios
 	$path_aris_form = 			"$path_raiz_server/aristoteles/formularios";//Path en server hacia recursos de los formularios
 	$path_aris_gen = 			"$path_raiz_server/aristoteles/generados"; 	//Path en server hacia artículos generados
 	$path_media = 				"$path_raiz_server/aristoteles/media";
