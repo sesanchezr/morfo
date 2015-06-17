@@ -12,13 +12,20 @@ jQuery('#swiffycontainer2').css({"width": "1000px", "height":"611px"});
 
 jQuery('#swiffycontainer').click(function(){ expandFigure(); });
 
-if( window.innerWidth >= 1000 ){
-	expandFigure();
-	jQuery('#zoomout').hide();
-}else{
-	contractFigure();
-	jQuery('#zoomout').show();
+checkIfResizeNecessary();
+jQuery(window).bind('resize', function () { 
+	checkIfResizeNecessary();
+});
+function checkIfResizeNecessary(){
+	if( window.innerWidth >= 1000 ){
+		expandFigure();
+		jQuery('#zoomout').hide();
+	}else{
+		contractFigure();
+		jQuery('#zoomout').show();
+	}
 }
+
 
 
 function expandFigure(){
