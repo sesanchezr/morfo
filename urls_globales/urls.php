@@ -80,6 +80,7 @@
 	$url_template_gym = 		"$url_aris_form/gymkana/js/template.js";
 	$url_gymkana_gym = 			"$url_aris_form/gymkana/js/gymkana.js";
 	$url_form_gym = 			"$url_aris_form/gymkana/js/formulario.js";
+	$url_imagenes_gym = 		"$url_media/imagenes/gymkana";
 
 	// Formularios Tutu-Tutu
 	$path_thumb_tutu = 			"$path_media/imagenes/thumbs";
