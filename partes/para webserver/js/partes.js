@@ -57,8 +57,8 @@ function toogleAll(id) {
 			id : "swiffycontainerBig-" + id,
 			class : "swiffyObject",
 			css : {
-				'width' : '800px',
-				'height' : '550px'
+				'width' : '1000px',
+				'height' : '611px'
 			}
 		});
 		jQuery("#bigSwiffy").append(bigDiv);
@@ -98,7 +98,7 @@ for( var i = 0; i < navBar.length; i++ ){
 	jQuery("#navBar").append(button);
 }
 var mobile = true;
-if (window.innerWidth >= 900) {
+if (window.innerWidth >= 1000) {
 	expandFigure();
 	jQuery('#zoomin').hide();
 	jQuery('#zoomout').hide();
