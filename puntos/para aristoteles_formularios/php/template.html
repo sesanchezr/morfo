@@ -7,14 +7,9 @@
 <script type="text/javascript" src="@bswiffy.js"></script>
 
 <div class="row" >
-	<div class="col-md-12" id="smallImage">
+	<div class="col-md-12" id="smallImage">		
 		<div class="col-md-12">
-			<button id="zoomin" class="btn btn-primary" onClick="expandFigure();">
-				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Zoom in
-			</button></div>
-		
-		<div class="col-md-12">
-		<div id="swiffycontainer" style="width: 400px; height: 300px"></div>
+		<div id="swiffycontainer"></div>
 		</div>
 	</div>
 
@@ -25,25 +20,10 @@
 			</button></div>
 		
 		<div class="col-md-12">
-		<div id="swiffycontainer2" style="width: 1000px; height: 611px"></div>
+		<div id="swiffycontainer2"></div>
 		</div>
 	</div>
 </div>
-
-<style type="text/css">
-	.bigImage{
-		min-width: 1050px;
-	}
-	.bigBody{
-		min-width: 1100px;
-	}
-	.smallImage{
-		min-width: 450px;
-	}
-	.smallBody{
-		min-width: 500px;
-	}
-</style>
 
 <script>      
 	var stage1 = new swiffy.Stage(document.getElementById('swiffycontainer'),
@@ -54,31 +34,5 @@
 		         			%bswiffy, {  });      
 		      	stage2.start();
 
-jQuery("#bigImage").hide();
-jQuery('body').addClass('smallBody');
-jQuery('.container').addClass('smallImage');
-
-if( window.innerWidth >= 1000 ){
-	expandFigure();
-	jQuery('#zoomin').hide();
-	jQuery('#zoomout').hide();
-}
-
-
-function expandFigure(){
-	jQuery('#smallImage').hide();
-	jQuery('#bigImage').show();
-	jQuery('#content').removeClass('span9').addClass('span11');
-	jQuery('body').removeClass('smallBody').addClass('bigBody');
-	jQuery('.container').removeClass('smallImage').addClass('bigImage');
-}
-
-function contractFigure(){
-	jQuery('#smallImage').show();
-	jQuery('#bigImage').hide();
-	jQuery('#content').removeClass('span11').addClass('span9');
-	jQuery('body').removeClass('bigBody').addClass('smallBody');
-	jQuery('.container').removeClass('bigImage').addClass('smallImage');
-}
-
 </script>
+<script src="js/puntos_template.js"></script>
