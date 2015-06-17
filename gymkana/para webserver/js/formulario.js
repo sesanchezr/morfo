@@ -89,7 +89,7 @@ function generateCode() {
 	res += '&lt;script&gt;\n';
 	res += 'var respuestasRojo=[' + respuestasRojo + '];\n';
 	res += 'var respuestasBlanco=[' + respuestasBlanco + '];\n';
-	res += 'var nombreCarpeta="'+URLS['url_imagenes_gym'] + nombreCarpeta + '";\n';
+	res += 'var nombreCarpeta="'+URLS['url_imagenes_gym'] + "/"+ nombreCarpeta + '";\n';
 //	res += 'var nombreCarpeta="../aristoteles/' + "gymkana1" + '";';
 	res += 'var titulo="' + titulo + '";\n';
 //	res += 'var titulo="' + "Gymkana 1" + '";';
