@@ -61,7 +61,8 @@
 	$path_js_puntos =			"$path_aris_gen/puntos/js";				//Carpeta donde guardar js's generados
 	$url_js_puntos = 			"$url_aris_gen/puntos/js";				// url para pedir js's generados
 	$url_generar_puntos = 		"$url_aris_form/puntos/php/generar.php"; 	//script para generar respuesta
-	$url_template_puntos = 		"$url_aris_form/puntos/php/template.html"; 	//Archivo usado para generar respuesta
+	$url_template_puntos = 		"$url_aris_form/puntos/php/template.html";  //Archivo usado para generar respuesta
+	$url_js_template_puntos = 	"$url_aris_form/puntos/js/template.js";		//Template js
 	$url_img_ticket = 			"$url_aris_form/puntos/imagenes/ticket.png";//Icono
 	$url_img_cross = 			"$url_aris_form/puntos/imagenes/cross.png";	//Icono
 

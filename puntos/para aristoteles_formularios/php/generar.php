@@ -1,7 +1,9 @@
 <?php
+	// Importar urls y paths globales
 	$working_dir = "/aristoteles/formularios/puntos/php";
 	$raiz_wwwserver = rtrim(str_replace($working_dir,"",shell_exec("pwd")));
 	require_once("$raiz_wwwserver/urls_globales/urls.php");
+
 	error_reporting(E_ALL);
 	ini_set('error_reporting', E_ALL);
 	function printError($message){
