@@ -81,7 +81,9 @@
 	$url_form_gym = 			"$url_aris_form/gymkana/js/formulario.js";
 
 	// Formularios Tutu-Tutu
+	$path_thumb_tutu = 			"$path_media/imagenes/thumbs";
 	$url_thumb_tutu = 			"$url_media/imagenes/thumbs";
 	$url_form_tutu = 			"$url_aris_form/tutututu/js/formulario.js";
 	$url_tutu_tutu = 			"$url_aris_form/tutututu/js/tutututu.js";
+	$url_seek_tutu = 			"$url_aris_form/tutututu/php/seekfolder.php";
 ?>
