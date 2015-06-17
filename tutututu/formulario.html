@@ -1,4 +1,4 @@
-<script src="/urls_globales/getURLS.js"></script>
+<script src="/~morfo3/urls_globales/getURLS.js"></script>
 <script>
 	//OBTENER URLS DESDE EL JSON
 	var URLS = getURLS();
@@ -10,16 +10,21 @@
 	    head_tag.appendChild(tutu_script);
 </script>
 <div id="tutututuContainer" class="row">
-	<table class="table">
-	
-		<tr class="info">
-        <th>Texto tutututu</th>
-        <td colspan="3">
-          <textarea id="textoTutututu" class="form-control" rows="5"></textarea></td>
+	<table class="table" id="tabla_tutu">
+		    <tr class="info">
+        	<th>Texto tutututu</th>
+        	<td colspan="3"><textarea id="textoTutututu" class="form-control" rows="5"></textarea></td>
+      	</tr>
+      	<tr>
+      		<th>Carpeta imágenes galería</th>
+      		<td colspan="3"><input type="text" name="nombreCarpeta" id="nombreCarpeta"></td>
+      	</tr>
+      	<tr>
+      		<td colspan="4"><input type="button" class="btn btn-primary" value="+" onclick="addRow();"></td>
       	</tr>
 	</table>
 	<button type="button" class="btn btn-primary" onClick="generateCode();">Generar c&oacute;digo</button>
-	<div class="row">
+	<div>
         <br />
         <button type="button" class="btn btn-sm btn-success" onClick="selectText();">seleccionar c&oacute;digo</button>
         <pre id="codigo" class="col-md-12"></pre>

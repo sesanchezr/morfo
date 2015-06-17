@@ -67,7 +67,6 @@ function extremeCompare(answ1, answ2){
 
 jQuery( document ).ready(function(){
 
-	
 	var answerSummary = '<br><input type="button" class="btn btn-primary" onClick="checkAnswers();" value="Validar" /><br>';
 	answerSummary += '<div id="answerSummary">';
 	answerSummary += '<div class="form-group"><div class="input-group"><span class="input-group-addon">#</span><div class="form-inline">';
@@ -102,5 +101,4 @@ jQuery( document ).ready(function(){
 	text+=answerSummary;
 	jQuery('#answers').html(text);
 	jQuery('#answerSummary').hide();
-
 });
