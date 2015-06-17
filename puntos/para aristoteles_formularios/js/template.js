@@ -2,11 +2,13 @@ jQuery("#bigImage").hide();
 jQuery('body').addClass('smallBody');
 jQuery('.container').addClass('smallImage');
 
+
+var style = document.createElement('style');
+style.type = 'text/css';
+style.innerHTML = '.bigImage{min-width: 1050px;} .bigBody{min-width: 1100px;} .smallImage{min-width: 450px;} .smallBody{min-width: 500px;}';
+document.getElementsByTagName('head')[0].appendChild(style);
+
 //style
-jQuery('.bigImage').css("min-width", "1050px");
-jQuery('.bigBody').css("min-width", "1100px");
-jQuery('.smallImage').css("min-width", "450px");
-jQuery('.smallBody').css("min-width", "500px");
 jQuery('#swiffycontainer').css({"width": "400px", "height":"300px"});
 jQuery('#swiffycontainer2').css({"width": "1000px", "height":"611px"});
 
