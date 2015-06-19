@@ -15,9 +15,9 @@ jQuery('#swiffycontainer2').css({"width": "1000px", "height":"611px"});
 jQuery('#swiffycontainer').click(function(){ expandFigure(); });
 
 checkIfResizeNecessary();
-jQuery(window).bind('resize', function () { 
+/*jQuery(window).bind('resize', function () { 
 	checkIfResizeNecessary();
-});
+});*/
 function checkIfResizeNecessary(){
 	if( window.innerWidth >= 1000 ){
 		expandFigure();
