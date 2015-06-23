@@ -132,6 +132,10 @@
 				alertar("Error: Debe ingresar algún archivo!");
 				return false;
 			}
+			// Aquí está todo ok. No retorno true para evitar que se recargue la página
+			alertar("Subiendo videos y convirtiendo. Esto puede demorar varios minutos dependiendo del tamaño de los archivos. ¡Paciencia!");
+			jQuery("#conv_button").attr('disabled','disabled');
+			jQuery("#mensajes").css("color","#33aa33");
 		}
 		// $(document).ready(function{
 		// 	$('#formulario input[type=file]').each(
@@ -155,7 +159,7 @@
 				<div id="mas_archivos"></div>
 			</fieldset>
 			<br>
-			<button type="submit" class="pure-button pure-button-primary">Convertir!</button>
+			<button id="conv_button" type="submit" class="pure-button pure-button-primary">Convertir!</button>
 		</form>
 		<div id="mensajes"></div>
 	</div>
