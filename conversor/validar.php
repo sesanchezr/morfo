@@ -40,7 +40,8 @@
 		shell_exec("mkdir -p $tmp_dir");
 		//convertir archivos y guardar en directorio temporal
 		$video_size = $archivo_actual['resol'] != "defecto" ? " -s ".$archivo_actual['resol']." " : "";
-		shell_exec("avconv -i ".$archivo_actual["tmp_name"]." -c:v libx264 $video_size -crf 23 -c:a aac -strict experimental -q:a 100 $tmp_dir/".$archivo_actual['name'].".mp4");
+		#shell_exec("avconv -i ".$archivo_actual["tmp_name"]." -c:v libx264 $video_size -crf 23 -c:a aac -strict experimental -q:a 100 $tmp_dir/".$archivo_actual['name'].".mp4");
+		shell_exec("ffmpeg -i ".$archivo_actual["tmp_name"]." -c:v libx264 $video_size -crf 23 -c:a libfaac -q:a 100 $tmp_dir/".$archivo_actual['name'].".mp4");
 	    $nuevo_nombre = $archivo_actual['name'].".mp4";
 	    $nuevo_full = $tmp_dir."/".$nuevo_nombre;
 	    echo $nuevo_full;
@@ -62,5 +63,6 @@
 	header('Connection: close');
 	readfile($generado_full);
 	exit();*/
-//comando: avconv -i test.flv -c:v libx264 -crf 23 -c:a aac -strict experimental -q:a 100 testavconv.mp4
+//DEPRECADO comando: avconv -i test.flv -c:v libx264 -crf 23 -c:a aac -strict experimental -q:a 100 testavconv.mp4
+// AHORA EL COMANDO ES: ffmpeg -i video.flv  -c:v libx264 -c:a libfaac -q:a 100 -crf 23 nuevovideo.mp4
  ?>
