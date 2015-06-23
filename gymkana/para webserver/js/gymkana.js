@@ -206,9 +206,4 @@
       viewport = document.querySelector("meta[name=viewport]");
       viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=1');
       
-      jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
       
-      jQuery('#gymcana').hide();
-      jQuery('#intro').show();
-      jQuery('#titulo')[0].innerHTML = titulo;
-      jQuery('#descripcion')[0].innerHTML = descripcion;
