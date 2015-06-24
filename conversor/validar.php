@@ -33,6 +33,7 @@
 	echo "<br>";
 	//Para todos los archivos, ejecutar el comando ffmpeg correspondiente y guardar resultado en carpeta temporal
 	$tmp_dir = "/tmp/conversor";
+	mkdir($tmp_dir);
 	shell_exec("rm ".$tmp_dir."/*");
 	for ($i = 0; $i < count($to_convert); $i++){
 		$archivo_actual = $to_convert[$i];
