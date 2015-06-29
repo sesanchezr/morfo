@@ -32,6 +32,20 @@ function generateCode() {
 		processData: false
 	});
 	var textoTutututu = jQuery('#textoTutututu').val();
+	// validar que los <> están correctos
+	var bracket=0;
+	for (var i=0;i<textoTutututu.length;i++){
+		if (textoTutututu[i]== "<")
+			bracket+=1;
+		if (textoTutututu[i]== ">")
+			bracket-=1;
+		if (bracket > 1 || bracket < 0)
+			break;
+	}
+	if (bracket != 0){
+		jQuery('#codigo')[0].innerHTML = "ERROR: símbolos \"<\" \">\" no están correctamente cerrados";
+		return false;
+	}
 	textoTutututu = textoTutututu.trim();
 	textoTutututu = textoTutututu.replace(/(?:\r\n|\r|\n)/g, '<br>');
 	textoTutututu = textoTutututu.replace(/</g, '&lt;');
@@ -45,15 +59,24 @@ function generateCode() {
 		res+="\""+nombreImagenes[i]+"\"";
 	}
 	res += "];\n";
-	res += "jQuery(document).ready(function(){\n";
-	res += "	\/\/ Agregar imágenes arriba del módulo\n";
-	res += "	for (var i = 0; i &lt; galeria.length; i++) {\n";
-	res += "		var html= \"&lt;a href='\"+URLS['url_thumb_tutu']+\"/"+nombreCarpeta+"/\"+galeria[i]+\"' class='jcepopup galeriaclass' rel='title[\"+galeria[i]+\"];caption[ ];group[]'&gt;\"+\n";
-	res += "		          \"&lt;img src='\"+URLS['url_thumb_tutu']+\"/"+nombreCarpeta+"/\"+galeria[i]+\"' alt='\"+galeria[i]+\"' width='150' heigth='90'&gt;\";\n";
-	res += "		jQuery(\"#galeria\").append(html);\n";
-	res += "	}\n";
-	res += "});\n";
-	res += '&lt;/script&gt;\n';
-
+	// res += "jQuery(document).ready(function(){\n";
+	// res += "	\/\/ Agregar imágenes arriba del módulo\n";
+	// res += "	for (var i = 0; i &lt; galeria.length; i++) {\n";
+	// res += "		var html= \"&lt;a href='\"+URLS['url_thumb_tutu']+\"/"+nombreCarpeta+"/\"+galeria[i]+\"' class='jcepopup galeriaclass' rel='title[\"+galeria[i]+\"];caption[ ];group[]'&gt;\"+\n";
+	// res += "		          \"&lt;img src='\"+URLS['url_thumb_tutu']+\"/"+nombreCarpeta+"/\"+galeria[i]+\"' alt='\"+galeria[i]+\"' width='150' heigth='90'&gt;\";\n";
+	// res += "		jQuery(\"#galeria\").append(html);\n";
+	// res += "	}\n";
+	// res += "});\n";
+	res += 	"var tid = setInterval(function() {\n"+
+			"	if (document.readyState !== 'complete') return;\n"+
+			"	clearInterval(tid);\n"+
+			"	// Trabajo se hace aquí\n"+
+			"	for (var i = 0; i < galeria.length; i++) {\n"+
+			"		var html= \"&lt;a href='\"+URLS['url_thumb_tutu']+\"/"+nombreCarpeta+"/\"+galeria[i]+\"' class='jcepopup galeriaclass' rel='title[\"+galeria[i]+\"];caption[ ];group[]'&gt;\"+\n"+
+			"		          \"&lt;img src='\"+URLS['url_thumb_tutu']+\"/"+nombreCarpeta+"/\"+galeria[i]+\"' alt='\"+galeria[i]+\"' width='150' heigth='90'&gt;\";\n"+
+			"		jQuery(\"#galeria\").append(html);\n"+
+			"	}\n"+
+			"}, 100);\n"+
+			"&lt;/script&gt;\n";
 	jQuery('#codigo')[0].innerHTML = res;
 }
