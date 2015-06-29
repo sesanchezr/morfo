@@ -53,7 +53,8 @@
 	// paths servidor
 
 	//########### IMPORTANTE ############# CAMBIAR ESTA VARIABLE SEGÚN EL WEBSERVER
-	$path_raiz_server = 		"/home/morfo3/public_html";					//CAMBIAR SEGÚN EL WEBSERVER
+	$path_raiz_server = 		"/home/morfomeduchile/public_html";					//CAMBIAR SEGÚN EL WEBSERVER
+	# Para HOSTGATOR: $path_raiz_server = 		"/home/morfo3/public_html"
 	$path_aris_form = 			"$path_raiz_server/aristoteles/formularios";//Path en server hacia recursos de los formularios
 	$path_aris_gen = 			"$path_raiz_server/aristoteles/generados"; 	//Path en server hacia artículos generados
 	$path_media = 				"$path_raiz_server/aristoteles/media";
@@ -83,8 +84,8 @@
 	$url_imagenes_gym = 		"$url_media/imagenes/gymkana";
 
 	// Formularios Tutu-Tutu
-	$path_thumb_tutu = 			"$path_media/imagenes/thumbs";
-	$url_thumb_tutu = 			"$url_media/imagenes/thumbs";
+	$path_thumb_tutu = 			"$path_media/imagenes/tutututu";
+	$url_thumb_tutu = 			"$url_media/imagenes/tutututu";
 	$url_form_tutu = 			"$url_aris_form/tutututu/js/formulario.js";
 	$url_tutu_tutu = 			"$url_aris_form/tutututu/js/tutututu.js";
 	$url_seek_tutu = 			"$url_aris_form/tutututu/php/seekfolder.php";

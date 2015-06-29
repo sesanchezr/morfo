@@ -116,3 +116,10 @@ function getCodeTemplate() {
 	
 	return strVar;
 }
+jQuery(document).ready(function(){
+        jQuery('#gymkanaContainer')[0].innerHTML = getCodeTemplate();
+        jQuery('#gymcana').hide();
+        jQuery('#intro').show();
+        jQuery('#titulo')[0].innerHTML = titulo;
+        jQuery('#descripcion')[0].innerHTML = descripcion;
+      });

@@ -80,25 +80,59 @@ function generateCode() {
 		}
 	}
 
-	var res = '&lt;div id="gymkanaContainer"&gt;&lt;/div&gt;\n';
-	//res += '&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;'
-	res += '&lt;script src="'+URLS['url_timer_gym']+'" &gt;&lt;/script&gt;\n';
-	//res+='&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"&gt;'
-	//res+='&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"&gt;&lt;/script&gt;';
-		
-	res += '&lt;script&gt;\n';
-	res += 'var respuestasRojo=[' + respuestasRojo + '];\n';
-	res += 'var respuestasBlanco=[' + respuestasBlanco + '];\n';
-	res += 'var nombreCarpeta="'+URLS['url_imagenes_gym'] + "/"+ nombreCarpeta + '";\n';
-//	res += 'var nombreCarpeta="../aristoteles/' + "gymkana1" + '";';
-	res += 'var titulo="' + titulo + '";\n';
-//	res += 'var titulo="' + "Gymkana 1" + '";';
-	res += 'var descripcion="' + descripcion + '";\n';
-	res += '&lt;/script&gt;\n';
+	// Código para importar urls globales
+	/*
+	<script src="<raíz del sitio>urls_globales/getURLS.js"></script>
+	<script>
+		//OBTENER URLS DESDE EL JSON
+		var URLS = getURLS();
+	</script>
+	<script type="text/javascript">
+	    var script1 = document.createElement('script');
+	    script1.src = URLS["url_de_este_script"];
+	    head_tag = document.getElementsByTagName('head')[0];
+	    head_tag.appendChild(script1);
+	</script>
 
-	res += '&lt;script src="'+URLS['url_template_gym']+'" &gt;&lt;/script&gt;\n';
-	res += '&lt;script src="'+URLS['url_gymkana_gym']+'" &gt;&lt;/script&gt;\n';
-	
+	A continuación se quiere importar los scripts que estarán en:
+		- URLS["url_timer_gym"]
+		- URLS["url_imagenes_gym"]
+		- URLS["url_template_gym"]
+		- URLS["url_gymkana_gym"]
+
+	*/
+	var res = 	'&lt;div id="gymkanaContainer"&gt;&lt;/div&gt;\n'+
+	// Primer importar urls globales
+	// OJO: EN ESTA LÍNEA CAMBIAR EL SOURCE SEGÚN EL HOST. EN HOSTGATOR ES "/~morfo3/urls...."
+			  	'&lt;script src="/~morfo3/urls_globales/getURLS.js"&gt;&lt;/script&gt;\n'+
+			  	'&lt;script type="text/javascript"&gt;\n'+
+			  	'	var URLS = getURLS();\n'+
+	// Ahora importar scripts
+				'	var s_timer = document.createElement("script");\n'+
+				'	var s_template = document.createElement("script");\n'+
+				'	var s_gymkana = document.createElement("script");\n'+
+				'	s_timer.src = URLS["url_timer_gym"];\n'+
+				'	s_template.src = URLS["url_template_gym"];\n'+
+				'	s_gymkana.src = URLS["url_gymkana_gym"];\n'+
+				'	head_tag = document.getElementsByTagName("head")[0];\n'+
+				'	head_tag.appendChild(s_timer);\n'+
+				'	head_tag.appendChild(s_template);\n'+
+				'	head_tag.appendChild(s_gymkana);\n'+
+				'&lt;/script&gt;\n'+
+	// Ahora, armar variables de la gymkana	
+				'&lt;script&gt;\n'+
+	// Asegurarse de que el documento esté ready para que "URLS" ya esté definida
+				'	var nombreCarpeta="";\n'+
+				'	jQuery(document).ready(function(){\n'+
+				'		nombreCarpeta=URLS["url_imagenes_gym"]+"/"+"'+nombreCarpeta+'";\n'+
+				'	});\n'+
+				'	var respuestasRojo=['+respuestasRojo+'];\n'+
+				'	var respuestasBlanco=['+respuestasBlanco+'];\n'+
+//				'	var nombreCarpeta="../aristoteles/' + "gymkana1" + '";';
+				'	var titulo="'+titulo+'";\n'+
+//				'	var titulo="' + "Gymkana 1" + '";';
+				'	var descripcion="'+descripcion+'";\n'+
+				'&lt;/script&gt;\n';
 
 	jQuery('#codigo')[0].innerHTML = res;
 }
